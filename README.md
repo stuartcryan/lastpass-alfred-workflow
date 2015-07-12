@@ -25,6 +25,7 @@ Simple yet powerful integration with the Lastpass CLI so you can now get your pa
 * lplogin - Log in to LastPass
 * lplogout - Log out of LastPass
 * lp <query> Search Lastpass vault for item containing <query>, press return to copy to clipboard.
+* Shift modifier can be used on lp <query> to copy the username.
 
 ## Contributing
 
