@@ -37,7 +37,10 @@ Simple yet powerful integration with the Lastpass CLI so you can now get your pa
 
 ## History
 
-Version 1.0 - Initial Release
+* Version 1.1
+	1. Removed code that worked around an old buggy version of pinentry
+	2. Fixed incorrect handling of no search results found (previously reported CLI tools were not installed)
+* Version 1.0 - Initial Release
 
 ## Credits
 
