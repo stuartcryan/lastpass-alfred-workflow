@@ -109,12 +109,7 @@
 				<string>killall -9 lpass &gt; /dev/null 2&gt;&amp;1
 clear
 launchctl setenv LPASS_AGENT_TIMEOUT 28800 &amp;&amp; export LPASS_AGENT_TIMEOUT=28800 
-for f in /usr/local/bin/lpass /opt/local/bin/lpass; do
-    if test -x $f; then
-        lpass_exec=$f
-    fi
-done
-$lpass_exec login --trust "your_email@example.com" &amp;&amp; exit</string>
+/usr/local/bin/lpass login --trust "your@email.com" &amp;&amp; exit</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.terminalcommand</string>
@@ -180,13 +175,7 @@ if ($details[0] eq 'error-noinstall'){
 exit 1;
 } else {
 
-my $lpass_exec;
-foreach my $f (qw@/usr/local/bin/lpass /opt/local/bin/lpass@) {
-    $lpass_exec = $f
-        if (-x $f);
-}
-
-my $results = qx{$lpass_exec show -c --username $details[1]};
+my $results = qx{/usr/local/bin/lpass show -c --username $details[1]};
 print $details[0];
 
 }</string>
@@ -236,16 +225,8 @@ my ($agent, $agentErr, $agentErrCode) = capture {
   system('ps -ef | grep "lpass \[agent\]" | grep -v grep | grep -v "perl"');
 };
 
-my $lpass_exec;
-foreach my $f (qw@/usr/local/bin/lpass /opt/local/bin/lpass@) {
-    $lpass_exec = $f
-        if (-x $f);
-}
-
 my ($results, $err, $errorCode) = capture {
-    system('TERM=xterm-256color &amp;&amp; ' .
-           $lpass_exec . ' sync &amp;&amp; ' .
-           $lpass_exec . ' ls --sync=no | grep -i ' . $search);
+  system('TERM=xterm-256color &amp;&amp; /usr/local/bin/lpass sync &amp;&amp; /usr/local/bin/lpass ls --sync=no | grep -i ' . $search);
 };
 print qq{&lt;?xml version="1.0"?&gt;\n&lt;items&gt;\n};
 
@@ -339,13 +320,7 @@ exit 0;
 exit 1;
 } else {
 
-my $lpass_exec;
-foreach my $f (qw@/usr/local/bin/lpass /opt/local/bin/lpass@) {
-    $lpass_exec = $f
-        if (-x $f);
-}
-
-my $results = qx{$lpass_exec show -c --password $details[1]};
+my $results = qx{/usr/local/bin/lpass show -c --password $details[1]};
 print $details[0];
 
 }</string>
@@ -386,13 +361,7 @@ print $details[0];
 				<key>escaping</key>
 				<integer>127</integer>
 				<key>script</key>
-				<string>
-for f in /usr/local/bin/lpass /opt/local/bin/lpass; do
-    if test -x $f; then
-        lpass_exec=$f
-    fi
-done
-$lpass_exec logout --force</string>
+				<string>/usr/local/bin/lpass logout --force</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
