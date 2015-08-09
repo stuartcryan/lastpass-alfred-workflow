@@ -19,6 +19,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>102D0B94-B4FC-4450-9B5B-9D76AA0FF12C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>8820573B-DB5E-4B65-9178-3DD86CF620CC</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>29656ADA-02CB-48FC-BC0E-20376CF8D8EF</key>
 		<array>
 			<dict>
@@ -59,6 +70,17 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>8F65DC4B-ED8E-4EE0-A6E0-14C1F0CDF3A4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>59F80385-2185-4AB0-BE88-A49588D5F66B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>102D0B94-B4FC-4450-9B5B-9D76AA0FF12C</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -108,13 +130,30 @@
 				<key>script</key>
 				<string>killall -9 lpass &gt; /dev/null 2&gt;&amp;1
 clear
+
+login_email=`perl -e 'use strict; use warnings; my $emailAddress =\`security find-generic-password -w -s "alfred-lastpass-email-address"\`; chomp $emailAddress; print $emailAddress;'`;
+
+clear
+
+if [[ -z $login_email ]]
+then
+  clear
+  echo "It appears that no email address has been set";
+  echo "Please run 'lpsetemail your_email@example.com'";
+else
+
 launchctl setenv LPASS_AGENT_TIMEOUT 28800 &amp;&amp; export LPASS_AGENT_TIMEOUT=28800 
+
 for f in /usr/local/bin/lpass /opt/local/bin/lpass; do
     if test -x $f; then
         lpass_exec=$f
     fi
 done
-$lpass_exec login --trust "your_email@example.com" &amp;&amp; exit</string>
+
+clear 
+$lpass_exec login --trust "$login_email" &amp;&amp; exit
+
+fi</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.terminalcommand</string>
@@ -139,29 +178,6 @@ $lpass_exec login --trust "your_email@example.com" &amp;&amp; exit</string>
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
 			<string>01DFFE0F-13AB-4E19-AC39-8E2177548224</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<true/>
-				<key>title</key>
-				<string>Copied username to clipboard.</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>8F65DC4B-ED8E-4EE0-A6E0-14C1F0CDF3A4</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -197,6 +213,29 @@ print $details[0];
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>5811419C-5D78-450A-8F28-46CC209BF760</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<true/>
+				<key>title</key>
+				<string>Copied username to clipboard.</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>8F65DC4B-ED8E-4EE0-A6E0-14C1F0CDF3A4</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -260,7 +299,7 @@ print qq{&lt;item uid="error-noinstall"&gt;&lt;arg&gt;'error-noinstall'&lt;/arg&
 print "&lt;/items&gt;\n";
 exit 2;
 }elsif ($errorCode !=0 &amp;&amp; $err eq ""){
-print qq{&lt;item uid="error-nonefound"&gt;&lt;arg&gt;'error-nonefound'&lt;/arg&gt;&lt;title&gt;No search results matching your query found.&lt;/title&gt;&lt;subtitle&gt;Please try again with a different query.&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;\n};
+print qq{&lt;item uid="error-nonefound"&gt;&lt;arg&gt;'error-nonefound'&lt;/arg&gt;&lt;title&gt;$errorCode : $results : $err No search results matching your query found.&lt;/title&gt;&lt;subtitle&gt;Please try again with a different query.&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;\n};
 
 print "&lt;/items&gt;\n";
 exit 2;
@@ -300,31 +339,6 @@ exit 0;</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>{query}</string>
-				<key>title</key>
-				<string>Copied password to clipboard.</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>1BAF402C-C953-4474-B777-549FB54BA190</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -356,6 +370,31 @@ print $details[0];
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>D049EE1A-03D1-4BDF-8920-EE8667E7365C</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Copied password to clipboard.</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>1BAF402C-C953-4474-B777-549FB54BA190</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -403,6 +442,71 @@ $lpass_exec logout --force</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>security add-generic-password -a "alfred-lastpass-email-address" -s "alfred-lastpass-email-address" -w "{query}" -C "note" -U
+
+echo "{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>102D0B94-B4FC-4450-9B5B-9D76AA0FF12C</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Login Email Address Set To:</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>8820573B-DB5E-4B65-9178-3DD86CF620CC</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>lpsetemail</string>
+				<key>text</key>
+				<string>Set Lastpass Email Address</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>59F80385-2185-4AB0-BE88-A49588D5F66B</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>See installation instructions at http://technicalnotebook.com/wiki/display/ALFREDWORKFLOWS/Installation+Instructions+-+LastPass+Workflow+for+Alfred
@@ -419,6 +523,11 @@ My thanks go out to LastPass for their awesome product and the new CLI!</string>
 			<key>ypos</key>
 			<real>180</real>
 		</dict>
+		<key>102D0B94-B4FC-4450-9B5B-9D76AA0FF12C</key>
+		<dict>
+			<key>ypos</key>
+			<real>620</real>
+		</dict>
 		<key>1BAF402C-C953-4474-B777-549FB54BA190</key>
 		<dict>
 			<key>ypos</key>
@@ -433,6 +542,16 @@ My thanks go out to LastPass for their awesome product and the new CLI!</string>
 		<dict>
 			<key>ypos</key>
 			<real>270</real>
+		</dict>
+		<key>59F80385-2185-4AB0-BE88-A49588D5F66B</key>
+		<dict>
+			<key>ypos</key>
+			<real>620</real>
+		</dict>
+		<key>8820573B-DB5E-4B65-9178-3DD86CF620CC</key>
+		<dict>
+			<key>ypos</key>
+			<real>620</real>
 		</dict>
 		<key>8F65DC4B-ED8E-4EE0-A6E0-14C1F0CDF3A4</key>
 		<dict>
