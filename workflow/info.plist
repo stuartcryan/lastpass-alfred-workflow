@@ -30,6 +30,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>149C4CF2-82AE-4F6C-8D1D-726438E36F75</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1B629A30-41FB-400F-89DC-8B35990D0F84</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>29656ADA-02CB-48FC-BC0E-20376CF8D8EF</key>
 		<array>
 			<dict>
@@ -63,6 +74,17 @@
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
 				<string>Logout of Lastpass</string>
+			</dict>
+		</array>
+		<key>56D8A615-388A-490E-AA3E-34935634080F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>149C4CF2-82AE-4F6C-8D1D-726438E36F75</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
 			</dict>
 		</array>
 		<key>5811419C-5D78-450A-8F28-46CC209BF760</key>
@@ -155,6 +177,13 @@ clear
 
 login_email=`perl -e 'use strict; use warnings; my $emailAddress =\`security find-generic-password -w -s "alfred-lastpass-email-address"\`; chomp $emailAddress; print $emailAddress;'`;
 
+login_timeout=`perl -e 'use strict; use warnings; my $loginTimeout =\`security find-generic-password -w -s "aaalfred-lastpass-login-timeout"\`; chomp $loginTimeout; print $loginTimeout;'`;
+
+if [[ -z $login_timeout ]]
+then
+login_timeout="28800"
+fi
+
 clear
 
 if [[ -z $login_email ]]
@@ -164,7 +193,7 @@ then
   echo "Please run 'lpsetemail your_email@example.com'";
 else
 
-launchctl setenv LPASS_AGENT_TIMEOUT 28800 &amp;&amp; export LPASS_AGENT_TIMEOUT=28800 
+launchctl setenv LPASS_AGENT_TIMEOUT $login_timeout &amp;&amp; export LPASS_AGENT_TIMEOUT=$login_timeout 
 
 for f in /usr/local/bin/lpass /opt/local/bin/lpass; do
     if test -x $f; then
@@ -583,6 +612,71 @@ echo "{query}"</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>lpsettimeout</string>
+				<key>text</key>
+				<string>Set Lastpass Login Timeout</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>56D8A615-388A-490E-AA3E-34935634080F</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>security add-generic-password -a "alfred-lastpass-login-timeout" -s "alfred-lastpass-login-timeout" -w "{query}" -C "note" -U
+
+echo "{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>149C4CF2-82AE-4F6C-8D1D-726438E36F75</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Login Timeout Set To:</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>1B629A30-41FB-400F-89DC-8B35990D0F84</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>See installation instructions at http://technicalnotebook.com/wiki/display/ALFREDWORKFLOWS/Installation+Instructions+-+LastPass+Workflow+for+Alfred
@@ -604,6 +698,16 @@ My thanks go out to LastPass for their awesome product and the new CLI!</string>
 			<key>ypos</key>
 			<real>620</real>
 		</dict>
+		<key>149C4CF2-82AE-4F6C-8D1D-726438E36F75</key>
+		<dict>
+			<key>ypos</key>
+			<real>740</real>
+		</dict>
+		<key>1B629A30-41FB-400F-89DC-8B35990D0F84</key>
+		<dict>
+			<key>ypos</key>
+			<real>740</real>
+		</dict>
 		<key>1BAF402C-C953-4474-B777-549FB54BA190</key>
 		<dict>
 			<key>ypos</key>
@@ -613,6 +717,11 @@ My thanks go out to LastPass for their awesome product and the new CLI!</string>
 		<dict>
 			<key>ypos</key>
 			<real>320</real>
+		</dict>
+		<key>56D8A615-388A-490E-AA3E-34935634080F</key>
+		<dict>
+			<key>ypos</key>
+			<real>740</real>
 		</dict>
 		<key>5811419C-5D78-450A-8F28-46CC209BF760</key>
 		<dict>
