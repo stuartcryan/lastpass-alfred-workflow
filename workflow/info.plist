@@ -76,6 +76,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>58BA8F4E-3368-453A-9490-DBE7FE60328C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>01DFFE0F-13AB-4E19-AC39-8E2177548224</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>59F80385-2185-4AB0-BE88-A49588D5F66B</key>
 		<array>
 			<dict>
@@ -111,6 +122,17 @@
 		</array>
 		<key>D05CE8AC-DFE8-46FC-A600-3163BAF7AD23</key>
 		<array/>
+		<key>DE8D285B-733F-4B2D-91DA-4613717E2005</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>29656ADA-02CB-48FC-BC0E-20376CF8D8EF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Stuart Ryan</string>
@@ -161,6 +183,33 @@ fi</string>
 			<string>D05CE8AC-DFE8-46FC-A600-3163BAF7AD23</string>
 			<key>version</key>
 			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>58BA8F4E-3368-453A-9490-DBE7FE60328C</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -335,6 +384,33 @@ exit 0;</string>
 			<string>29656ADA-02CB-48FC-BC0E-20376CF8D8EF</string>
 			<key>version</key>
 			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>DE8D285B-733F-4B2D-91DA-4613717E2005</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -543,6 +619,11 @@ My thanks go out to LastPass for their awesome product and the new CLI!</string>
 			<key>ypos</key>
 			<real>270</real>
 		</dict>
+		<key>58BA8F4E-3368-453A-9490-DBE7FE60328C</key>
+		<dict>
+			<key>ypos</key>
+			<real>180</real>
+		</dict>
 		<key>59F80385-2185-4AB0-BE88-A49588D5F66B</key>
 		<dict>
 			<key>ypos</key>
@@ -577,6 +658,11 @@ My thanks go out to LastPass for their awesome product and the new CLI!</string>
 		<dict>
 			<key>ypos</key>
 			<real>150</real>
+		</dict>
+		<key>DE8D285B-733F-4B2D-91DA-4613717E2005</key>
+		<dict>
+			<key>ypos</key>
+			<real>320</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
