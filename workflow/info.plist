@@ -177,7 +177,7 @@ clear
 
 login_email=`perl -e 'use strict; use warnings; my $emailAddress =\`security find-generic-password -w -s "alfred-lastpass-email-address"\`; chomp $emailAddress; print $emailAddress;'`;
 
-login_timeout=`perl -e 'use strict; use warnings; my $loginTimeout =\`security find-generic-password -w -s "aaalfred-lastpass-login-timeout"\`; chomp $loginTimeout; print $loginTimeout;'`;
+login_timeout=`perl -e 'use strict; use warnings; my $loginTimeout =\`security find-generic-password -w -s "alfred-lastpass-login-timeout"\`; chomp $loginTimeout; print $loginTimeout;'`;
 
 if [[ -z $login_timeout ]]
 then
@@ -193,7 +193,7 @@ then
   echo "Please run 'lpsetemail your_email@example.com'";
 else
 
-launchctl setenv LPASS_AGENT_TIMEOUT $login_timeout &amp;&amp; export LPASS_AGENT_TIMEOUT=$login_timeout 
+launchctl setenv LPASS_AGENT_TIMEOUT $login_timeout &amp;&amp; export LPASS_AGENT_TIMEOUT=$login_timeout
 
 for f in /usr/local/bin/lpass /opt/local/bin/lpass; do
     if test -x $f; then
