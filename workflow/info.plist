@@ -177,7 +177,10 @@ clear
 
 login_email=`perl -e 'use strict; use warnings; my $emailAddress =\`security find-generic-password -w -s "alfred-lastpass-email-address"\`; chomp $emailAddress; print $emailAddress;'`;
 
-login_timeout=`perl -e 'use strict; use warnings; my $loginTimeout =\`security find-generic-password -w -s "aaalfred-lastpass-login-timeout"\`; chomp $loginTimeout; print $loginTimeout;'`;
+login_timeout=`perl -e 'use strict; use warnings; my $loginTimeout =\`security find-generic-password -w -s "alfred-lastpass-login-timeout"\`; chomp $loginTimeout; print $loginTimeout;'`;
+
+
+export LPASS_ASKPASS="/Users/stuartryan/Dropbox/Programming/git-repositories/lastpass-cli/test.sh"
 
 if [[ -z $login_timeout ]]
 then
@@ -193,7 +196,7 @@ then
   echo "Please run 'lpsetemail your_email@example.com'";
 else
 
-launchctl setenv LPASS_AGENT_TIMEOUT $login_timeout &amp;&amp; export LPASS_AGENT_TIMEOUT=$login_timeout 
+launchctl setenv LPASS_AGENT_TIMEOUT $login_timeout &amp;&amp; export LPASS_AGENT_TIMEOUT=$login_timeout
 
 for f in /usr/local/bin/lpass /opt/local/bin/lpass; do
     if test -x $f; then
@@ -280,7 +283,7 @@ foreach my $f (qw@/usr/local/bin/lpass /opt/local/bin/lpass@) {
         if (-x $f);
 }
 
-my $results = qx{$lpass_exec show -c --username $details[1]};
+my $results = qx{export LPASS_ASKPASS="/dev/null" &amp;&amp; $lpass_exec show -c --username $details[1]};
 print $details[0];
 
 }</string>
@@ -360,13 +363,13 @@ foreach my $f (qw@/usr/local/bin/lpass /opt/local/bin/lpass@) {
 }
 
 my ($results, $err, $errorCode) = capture {
-    system('TERM=xterm-256color &amp;&amp; ' .
+    system('export LPASS_ASKPASS="/dev/null" &amp;&amp; TERM=xterm-256color &amp;&amp; ' .
            $lpass_exec . ' sync &amp;&amp; ' .
            $lpass_exec . ' ls --sync=no | grep -i ' . $search);
 };
 print qq{&lt;?xml version="1.0"?&gt;\n&lt;items&gt;\n};
 
-if (($err =~ '^Error.*ogin.*') || ($agentErr ne "" &amp;&amp; $agentErr != 0)){
+if (($err =~ '^Error.*ogin.*') || ($err =~ '^Error.*no reply.*') || ($agentErr ne "" &amp;&amp; $agentErr != 0)){
 print qq{&lt;item uid="error-login"&gt;&lt;arg&gt;'error-login', '$results'&lt;/arg&gt;&lt;title&gt;It appears you are not logged in to LastPass.&lt;/title&gt;&lt;subtitle&gt;Please login using the 'lplogin' command or press 'ctrl' + enter to login now.&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;\n};
 
 print "&lt;/items&gt;\n";
@@ -422,11 +425,11 @@ exit 0;</string>
 				<key>argument</key>
 				<integer>0</integer>
 				<key>hotkey</key>
-				<integer>0</integer>
+				<integer>9</integer>
 				<key>hotmod</key>
-				<integer>0</integer>
+				<integer>262144</integer>
 				<key>hotstring</key>
-				<string></string>
+				<string>V</string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -464,7 +467,7 @@ foreach my $f (qw@/usr/local/bin/lpass /opt/local/bin/lpass@) {
         if (-x $f);
 }
 
-my $results = qx{$lpass_exec show -c --password $details[1]};
+my $results = qx{export LPASS_ASKPASS="/dev/null" &amp;&amp; $lpass_exec show -c --password $details[1]};
 print $details[0];
 
 }</string>
