@@ -195,7 +195,7 @@ else
 
 launchctl setenv LPASS_AGENT_TIMEOUT $login_timeout &amp;&amp; export LPASS_AGENT_TIMEOUT=$login_timeout
 
-for f in /usr/local/bin/lpass /opt/local/bin/lpass; do
+for f in lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass; do
     if test -x $f; then
         lpass_exec=$f
     fi
@@ -275,7 +275,7 @@ exit 1;
 } else {
 
 my $lpass_exec;
-foreach my $f (qw@/usr/local/bin/lpass /opt/local/bin/lpass@) {
+foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass@) {
     $lpass_exec = $f
         if (-x $f);
 }
@@ -354,7 +354,7 @@ my ($agent, $agentErr, $agentErrCode) = capture {
 };
 
 my $lpass_exec;
-foreach my $f (qw@/usr/local/bin/lpass /opt/local/bin/lpass@) {
+foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass@) {
     $lpass_exec = $f
         if (-x $f);
 }
@@ -459,7 +459,7 @@ exit 1;
 } else {
 
 my $lpass_exec;
-foreach my $f (qw@/usr/local/bin/lpass /opt/local/bin/lpass@) {
+foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass@) {
     $lpass_exec = $f
         if (-x $f);
 }
@@ -531,7 +531,7 @@ print $details[0];
 				<integer>127</integer>
 				<key>script</key>
 				<string>
-for f in /usr/local/bin/lpass /opt/local/bin/lpass; do
+for f in lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass; do
     if test -x $f; then
         lpass_exec=$f
     fi
