@@ -240,56 +240,27 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>stty -echo
-killall -9 lpass &gt; /dev/null 2&gt;&amp;1
+				<string>killall -9 lpass &gt; /dev/null 2&gt;&amp;1
 clear
-
-login_email=`perl -e 'use strict; use warnings; my $emailAddress =\`security find-generic-password -w -s "alfred-lastpass-email-address"\`; chomp $emailAddress; print $emailAddress;'`;
-
-login_timeout=`perl -e 'use strict; use warnings; my $loginTimeout =\`security find-generic-password -w -s "alfred-lastpass-login-timeout"\`; chomp $loginTimeout; print $loginTimeout;'`;
-
-if [[ -z $login_timeout ]]
-then
+login_email=`perl -e 'use strict; use warnings; my $emailAddress =\`security find-generic-password -w -s "alfred-lastpass-email-address"\`; chomp $emailAddress; print $emailAddress;'`
+login_timeout=`perl -e 'use strict; use warnings; my $loginTimeout =\`security find-generic-password -w -s "alfred-lastpass-login-timeout"\`; chomp $loginTimeout; print $loginTimeout;'`
+if [[ -z $login_timeout ]]; then
 login_timeout="28800"
 fi
-
 clear
-
-if [[ -z $login_email ]]
-then
-  clear
-  echo "It appears that no email address has been set";
-  echo "Please run 'lpsetemail your_email@example.com'";
-else
-
+if [[ -z $login_email ]]; then
+echo "It appears that no email address has been set";
+echo "Please run 'lpsetemail your_email@example.com'";
+exit 1;
+fi
 launchctl setenv LPASS_AGENT_TIMEOUT $login_timeout &amp;&amp; export LPASS_AGENT_TIMEOUT=$login_timeout
-
 for f in lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass; do
-    if test -x $f; then
-        lpass_exec=$f
-    fi
+if test -x $f; then
+lpass_exec=$f
+fi
 done
-
-clear 
-$lpass_exec login --trust "$login_email"
-echo "Login completed."
-
-echo "Please wait... forcing initial sync."
-
-$lpass_exec ls --sync=now &gt; /dev/null 2&gt;&amp;1
-
-echo "Sync completed... closing in"
-
-secs=$((5))
-while [ $secs -gt 0 ]; do
-   echo -ne "$secs\033[0K\r"
-   sleep 1
-   : $((secs--))
-done
-
-stty echo
-exit
-fi</string>
+clear
+$lpass_exec login --trust "$login_email" &amp;&amp; clear &amp;&amp; echo 'Forcing vault synchronisation... Please wait... (this window will close when complete)' &amp;&amp; $lpass_exec ls --sync=now &gt; /dev/null 2&gt;&amp;1 &amp;&amp; exit 0</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.terminalcommand</string>
