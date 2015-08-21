@@ -43,11 +43,12 @@ Simple yet powerful integration with the Lastpass CLI so you can now get your pa
 	1. Bug - Removed deprecated framework code
 	2. Bug - Merged [pull request #4](https://github.com/stuartcryan/lastpass-alfred-workflow/pull/4) from [jsquyres](https://github.com/jsquyres) "we-love-macports-too" to support macports installs of the lastpass-CLI
 	3. Bug - Further improved on [jsquyres](https://github.com/jsquyres) code to support some additional install locations.
-	3. Improvement - Improved sync behaviour to better support extremely large vaults
-	4. Improvement - Added new 'lpsync' command to force a sync on demand
-	5. Improvement - Changed behaviour to store login email in your Apple Keychain (set with 'lpsetemail yourname@example.com')
-	6. Improvement - Added the ability to set the logout timeout and store in the keychain (set with 'lpsettimeout NUMSEC' where NUMSEC is an integer such as 28800, if you use 0 that will keep you logged in until your computer restarts)
-	7. Improvement - Added hotkeys to the main functions
+	4. Bug - Fixed bash script reliability, after two login attempts the script was often failing.
+	3. Improvement - Improved sync behaviour to better support extremely large vaults.
+	4. Improvement - Added new 'lpsync' command to force a sync on demand.
+	5. Improvement - Changed behaviour to store login email in your Apple Keychain (set with 'lpsetemail yourname@example.com').
+	6. Improvement - Added the ability to set the logout timeout and store in the keychain (set with 'lpsettimeout NUMSEC' where NUMSEC is an integer such as 28800, if you use 0 that will keep you logged in until your computer restarts).
+	7. Improvement - Added hotkeys to the main functions.
 * Version 1.1
 	1. Removed code that worked around an old buggy version of pinentry
 	2. Fixed incorrect handling of no search results found (previously reported CLI tools were not installed)
@@ -59,8 +60,6 @@ Created by [Stuart Ryan](http://stuartryan.com). If you would like to get into c
 * [@StuartCRyan on Twitter](http://twitter.com/stuartcryan)
 * [Stuart Ryan on LinkedIn](https://au.linkedin.com/in/stuartcryan)
 * [Technical Notebook Blog](http://technicalnotebook.com)
-* [Technical Notebook Wiki](http://technicalnotebook.com/wiki)
-* [Technical Notebook JIRA](http://technicalnotebook.com/jira)
 
 ## License
 
