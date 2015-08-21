@@ -251,7 +251,6 @@ clear
 if [[ -z $login_email ]]; then
 echo "It appears that no email address has been set";
 echo "Please run 'lpsetemail your_email@example.com'";
-exit 1;
 fi
 launchctl setenv LPASS_AGENT_TIMEOUT $login_timeout &amp;&amp; export LPASS_AGENT_TIMEOUT=$login_timeout
 for f in lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass; do
