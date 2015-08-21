@@ -2,6 +2,10 @@
 
 Simple yet powerful integration with the Lastpass CLI so you can now get your passwords out of your Lastpass vault and straight into the clipboard from within Alfred.
 
+## How to use the workflow
+Check out the official YouTube video, it will give you a quick two and a half minute rundown (updated for v1.2 and above).
+[![ScreenShot](http://akamai.technicalnotebook.com/alfred-workflow-images/lastpass-cli-for-alfred/demonstration_of_lastpass_workflow_for_alfred_v1_2.png)](https://www.youtube.com/watch?v=DJvtjBs2r6E)
+
 ## Installation
 
 1. Ensure you have Alfred installed with the Alfred Powerpack License
