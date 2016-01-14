@@ -12,7 +12,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>D05CE8AC-DFE8-46FC-A600-3163BAF7AD23</string>
+				<string>D21298B3-763D-48F9-A804-C3B06D3B70E7</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -56,11 +56,11 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>D05CE8AC-DFE8-46FC-A600-3163BAF7AD23</string>
+				<string>D21298B3-763D-48F9-A804-C3B06D3B70E7</string>
 				<key>modifiers</key>
 				<integer>262144</integer>
 				<key>modifiersubtext</key>
-				<string>Initiate LP Command Line Client Login</string>
+				<string>Login to LastPass Vault</string>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -153,7 +153,7 @@
 				<string></string>
 			</dict>
 		</array>
-		<key>D05CE8AC-DFE8-46FC-A600-3163BAF7AD23</key>
+		<key>D21298B3-763D-48F9-A804-C3B06D3B70E7</key>
 		<array/>
 		<key>DE8D285B-733F-4B2D-91DA-4613717E2005</key>
 		<array>
@@ -188,6 +188,31 @@
 	<string>LastPass CLI</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>--display notification "Please wait... preparing login process..." with title "LastPass Login"--Kill any previous login process as sometimes they hang or a user may interrupt them, if there are none (which there often are...) we will get an error response which we ignore.try	do shell script "killall -9 lpass &gt; /dev/null 2&gt;&amp;1"end trytry	set login_email to do shell script "`perl -e 'use strict; use warnings; my $emailAddress =`security find-generic-password -w -s \"alfred-lastpass-email-address\"`; chomp $emailAddress; print $emailAddress;'`"on error	display alert "Email address not set" message "It appears that no email address has been set. Please run 'lpsetemail your_email@example.com' and try again." as critical	returnend try--Try to get a login timeout if a custom one has been set, if not we set to defaulttry	set login_timeout to do shell script "`perl -e 'use strict; use warnings; my $loginTimeout =`security find-generic-password -w -s \"alfred-lastpass-login-timeout\"`; chomp $loginTimeout; print $loginTimeout;'`"on error	set login_timeout to 28800end trytell application "Finder"	set current_path to container of (path to me) as aliasend tellset current_unix_path to POSIX path of current_path--set osascript to current_unix_path &amp; "passwordInput.osascript"set osascript to (system attribute "alfred_preferences") &amp; "/workflows/" &amp; (system attribute "alfred_workflow_uid") &amp; "/passwordInput.osascript"do shell script "export LPASS_ASKPASS=\"" &amp; osascript &amp; "\""do shell script "launchctl setenv LPASS_ASKPASS \"" &amp; osascript &amp; "\""do shell script "launchctl setenv LPASS_AGENT_TIMEOUT " &amp; login_timeouttell application "Finder"	if exists POSIX file "/usr/bin/lpass" then		set lpass_binary to "/usr/bin/lpass"	else if exists POSIX file "/usr/local/bin/lpass" then		set lpass_binary to "/usr/local/bin/lpass"	else if exists POSIX file "/opt/local/bin/lpass" then		set lpass_binary to "/opt/local/bin/lpass"	end ifend tell--improvement required here, test if we actually HAVE an lpass_binary and if not error outif ("{query}" = "scriptlocationnotset") then
+display notification "Please wait... the alfred search will be presented once login is complete." with title "LastPass Login"
+end ifdo shell script "/bin/bash -c '" &amp; "export TERM=\"xterm-256color\" &amp;&amp; export LPASS_ASKPASS=\"" &amp; osascript &amp; "\" &amp;&amp; export LPASS_AGENT_TIMEOUT=" &amp; login_timeout &amp; " &amp;&amp; " &amp; lpass_binary &amp; " login --trust \"" &amp; login_email &amp; "\" &amp;&amp; clear &amp;&amp; " &amp; lpass_binary &amp; " ls --sync=now &gt; /dev/null 2&gt;&amp;1 &amp;&amp; exit 0'"
+
+if ("{query}" = "scriptlocationnotset") then
+tell application "Alfred 2" to search "lp "
+end if</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>D21298B3-763D-48F9-A804-C3B06D3B70E7</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -231,40 +256,6 @@
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
 			<string>01DFFE0F-13AB-4E19-AC39-8E2177548224</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>killall -9 lpass &gt; /dev/null 2&gt;&amp;1
-clear
-login_email=`perl -e 'use strict; use warnings; my $emailAddress =\`security find-generic-password -w -s "alfred-lastpass-email-address"\`; chomp $emailAddress; print $emailAddress;'`
-login_timeout=`perl -e 'use strict; use warnings; my $loginTimeout =\`security find-generic-password -w -s "alfred-lastpass-login-timeout"\`; chomp $loginTimeout; print $loginTimeout;'`
-if [[ -z $login_timeout ]]; then
-login_timeout="28800"
-fi
-clear
-if [[ -z $login_email ]]; then
-echo "It appears that no email address has been set";
-echo "Please run 'lpsetemail your_email@example.com'";
-fi
-launchctl setenv LPASS_AGENT_TIMEOUT $login_timeout &amp;&amp; export LPASS_AGENT_TIMEOUT=$login_timeout
-for f in lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass; do
-if test -x $f; then
-lpass_exec=$f
-fi
-done
-clear
-$lpass_exec login --trust "$login_email" &amp;&amp; clear &amp;&amp; echo 'Forcing vault synchronisation... Please wait... (this window will close when complete)' &amp;&amp; $lpass_exec ls --sync=now &gt; /dev/null 2&gt;&amp;1 &amp;&amp; exit 0</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.terminalcommand</string>
-			<key>uid</key>
-			<string>D05CE8AC-DFE8-46FC-A600-3163BAF7AD23</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -332,7 +323,7 @@ print $details[0];
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>escaping</key>
-				<integer>127</integer>
+				<integer>126</integer>
 				<key>keyword</key>
 				<string>lp</string>
 				<key>queuedelaycustom</key>
@@ -359,6 +350,22 @@ $search=~ s/\'/\\'/g;
 #    exit 0;
 #}
 
+my $loginScriptLocation = `launchctl getenv LPASS_ASKPASS`;
+
+chomp($loginScriptLocation);
+
+#check if getenv LPASS_ASKPASS is not set... if it isn't a login definitely
+#hasn't been completed by the flow and needs to be.
+
+if ($loginScriptLocation eq "")
+{
+print qq{&lt;?xml version="1.0"?&gt;\n&lt;items&gt;\n};
+print qq{&lt;item uid="error-login"&gt;&lt;arg&gt;scriptlocationnotset&lt;/arg&gt;&lt;title&gt;It appears you are not logged in to LastPass.&lt;/title&gt;&lt;subtitle&gt;Please login using the 'lplogin' command or press 'ctrl' + enter to login now.&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;\n};
+
+print "&lt;/items&gt;\n";
+exit 1;
+}
+
 my ($agent, $agentErr, $agentErrCode) = capture {
   system('ps -ef | grep "lpass \[agent\]" | grep -v grep | grep -v "perl"');
 };
@@ -369,8 +376,13 @@ foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass
         if (-x $f);
 }
 
+#add multiple grep statements to deal with multiple words as AWK on OSx
+#does not allow for case insensitive searches
+
+$search=~ s/ /" | grep -i "/g;
+
 my ($results, $err, $errorCode) = capture {
-    system($lpass_exec . ' ls --sync=no | grep -i ' . $search);
+    system($lpass_exec . ' ls --sync=no | grep -i "' . $search . '"');
 };
 
 print qq{&lt;?xml version="1.0"?&gt;\n&lt;items&gt;\n};
@@ -393,24 +405,25 @@ exit 2;
 }else {
 
 my @resultsArray = split /\n/, $results;
+
 foreach my $result (@resultsArray) {
 my $id;
 my $name;
-if ($result =~ '^(.*) \[id: ([0-9]*)\]$'){
-$name = $1;
-$id = $2;
+if ($result =~ '^(.*) +\[id: ([0-9]*)\]'){
+$name = "$1";
+$id = "$2";
 }
 
-print qq{&lt;item uid="$id"&gt;&lt;arg&gt;'$name', '$id'&lt;/arg&gt;&lt;title&gt;$name&lt;/title&gt;&lt;subtitle&gt;&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;\n};
+print qq{&lt;item uid="$id"&gt;&lt;arg&gt;&lt;![CDATA['$name', '$id']]&gt;&lt;/arg&gt;&lt;title&gt;&lt;![CDATA[$name]]&gt;&lt;/title&gt;&lt;subtitle&gt;&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;\n};
 }
 
 print "&lt;/items&gt;\n";
 }
 exit 0;</string>
 				<key>subtext</key>
-				<string>Search Laspass Vault</string>
+				<string>Search Lastpass Vault</string>
 				<key>title</key>
-				<string>Search Laspass Vault</string>
+				<string>Search Lastpass Vault</string>
 				<key>type</key>
 				<integer>4</integer>
 				<key>withspace</key>
@@ -539,7 +552,7 @@ print $details[0];
 				<key>escaping</key>
 				<integer>127</integer>
 				<key>script</key>
-				<string>
+				<string>#!/bin/bash
 for f in lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass; do
     if test -x $f; then
         lpass_exec=$f
@@ -657,7 +670,9 @@ exit 0;</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>security add-generic-password -a "alfred-lastpass-email-address" -s "alfred-lastpass-email-address" -w "{query}" -C "note" -U
+				<string>#!/bin/bash
+
+security add-generic-password -a "alfred-lastpass-email-address" -s "alfred-lastpass-email-address" -w "{query}" -C "note" -U
 
 echo "{query}"</string>
 				<key>type</key>
@@ -747,7 +762,9 @@ echo "{query}"</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>security add-generic-password -a "alfred-lastpass-login-timeout" -s "alfred-lastpass-login-timeout" -w "{query}" -C "note" -U
+				<string>#!/bin/bash
+
+security add-generic-password -a "alfred-lastpass-login-timeout" -s "alfred-lastpass-login-timeout" -w "{query}" -C "note" -U
 
 echo "{query}"</string>
 				<key>type</key>
@@ -781,13 +798,14 @@ echo "{query}"</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>See installation instructions at http://technicalnotebook.com/wiki/display/ALFREDWORKFLOWS/Installation+Instructions+-+LastPass+Workflow+for+Alfred
-
-For support please log a ticket on my JIRA BugTracker —&gt; http://technicalnotebook.com/jira/browse/LPALFRED/
+	<string>See installation instructions at https://github.com/stuartcryan/lastpass-alfred-workflow
+For support please log a ticket on https://github.com/stuartcryan/lastpass-alfred-workflow
 
 NOTE: This Alfred Workflow is not affiliated in any way with LastPass. The LastPass trademark and logo are owned by LastPass.com. The LastPass logo and product name have been used with permission of the LastPass team.
 
-My thanks go out to LastPass for their awesome product and the new CLI!</string>
+My thanks go out to LastPass for their awesome product and the new CLI!
+
+Version: 1.4.2</string>
 	<key>uidata</key>
 	<dict>
 		<key>01DFFE0F-13AB-4E19-AC39-8E2177548224</key>
@@ -870,7 +888,7 @@ My thanks go out to LastPass for their awesome product and the new CLI!</string>
 			<key>ypos</key>
 			<real>380</real>
 		</dict>
-		<key>D05CE8AC-DFE8-46FC-A600-3163BAF7AD23</key>
+		<key>D21298B3-763D-48F9-A804-C3B06D3B70E7</key>
 		<dict>
 			<key>ypos</key>
 			<real>160</real>
