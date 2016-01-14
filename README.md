@@ -2,13 +2,16 @@
 
 Simple yet powerful integration with the Lastpass CLI so you can now get your passwords out of your Lastpass vault and straight into the clipboard from within Alfred.
 
+## Important note for v.1.4.2
+Please note, v1.4.2 and higer of the workflow require v0.7.1 or higher of the LastPass CLI to operate, if you do not have this then it will not work. Therefore please ensure you update to the latest version of the CLI.
+
 ## How to use the workflow
 Check out the official YouTube video, it will give you a quick two and a half minute rundown (updated for v1.2 and above).
 
 [![ScreenShot](http://akamai.technicalnotebook.com/alfred-workflow-images/lastpass-cli-for-alfred/demonstration_of_lastpass_workflow_for_alfred_v1_2.png)](https://www.youtube.com/watch?v=DJvtjBs2r6E)
 
 ## Donations
-This workflow represents many many hours effort of development, testing and rework. So if you love the workflow, and get use out of it every day, if you would like to donate as a thank you to buy me more caffeine giving Diet Coke, some Cake, or to put towards a shiny new gadget you can [donate to me via Paypal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JM6E65M2GLXHE). 
+This workflow (and the 1.4.2 update especially) represents many many hours effort of development, testing and rework. So if you love the workflow, and get use out of it every day, if you would like to donate as a thank you to buy me more caffeine giving Diet Coke, some Cake, or to put towards a shiny new gadget you can [donate to me via Paypal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JM6E65M2GLXHE). 
 
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JM6E65M2GLXHE" target="_blank"><img src="http://akamai.technicalnotebook.com/alfred-workflow-images/donate.png" border="0" alt="PayPal — The safer, easier way to pay online."></a>
 
@@ -49,6 +52,18 @@ This workflow represents many many hours effort of development, testing and rewo
 
 ## History
 
+* Version 1.4.2
+	1. NOTE: This version *requires* the LastPass CLI v 0.7.1 or higher due to this new feature --> Login process completely changed over to use AppleScript (cleaner and nicer). This was thanks to work between myself and Bob from LastPass who maintains the official LastPass CLI to add a feature allowing an external login prompt to be used.
+	2. Login password prompt now uses an AppleScript password prompt.
+	3. Fix to allow you to search for words in any order.
+	4. Vault item's which now require re-authentication will pop up the AppleScript login prompt.
+	5. Has now been tested with a Vault with over 30,000 items for performance tweaks. (I have since been told by LastPass support their soft limit is significantly lower than this at ~2500 items explains why I was having some issues in testing).
+	6. More resilient escaping of text in the XML to ensure that special characters should not cause any issues.
+	7. Fixed missing quotes in some areas that could cause issues with spaces.
+	8. Squashed a little regex bug and wiped up the goo.
+	9. Fixed issues with spaces in certain paths we referenced
+	10. Fixed how the initial login process is run after a reboot. This required the changes made to how we manage the login process and it has subsequently been cleaned up significantly.
+	11. Other minor general tweaks.
 * Version 1.2
 	1. Bug - Removed deprecated framework code
 	2. Bug - Merged [pull request #4](https://github.com/stuartcryan/lastpass-alfred-workflow/pull/4) from [jsquyres](https://github.com/jsquyres) "we-love-macports-too" to support macports installs of the lastpass-CLI
