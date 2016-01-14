@@ -15,6 +15,19 @@ This workflow (and the 1.4.2 update especially) represents many many hours effor
 
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JM6E65M2GLXHE" target="_blank"><img src="http://akamai.technicalnotebook.com/alfred-workflow-images/donate.png" border="0" alt="PayPal — The safer, easier way to pay online."></a>
 
+##Version 1.4.2 MAJOR update - Please Read
+###-----------------------------------------------------------
+
+Ladies and gents, I am happy to present v 1.4.2 of the workflow. Before I continue this has represented a SIGNIFICANT amount of work for me so if you like it and use it, please say thank you by donating towards my Diet Coke and cake fund :D any amount will do, whatever you feel the value is for you/your business/your time :)
+
+Please note you *MUST* update your LastPass CLI version to 0.7.1 or higher as this update relies on new functionality I worked with the LastPass team on integrating into the official CLI.
+
+I would also like to say thank you to Michael B. who was extremely patient and worked with me back and forth to help quash an evil evil bug that stopped some vault items from displaying at all.
+
+If you haven't used LastPass before... you are crazy and you should it is the single greatest password manager package out there :D so check it out at [http://stu.link/LaStPaSs](http://stu.link/LaStPaSs) (Disclaimer, if you sign up through that link I get a free month otherwise you can go direct to [http://www.lastpass.com](http://www.lastpass.com).
+
+###-----------------------------------------------------------
+
 ## Installation
 
 1. Ensure you have Alfred installed with the Alfred Powerpack License
