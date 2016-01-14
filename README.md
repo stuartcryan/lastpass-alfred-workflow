@@ -2,7 +2,7 @@
 
 Simple yet powerful integration with the Lastpass CLI so you can now get your passwords out of your Lastpass vault and straight into the clipboard from within Alfred.
 
-##Version 1.4.2 MAJOR update - Please Read
+##Version 1.4.3 MAJOR update - Please Read
 ###-----------------------------------------------------------
 
 Ladies and gents, I am happy to present v 1.4.3 of the workflow. Before I continue, this has represented a SIGNIFICANT amount of work for me so if you like it and use it, please say thank you by donating towards my Diet Coke and cake fund. Any amount will do, whatever you feel the value is for you/your business/your time :)
