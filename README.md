@@ -5,7 +5,7 @@ Simple yet powerful integration with the Lastpass CLI so you can now get your pa
 ##Version 1.4.2 MAJOR update - Please Read
 ###-----------------------------------------------------------
 
-Ladies and gents, I am happy to present v 1.4.2 of the workflow. Before I continue, this has represented a SIGNIFICANT amount of work for me so if you like it and use it, please say thank you by donating towards my Diet Coke and cake fund. Any amount will do, whatever you feel the value is for you/your business/your time :)
+Ladies and gents, I am happy to present v 1.4.3 of the workflow. Before I continue, this has represented a SIGNIFICANT amount of work for me so if you like it and use it, please say thank you by donating towards my Diet Coke and cake fund. Any amount will do, whatever you feel the value is for you/your business/your time :)
 
 **Please note you *MUST* update your LastPass CLI version to 0.7.1 or higher as this update relies on new functionality that I worked with the LastPass team on integrating into the official CLI.**
 
@@ -16,7 +16,7 @@ If you haven't used LastPass before... you are crazy and you should! It is the s
 ###-----------------------------------------------------------
 
 ## Donations
-This workflow (and the 1.4.2 update especially) represents many many hours effort of development, testing and rework. So if you love the workflow, and get use out of it every day, if you would like to donate as a thank you to buy me more caffeine giving Diet Coke, some Cake, or to put towards a shiny new gadget you can [donate to me via Paypal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JM6E65M2GLXHE). 
+This workflow (and the 1.4.3 update especially) represents many many hours effort of development, testing and rework. So if you love the workflow, and get use out of it every day, if you would like to donate as a thank you to buy me more caffeine giving Diet Coke, some Cake, or to put towards a shiny new gadget you can [donate to me via Paypal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JM6E65M2GLXHE). 
 
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JM6E65M2GLXHE" target="_blank"><img src="http://akamai.technicalnotebook.com/alfred-workflow-images/donate.png" border="0" alt="PayPal — The safer, easier way to pay online."></a>
 
@@ -63,6 +63,9 @@ Check out the official YouTube video, it will give you a quick two and a half mi
 
 ## History
 
+* Version 1.4.3
+	1. Fixed binary so that it is ACTUALLY updated (my bad #oops)
+	2. Added a tweak to SIGNIFICANTLY speed up password copying to the clipboard #enjoy
 * Version 1.4.2
 	1. NOTE: This version *requires* the LastPass CLI v 0.7.1 or higher due to this new feature --> Login process completely changed over to use AppleScript (cleaner and nicer). This was thanks to work between myself and Bob from LastPass who maintains the official LastPass CLI to add a feature allowing an external login prompt to be used.
 	2. Login password prompt now uses an AppleScript password prompt.
