@@ -511,7 +511,7 @@ foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass
         if (-x $f);
 }
 
-my $results = qx{$lpass_exec show -c --password $details[1]};
+my $results = qx{$lpass_exec show --sync=no -c --password $details[1]};
 print $details[0];
 
 }</string>
@@ -805,7 +805,7 @@ NOTE: This Alfred Workflow is not affiliated in any way with LastPass. The LastP
 
 My thanks go out to LastPass for their awesome product and the new CLI!
 
-Version: 1.4.2</string>
+Version: 1.4.3</string>
 	<key>uidata</key>
 	<dict>
 		<key>01DFFE0F-13AB-4E19-AC39-8E2177548224</key>
