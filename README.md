@@ -2,14 +2,16 @@
 
 Simple yet powerful integration with the Lastpass CLI so you can now get your passwords out of your Lastpass vault and straight into the clipboard from within Alfred.
 
-##Version 1.4.3 MAJOR update - Please Read
+##Version 1.4.4 MAJOR update - Please Read
 ###-----------------------------------------------------------
 
-Ladies and gents, I am happy to present v 1.4.3 of the workflow. Before I continue, this has represented a SIGNIFICANT amount of work for me so if you like it and use it, please say thank you by donating towards my Diet Coke and cake fund. Any amount will do, whatever you feel the value is for you/your business/your time :)
+Ladies and gents, I am happy to present v 1.4.4 of the workflow. Before I continue, this has represented a SIGNIFICANT amount of work for me so if you like it and use it, please say thank you by donating towards my Diet Coke and cake fund. Any amount will do, whatever you feel the value is for you/your business/your time :)
 
 **Please note you *MUST* update your LastPass CLI version to 0.7.1 or higher as this update relies on new functionality that I worked with the LastPass team on integrating into the official CLI.**
 
 I would also like to say thank you to Michael B. who was extremely patient and worked with me back and forth to help quash an **evil** bug that stopped some vault items from displaying at all.
+
+I will also throw out thanks to Ariel Barreiro for submitting a great block of code to better support 2FA.
 
 If you haven't used LastPass before... you are crazy and you should! It is the single greatest password manager package out there :D so check it out at [http://stu.link/LaStPaSs](http://stu.link/LaStPaSs) (Disclaimer, if you sign up through that link I get a free month otherwise you can go direct to [http://www.lastpass.com](http://www.lastpass.com).
 
@@ -63,6 +65,8 @@ Check out the official YouTube video, it will give you a quick two and a half mi
 
 ## History
 
+* Version 1.4.4
+	1. Merged in Ariel Barreiro's code submission which better handles two factor authentication (2FA).
 * Version 1.4.3
 	1. Fixed binary so that it is ACTUALLY updated (my bad #oops)
 	2. Added a tweak to SIGNIFICANTLY speed up password copying to the clipboard #enjoy
