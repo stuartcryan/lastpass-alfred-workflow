@@ -2,10 +2,10 @@
 
 Simple yet powerful integration with the Lastpass CLI so you can now get your passwords out of your Lastpass vault and straight into the clipboard from within Alfred.
 
-##Version 1.4.4 MAJOR update - Please Read
+##Version 1.4.5 update - Please Read
 ###-----------------------------------------------------------
 
-Ladies and gents, I am happy to present v 1.4.4 of the workflow. Before I continue, this has represented a SIGNIFICANT amount of work for me so if you like it and use it, please say thank you by donating towards my Diet Coke and cake fund. Any amount will do, whatever you feel the value is for you/your business/your time :)
+Ladies and gents, I am happy to present v 1.4.5 of the workflow. Before I continue, this has represented a SIGNIFICANT amount of work for me so if you like it and use it, please say thank you by donating towards my Diet Coke and cake fund. Any amount will do, whatever you feel the value is for you/your business/your time :)
 
 **Please note you *MUST* update your LastPass CLI version to 0.7.1 or higher as this update relies on new functionality that I worked with the LastPass team on integrating into the official CLI.**
 
@@ -21,12 +21,6 @@ If you haven't used LastPass before... you are crazy and you should! It is the s
 This workflow (and the 1.4.3 update especially) represents many many hours effort of development, testing and rework. So if you love the workflow, and get use out of it every day, if you would like to donate as a thank you to buy me more caffeine giving Diet Coke, some Cake, or to put towards a shiny new gadget you can [donate to me via Paypal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JM6E65M2GLXHE). 
 
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JM6E65M2GLXHE" target="_blank"><img src="http://akamai.technicalnotebook.com/alfred-workflow-images/donate.png" border="0" alt="PayPal — The safer, easier way to pay online."></a>
-
-
-## How to use the workflow
-Check out the official YouTube video, it will give you a quick two and a half minute rundown (updated for v1.2 and above).
-
-[![ScreenShot](http://akamai.technicalnotebook.com/alfred-workflow-images/lastpass-cli-for-alfred/demonstration_of_lastpass_workflow_for_alfred_v1_2.png)](https://www.youtube.com/watch?v=DJvtjBs2r6E)
 
 ## Installation
 
@@ -44,7 +38,7 @@ Check out the official YouTube video, it will give you a quick two and a half mi
 		brew install lastpass-cli --with-pinentry --with-doc
 5. Download the .alfredworkflow file
 6. Open the .alfredworkflow file to import into Alfred
-7. Open up the workflow within Alfred, double click the top "Terminal Command" box in the workflow and change "yourloginemail@yourdomain.com" to your LastPass username.
+7. Run 'lpsetemail yourloginemail@yourdomain.com' in Alfred to set your LastPass username.
 
 ## Usage
 
@@ -65,6 +59,11 @@ Check out the official YouTube video, it will give you a quick two and a half mi
 
 ## History
 
+* Version 1.4.5
+	1. Fixed detection for when login has timed out, now correctly requests login.
+	2. Fixed rare cases of login-script loops.
+	3. Improved speed of copying usernames.
+	4. Updated documentation.
 * Version 1.4.4
 	1. Merged in Ariel Barreiro's code submission which better handles two factor authentication (2FA).
 * Version 1.4.3

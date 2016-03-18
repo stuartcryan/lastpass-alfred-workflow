@@ -181,7 +181,7 @@
 	<key>createdby</key>
 	<string>Stuart Ryan</string>
 	<key>description</key>
-	<string></string>
+	<string>Version 1.4.5</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -196,9 +196,64 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>--display notification "Please wait... preparing login process..." with title "LastPass Login"--Kill any previous login process as sometimes they hang or a user may interrupt them, if there are none (which there often are...) we will get an error response which we ignore.try	do shell script "killall -9 lpass &gt; /dev/null 2&gt;&amp;1"end trytry	set login_email to do shell script "`perl -e 'use strict; use warnings; my $emailAddress =`security find-generic-password -w -s \"alfred-lastpass-email-address\"`; chomp $emailAddress; print $emailAddress;'`"on error	display alert "Email address not set" message "It appears that no email address has been set. Please run 'lpsetemail your_email@example.com' and try again." as critical	returnend try--Try to get a login timeout if a custom one has been set, if not we set to defaulttry	set login_timeout to do shell script "`perl -e 'use strict; use warnings; my $loginTimeout =`security find-generic-password -w -s \"alfred-lastpass-login-timeout\"`; chomp $loginTimeout; print $loginTimeout;'`"on error	set login_timeout to 28800end trytell application "Finder"	set current_path to container of (path to me) as aliasend tellset current_unix_path to POSIX path of current_path--set osascript to current_unix_path &amp; "passwordInput.osascript"set osascript to (system attribute "alfred_preferences") &amp; "/workflows/" &amp; (system attribute "alfred_workflow_uid") &amp; "/passwordInput.osascript"do shell script "export LPASS_ASKPASS=\"" &amp; osascript &amp; "\""do shell script "launchctl setenv LPASS_ASKPASS \"" &amp; osascript &amp; "\""do shell script "launchctl setenv LPASS_AGENT_TIMEOUT " &amp; login_timeouttell application "Finder"	if exists POSIX file "/usr/bin/lpass" then		set lpass_binary to "/usr/bin/lpass"	else if exists POSIX file "/usr/local/bin/lpass" then		set lpass_binary to "/usr/local/bin/lpass"	else if exists POSIX file "/opt/local/bin/lpass" then		set lpass_binary to "/opt/local/bin/lpass"	end ifend tell--improvement required here, test if we actually HAVE an lpass_binary and if not error outif ("{query}" = "scriptlocationnotset") then
+				<string>--display notification "Please wait... preparing login process..." with title "LastPass Login"
+
+--Kill any previous login process as sometimes they hang or a user may interrupt them, if there are none (which there often are...) we will get an error response which we ignore.
+try
+	do shell script "killall -9 lpass &gt; /dev/null 2&gt;&amp;1"
+end try
+
+try
+	set login_email to do shell script "`perl -e 'use strict; use warnings; my $emailAddress =`security find-generic-password -w -s \"alfred-lastpass-email-address\"`; chomp $emailAddress; print $emailAddress;'`"
+on error
+	display alert "Email address not set" message "It appears that no email address has been set. Please run 'lpsetemail your_email@example.com' and try again." as critical
+	return
+end try
+
+--Try to get a login timeout if a custom one has been set, if not we set to default
+try
+	set login_timeout to do shell script "`perl -e 'use strict; use warnings; my $loginTimeout =`security find-generic-password -w -s \"alfred-lastpass-login-timeout\"`; chomp $loginTimeout; print $loginTimeout;'`"
+on error
+	set login_timeout to 28800
+end try
+
+tell application "Finder"
+	set current_path to container of (path to me) as alias
+end tell
+set current_unix_path to POSIX path of current_path
+
+--set osascript to current_unix_path &amp; "passwordInput.osascript"
+
+set osascript to (system attribute "alfred_preferences") &amp; "/workflows/" &amp; (system attribute "alfred_workflow_uid") &amp; "/passwordInput.osascript"
+
+try
+	do shell script "mkdir \"" &amp; (system attribute "alfred_workflow_data") &amp; "\""
+end try
+
+do shell script "echo \"" &amp; osascript &amp; "\" &gt; \"" &amp; (system attribute "alfred_workflow_data") &amp; "/running_location.txt\""
+
+do shell script "export LPASS_ASKPASS=\"" &amp; osascript &amp; "\""
+do shell script "launchctl setenv LPASS_ASKPASS \"" &amp; osascript &amp; "\""
+
+do shell script "launchctl setenv LPASS_AGENT_TIMEOUT " &amp; login_timeout
+
+tell application "Finder"
+	if exists POSIX file "/usr/bin/lpass" then
+		set lpass_binary to "/usr/bin/lpass"
+	else if exists POSIX file "/usr/local/bin/lpass" then
+		set lpass_binary to "/usr/local/bin/lpass"
+	else if exists POSIX file "/opt/local/bin/lpass" then
+		set lpass_binary to "/opt/local/bin/lpass"
+	end if
+end tell
+
+--improvement required here, test if we actually HAVE an lpass_binary and if not error out
+
+if ("{query}" = "scriptlocationnotset") then
 display notification "Please wait... the alfred search will be presented once login is complete." with title "LastPass Login"
-end ifdo shell script "/bin/bash -c '" &amp; "export TERM=\"xterm-256color\" &amp;&amp; export LPASS_ASKPASS=\"" &amp; osascript &amp; "\" &amp;&amp; export LPASS_AGENT_TIMEOUT=" &amp; login_timeout &amp; " &amp;&amp; " &amp; lpass_binary &amp; " login --trust \"" &amp; login_email &amp; "\" &amp;&amp; clear &amp;&amp; " &amp; lpass_binary &amp; " ls --sync=now &gt; /dev/null 2&gt;&amp;1 &amp;&amp; exit 0'"
+end if
+
+do shell script "/bin/bash -c '" &amp; "export TERM=\"xterm-256color\" &amp;&amp; export LPASS_ASKPASS=\"" &amp; osascript &amp; "\" &amp;&amp; export LPASS_AGENT_TIMEOUT=" &amp; login_timeout &amp; " &amp;&amp; " &amp; lpass_binary &amp; " login --trust \"" &amp; login_email &amp; "\" &amp;&amp; clear &amp;&amp; " &amp; lpass_binary &amp; " ls --sync=now &gt; /dev/null 2&gt;&amp;1 &amp;&amp; exit 0'"
 
 if ("{query}" = "scriptlocationnotset") then
 tell application "Alfred 2" to search "lp "
@@ -280,9 +335,17 @@ foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass
         if (-x $f);
 }
 
-my $results = qx{$lpass_exec show -c --username $details[1]};
-print $details[0];
+my $loginTimeout =`security find-generic-password -w -s \"alfred-lastpass-login-timeout\"`; 
+chomp $loginTimeout;
 
+
+open my $file, '&lt;', $ENV{alfred_workflow_data} . "/running_location.txt"; 
+my $firstLine = &lt;$file&gt;; 
+close $file;
+chomp $myFirstLine;
+
+my $results = qx{export LPASS_ASKPASS=\"$firstLine\" &amp;&amp; export LPASS_AGENT_TIMEOUT="$loginTimeout" &amp;&amp; $lpass_exec show --sync=no -c --username $details[1]};
+print $details[0];
 }</string>
 				<key>type</key>
 				<integer>4</integer>
@@ -340,11 +403,19 @@ print $details[0];
 				<string>use strict;
 use warnings;
 
+use Env;
 use Capture::Tiny 'capture';
 
 my $search="{query}";
 $search=~ s/\'/\\'/g;
-`launchctl setenv LPASS_AGENT_TIMEOUT 28800`;
+
+my $loginTimeout =`security find-generic-password -w -s \"alfred-lastpass-login-timeout\"`; 
+chomp $loginTimeout;
+
+open my $file, '&lt;', $ENV{alfred_workflow_data} . "/running_location.txt"; 
+my $firstLine = &lt;$file&gt;; 
+close $file;
+chomp $firstLine;
 
 #if ( length($search) &lt; 3 ) {
 #    exit 0;
@@ -382,7 +453,7 @@ foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass
 $search=~ s/ /" | grep -i "/g;
 
 my ($results, $err, $errorCode) = capture {
-    system($lpass_exec . ' ls --sync=no | grep -i "' . $search . '"');
+    system("export LPASS_ASKPASS=\"/dev/null\" &amp;&amp; export LPASS_AGENT_TIMEOUT=\"" . $loginTimeout . "\" &amp;&amp; " . $lpass_exec . ' ls --sync=no | grep -i "' . $search . '"');
 };
 
 print qq{&lt;?xml version="1.0"?&gt;\n&lt;items&gt;\n};
@@ -392,7 +463,13 @@ print qq{&lt;item uid="error-login"&gt;&lt;arg&gt;'error-login', '$results'&lt;/
 
 print "&lt;/items&gt;\n";
 exit 1;
-} elsif ($errorCode !=0 &amp;&amp; ($err =~ '^.*No such file or directory.*$')){
+} elsif (($err =~ '^Error.*Unable.*retrieve.*askpass.*reply.*')){
+print qq{&lt;item uid="error-login"&gt;&lt;arg&gt;'error-login', '$results'&lt;/arg&gt;&lt;title&gt;It appears you are not logged in to LastPass.&lt;/title&gt;&lt;subtitle&gt;Please login using the 'lplogin' command or press 'ctrl' + enter to login now.&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;\n};
+
+print "&lt;/items&gt;\n";
+exit 1;
+}
+elsif ($errorCode !=0 &amp;&amp; ($err =~ '^.*No such file or directory.*$')){
 print qq{&lt;item uid="error-noinstall"&gt;&lt;arg&gt;'error-noinstall'&lt;/arg&gt;&lt;title&gt;You do not have the Lastpass CLI Installed.&lt;/title&gt;&lt;subtitle&gt;Press enter to be taken to the install instructions.&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;\n};
 
 print "&lt;/items&gt;\n";
@@ -496,7 +573,9 @@ exit 0;</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>@details=({query});
+				<string>use Env;
+
+@details=({query});
 
 if ($details[0] eq 'error-noinstall'){
 `open https://github.com/LastPass/lastpass-cli`;
@@ -511,9 +590,16 @@ foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass
         if (-x $f);
 }
 
-my $results = qx{$lpass_exec show --sync=no -c --password $details[1]};
-print $details[0];
+my $loginTimeout =`security find-generic-password -w -s \"alfred-lastpass-login-timeout\"`; 
+chomp $loginTimeout;
 
+open my $file, '&lt;', $ENV{alfred_workflow_data} . "/running_location.txt"; 
+my $firstLine = &lt;$file&gt;; 
+close $file;
+chomp $myFirstLine;
+
+my $results = qx{export LPASS_ASKPASS=\"$firstLine\" &amp;&amp; export LPASS_AGENT_TIMEOUT="$loginTimeout" &amp;&amp; $lpass_exec show --sync=no -c --password $details[1]};
+print $details[0];
 }</string>
 				<key>type</key>
 				<integer>4</integer>
@@ -805,7 +891,7 @@ NOTE: This Alfred Workflow is not affiliated in any way with LastPass. The LastP
 
 My thanks go out to LastPass for their awesome product and the new CLI!
 
-Version: 1.4.3</string>
+Version: 1.4.5</string>
 	<key>uidata</key>
 	<dict>
 		<key>01DFFE0F-13AB-4E19-AC39-8E2177548224</key>
