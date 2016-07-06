@@ -2,16 +2,12 @@
 
 Simple yet powerful integration with the Lastpass CLI so you can now get your passwords out of your Lastpass vault and straight into the clipboard from within Alfred.
 
-##Version 1.4.5 update - Please Read
+##Version 1.4.6 update - Please Read
 ###-----------------------------------------------------------
 
-Ladies and gents, I am happy to present v 1.4.5 of the workflow. Before I continue, this has represented a SIGNIFICANT amount of work for me so if you like it and use it, please say thank you by donating towards my Diet Coke and cake fund. Any amount will do, whatever you feel the value is for you/your business/your time :)
+Ladies and gents, I am happy to present v 1.4.6 of the workflow. Before I continue, this has represented a SIGNIFICANT amount of work for me so if you like it and use it, please say thank you by donating towards my Diet Coke and cake fund. Any amount will do, whatever you feel the value is for you/your business/your time :)
 
-**Please note you *MUST* update your LastPass CLI version to 0.7.1 or higher as this update relies on new functionality that I worked with the LastPass team on integrating into the official CLI.**
-
-I would also like to say thank you to Michael B. who was extremely patient and worked with me back and forth to help quash an **evil** bug that stopped some vault items from displaying at all.
-
-I will also throw out thanks to Ariel Barreiro for submitting a great block of code to better support 2FA.
+**Please note you *MUST* update your LastPass CLI version to 0.7.1 or higher as this update relies on new functionality that I worked with the LastPass team on integrating into the official CLI. Additionally version 1.4.6 and higher of the workflow WILL ONLY SUPPORT ALFRED 3 (and are not backwards compatible)**
 
 If you haven't used LastPass before... you are crazy and you should! It is the single greatest password manager package out there :D so check it out at [http://stu.link/LaStPaSs](http://stu.link/LaStPaSs) (Disclaimer, if you sign up through that link I get a free month otherwise you can go direct to [http://www.lastpass.com](http://www.lastpass.com).
 
@@ -59,6 +55,10 @@ This workflow (and the 1.4.3 update especially) represents many many hours effor
 
 ## History
 
+* Version 1.4.6
+	1. Updated to work with Alfred 3 (long awaited official release of the long-in-testing beta version).
+	2. Username display functionality submitted by [Guillermo Moreno](https://github.com/gmq) has been merged in with some minor changes (thanks for your hard work Guillermo!)
+	3. Released with my apologies for the delay in getting this version out of beta... my masters course was INTENSE this semester, thank you to all of those that waited patiently.
 * Version 1.4.5
 	1. Fixed detection for when login has timed out, now correctly requests login.
 	2. Fixed rare cases of login-script loops.
