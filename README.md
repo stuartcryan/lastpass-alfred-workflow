@@ -2,10 +2,10 @@
 
 Simple yet powerful integration with the Lastpass CLI so you can now get your passwords out of your Lastpass vault and straight into the clipboard from within Alfred.
 
-##Version 1.4.6 update - Please Read
+##Version 1.4.7 update - Please Read
 ###-----------------------------------------------------------
 
-Ladies and gents, I am happy to present v 1.4.6 of the workflow. Before I continue, this has represented a SIGNIFICANT amount of work for me so if you like it and use it, please say thank you by donating towards my Diet Coke and cake fund. Any amount will do, whatever you feel the value is for you/your business/your time :)
+Ladies and gents, I am happy to present v 1.4.7 of the workflow. Before I continue, this has represented a SIGNIFICANT amount of work for me so if you like it and use it, please say thank you by donating towards my Diet Coke and cake fund. Any amount will do, whatever you feel the value is for you/your business/your time :)
 
 **Please note you *MUST* update your LastPass CLI version to 0.7.1 or higher as this update relies on new functionality that I worked with the LastPass team on integrating into the official CLI. Additionally version 1.4.6 and higher of the workflow WILL ONLY SUPPORT ALFRED 3 (and are not backwards compatible)**
 
@@ -55,6 +55,9 @@ This workflow (and the 1.4.3 update especially) represents many many hours effor
 
 ## History
 
+* Version 1.4.7
+	1. Changed mechanism for copying to clipboard. Now marks passwords as transient, Alfred will no longer store them in the clipboard history.
+	2. Updated icon submitted by [Tom Conroy](https://github.com/tconroy) has been merged in (thanks for this Tom!)
 * Version 1.4.6
 	1. Updated to work with Alfred 3 (long awaited official release of the long-in-testing beta version).
 	2. Username display functionality submitted by [Guillermo Moreno](https://github.com/gmq) has been merged in with some minor changes (thanks for your hard work Guillermo!)
