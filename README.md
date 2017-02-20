@@ -14,7 +14,7 @@ If you haven't used LastPass before... you are crazy and you should! It is the s
 ###-----------------------------------------------------------
 
 ## Donations
-This workflow (and the 1.4.3 update especially) represents many many hours effort of development, testing and rework. So if you love the workflow, and get use out of it every day, if you would like to donate as a thank you to buy me more caffeine giving Diet Coke, some Cake, or to put towards a shiny new gadget you can [donate to me via Paypal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JM6E65M2GLXHE). 
+This workflow (and the 1.4.3 update especially) represents many many hours effort of development, testing and rework. So if you love the workflow, and get use out of it every day, if you would like to donate as a thank you to buy me more caffeine giving Diet Coke, some Cake, or to put towards a shiny new gadget you can [donate to me via Paypal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JM6E65M2GLXHE).
 
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JM6E65M2GLXHE" target="_blank"><img src="http://akamai.technicalnotebook.com/alfred-workflow-images/donate.png" border="0" alt="PayPal — The safer, easier way to pay online."></a>
 
@@ -23,15 +23,15 @@ This workflow (and the 1.4.3 update especially) represents many many hours effor
 1. Ensure you have Alfred installed with the Alfred Powerpack License
 2. Install Capture::Tiny
 	1. Open up a Terminal Window
-	2. run the command 'sudo cpan install Capture::Tiny'
+	2. run the command `sudo cpan install Capture::Tiny`
 	3. Accept the default options and ensure Capture::Tiny installs successfully
 3. Install Homebrew (if you do not have it already installed)
 	1. You should be able to just run the command in a terminal window (as your own user account NOT with sudo)
-	2. ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	2. `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 	3. Alternatively visit http://brew.sh/ for further instructions.
 4. Install LastPass command line interface
 	1. In a terminal window run
-		brew install lastpass-cli --with-pinentry --with-doc
+		`brew install lastpass-cli --with-pinentry --with-doc`
 5. Download the .alfredworkflow file
 6. Open the .alfredworkflow file to import into Alfred
 7. Run 'lpsetemail yourloginemail@yourdomain.com' in Alfred to set your LastPass username.
