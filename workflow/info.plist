@@ -5,7 +5,7 @@
 	<key>bundleid</key>
 	<string>com.stuartryan.alfred.lastpass</string>
 	<key>category</key>
-	<string>Tools</string>
+	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
 		<key>01DFFE0F-13AB-4E19-AC39-8E2177548224</key>
@@ -337,12 +337,14 @@ end if</string>
 				<integer>0</integer>
 				<key>argument</key>
 				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
 				<key>hotkey</key>
 				<integer>0</integer>
 				<key>hotmod</key>
 				<integer>0</integer>
-				<key>hotstring</key>
-				<string></string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -469,6 +471,10 @@ print $results;
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>escaping</key>
@@ -590,6 +596,8 @@ if ($username eq "")
   $username = "Username: $username";
 }
 
+$name =~ s/^\(\w+\)\///g;
+
 print qq{&lt;item uid="$id"&gt;&lt;arg&gt;&lt;![CDATA['$name', '$id']]&gt;&lt;/arg&gt;&lt;title&gt;&lt;![CDATA[$name]]&gt;&lt;/title&gt;&lt;subtitle&gt;&lt;![CDATA[$username]]&gt;&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;\n};
 }
 
@@ -623,12 +631,14 @@ exit 0;</string>
 				<integer>0</integer>
 				<key>argument</key>
 				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
 				<key>hotkey</key>
-				<integer>9</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>262144</integer>
-				<key>hotstring</key>
-				<string>V</string>
+				<integer>0</integer>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -1179,7 +1189,7 @@ My thanks go out to LastPass for their awesome product and the new CLI!</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.4.7</string>
+	<string>1.4.8</string>
 	<key>webaddress</key>
 	<string>http://technicalnotebook.com</string>
 </dict>
