@@ -2,10 +2,6 @@
 
 Simple yet powerful integration with the Lastpass CLI so you can now get your passwords out of your Lastpass vault and straight into the clipboard from within Alfred.
 
-##Version 1.4.8 update
-
-Same as Stuart's v1.4.7, just a single minor change: if no folder/category is set for an entry in LastPass the CLI returns the literal text "(none)", which is then displayed in Alfred. Remove it (as well as translations in other languages).
-
 ##Version 1.4.7 update - Please Read
 ###-----------------------------------------------------------
 
@@ -59,6 +55,8 @@ This workflow (and the 1.4.3 update especially) represents many many hours effor
 
 ## History
 
+* Version 1.4.8
+	1. If no folder/category is set for an entry in LastPass the CLI returns the literal text "(none)", which is then displayed in Alfred. Removed it (as well as translations in other languages).
 * Version 1.4.7
 	1. Changed mechanism for copying to clipboard. Now marks passwords as transient, Alfred will no longer store them in the clipboard history.
 	2. Updated icon submitted by [Tom Conroy](https://github.com/tconroy) has been merged in (thanks for this Tom!)
