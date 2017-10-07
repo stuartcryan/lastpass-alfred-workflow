@@ -4,7 +4,7 @@ Simple yet powerful integration with the Lastpass CLI so you can now get your pa
 
 ##Version 1.4.8 update
 
-Same as Stuart's v1.4.7, just a single minor change: if no folder/category is set for an entry in lastpass the literal text "(none)" is displayed in Alfred instead. Remove it (as well as translations in other languages).
+Same as Stuart's v1.4.7, just a single minor change: if no folder/category is set for an entry in LastPass the CLI returns the literal text "(none)", which is then displayed in Alfred. Remove it (as well as translations in other languages).
 
 ##Version 1.4.7 update - Please Read
 ###-----------------------------------------------------------
