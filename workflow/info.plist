@@ -5,7 +5,7 @@
 	<key>bundleid</key>
 	<string>com.stuartryan.alfred.lastpass</string>
 	<key>category</key>
-	<string>Productivity</string>
+	<string>Tools</string>
 	<key>connections</key>
 	<dict>
 		<key>01DFFE0F-13AB-4E19-AC39-8E2177548224</key>
