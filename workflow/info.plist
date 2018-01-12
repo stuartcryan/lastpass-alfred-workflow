@@ -34,6 +34,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>0EE6B21D-F979-41D5-896F-06E1121C7B68</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>88A04863-3699-4E4F-9AF5-1885545A386A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>102D0B94-B4FC-4450-9B5B-9D76AA0FF12C</key>
 		<array>
 			<dict>
@@ -52,6 +65,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>1B629A30-41FB-400F-89DC-8B35990D0F84</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>1CCD05DF-F68B-4A0D-B2BD-C6E8E48C948E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0EE6B21D-F979-41D5-896F-06E1121C7B68</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -173,6 +199,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>8F65DC4B-ED8E-4EE0-A6E0-14C1F0CDF3A4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>88A04863-3699-4E4F-9AF5-1885545A386A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>593265A9-0848-4F9D-B51E-4AACD35D410B</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -337,12 +376,14 @@ end if</string>
 				<integer>0</integer>
 				<key>argument</key>
 				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
 				<key>hotkey</key>
 				<integer>0</integer>
 				<key>hotmod</key>
 				<integer>0</integer>
-				<key>hotstring</key>
-				<string></string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -469,6 +510,10 @@ print $results;
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>escaping</key>
@@ -623,12 +668,14 @@ exit 0;</string>
 				<integer>0</integer>
 				<key>argument</key>
 				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
 				<key>hotkey</key>
-				<integer>9</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>262144</integer>
-				<key>hotstring</key>
-				<string>V</string>
+				<integer>0</integer>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -1013,6 +1060,104 @@ echo "{query}"</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string></string>
+				<key>title</key>
+				<string>Copied a Secure Password to the Clipboard</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>593265A9-0848-4F9D-B51E-4AACD35D410B</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>88A04863-3699-4E4F-9AF5-1885545A386A</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>import random
+syms = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM!@#$%"
+pwd = ""
+
+try:
+	length = int({query})
+	if length &lt;= 3:
+		length = 32
+
+except:
+	length = 32
+
+for i in range(length):
+	pwd += syms[random.randint(0, len(syms) -1)]
+
+print pwd
+exit()</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>3</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>0EE6B21D-F979-41D5-896F-06E1121C7B68</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>lpgen</string>
+				<key>subtext</key>
+				<string>Optional: define length (default 32)</string>
+				<key>text</key>
+				<string>Generates a Secure Password</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>1CCD05DF-F68B-4A0D-B2BD-C6E8E48C948E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>See installation instructions at https://github.com/stuartcryan/lastpass-alfred-workflow
@@ -1037,6 +1182,13 @@ My thanks go out to LastPass for their awesome product and the new CLI!</string>
 			<key>ypos</key>
 			<integer>620</integer>
 		</dict>
+		<key>0EE6B21D-F979-41D5-896F-06E1121C7B68</key>
+		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
+			<key>ypos</key>
+			<integer>990</integer>
+		</dict>
 		<key>102D0B94-B4FC-4450-9B5B-9D76AA0FF12C</key>
 		<dict>
 			<key>xpos</key>
@@ -1057,6 +1209,13 @@ My thanks go out to LastPass for their awesome product and the new CLI!</string>
 			<integer>700</integer>
 			<key>ypos</key>
 			<integer>870</integer>
+		</dict>
+		<key>1CCD05DF-F68B-4A0D-B2BD-C6E8E48C948E</key>
+		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
+			<key>ypos</key>
+			<integer>990</integer>
 		</dict>
 		<key>201D2F2C-024E-4FA6-8B0C-CF32974E5077</key>
 		<dict>
@@ -1093,6 +1252,13 @@ My thanks go out to LastPass for their awesome product and the new CLI!</string>
 			<key>ypos</key>
 			<real>160</real>
 		</dict>
+		<key>593265A9-0848-4F9D-B51E-4AACD35D410B</key>
+		<dict>
+			<key>xpos</key>
+			<integer>890</integer>
+			<key>ypos</key>
+			<integer>990</integer>
+		</dict>
 		<key>59F80385-2185-4AB0-BE88-A49588D5F66B</key>
 		<dict>
 			<key>xpos</key>
@@ -1113,6 +1279,13 @@ My thanks go out to LastPass for their awesome product and the new CLI!</string>
 			<integer>700</integer>
 			<key>ypos</key>
 			<integer>760</integer>
+		</dict>
+		<key>88A04863-3699-4E4F-9AF5-1885545A386A</key>
+		<dict>
+			<key>xpos</key>
+			<integer>700</integer>
+			<key>ypos</key>
+			<integer>990</integer>
 		</dict>
 		<key>8C058736-CA55-492F-B2EC-8715A0266564</key>
 		<dict>
