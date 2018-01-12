@@ -1121,8 +1121,7 @@ except:
 for i in range(length):
 	pwd += syms[random.randint(0, len(syms) -1)]
 
-print pwd
-exit()</string>
+print(pwd)</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
