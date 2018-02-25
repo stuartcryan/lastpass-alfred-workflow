@@ -97,6 +97,16 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
+				<string>837FFDF0-A904-46D3-A849-3FABFD4E4F52</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Launch Website</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
 				<string>D049EE1A-03D1-4BDF-8920-EE8667E7365C</string>
 				<key>modifiers</key>
 				<integer>0</integer>
@@ -173,6 +183,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>8F65DC4B-ED8E-4EE0-A6E0-14C1F0CDF3A4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>837FFDF0-A904-46D3-A849-3FABFD4E4F52</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>622F93DB-B649-4427-B75E-74CDF8CBB87B</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -333,54 +356,6 @@ end if</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>0</integer>
-				<key>hotkey</key>
-				<integer>0</integer>
-				<key>hotmod</key>
-				<integer>0</integer>
-				<key>hotstring</key>
-				<string></string>
-				<key>leftcursor</key>
-				<false/>
-				<key>modsmode</key>
-				<integer>0</integer>
-				<key>relatedAppsMode</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
-			<key>uid</key>
-			<string>58BA8F4E-3368-453A-9490-DBE7FE60328C</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>lplogin</string>
-				<key>subtext</key>
-				<string></string>
-				<key>text</key>
-				<string>Lastpass Login</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>01DFFE0F-13AB-4E19-AC39-8E2177548224</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>autopaste</key>
 				<false/>
 				<key>clipboardtext</key>
@@ -467,8 +442,132 @@ print $results;
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>58BA8F4E-3368-453A-9490-DBE7FE60328C</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>lplogin</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Lastpass Login</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>01DFFE0F-13AB-4E19-AC39-8E2177548224</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>use Env;
+
+@details=({query});
+
+if ($details[0] eq 'error-noinstall'){
+`open https://github.com/LastPass/lastpass-cli`;
+exit 0;
+} elsif ($details[0] eq 'error-nonefound'){
+exit 1;
+} else {
+
+my $lpass_exec;
+foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass@) {
+    $lpass_exec = $f
+        if (-x $f);
+}
+
+my $loginTimeout =`security find-generic-password -w -s \"alfred-lastpass-login-timeout\"`; 
+chomp $loginTimeout;
+
+open my $file, '&lt;', $ENV{alfred_workflow_data} . "/running_location.txt"; 
+my $firstLine = &lt;$file&gt;; 
+close $file;
+chomp $myFirstLine;
+
+my $results = qx{export LPASS_ASKPASS=\"$firstLine\" &amp;&amp; export LPASS_AGENT_TIMEOUT="$loginTimeout" &amp;&amp; $lpass_exec show --sync=no --url $details[1]};
+chomp $results;
+print $results;
+}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>4</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>837FFDF0-A904-46D3-A849-3FABFD4E4F52</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>622F93DB-B649-4427-B75E-74CDF8CBB87B</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>escaping</key>
@@ -623,12 +722,14 @@ exit 0;</string>
 				<integer>0</integer>
 				<key>argument</key>
 				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
 				<key>hotkey</key>
-				<integer>9</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>262144</integer>
-				<key>hotstring</key>
-				<string>V</string>
+				<integer>0</integer>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -1070,7 +1171,7 @@ My thanks go out to LastPass for their awesome product and the new CLI!</string>
 			<key>xpos</key>
 			<integer>300</integer>
 			<key>ypos</key>
-			<real>320</real>
+			<integer>310</integer>
 		</dict>
 		<key>56D8A615-388A-490E-AA3E-34935634080F</key>
 		<dict>
@@ -1084,7 +1185,7 @@ My thanks go out to LastPass for their awesome product and the new CLI!</string>
 			<key>xpos</key>
 			<integer>500</integer>
 			<key>ypos</key>
-			<real>270</real>
+			<integer>150</integer>
 		</dict>
 		<key>58BA8F4E-3368-453A-9490-DBE7FE60328C</key>
 		<dict>
@@ -1100,10 +1201,24 @@ My thanks go out to LastPass for their awesome product and the new CLI!</string>
 			<key>ypos</key>
 			<integer>760</integer>
 		</dict>
+		<key>622F93DB-B649-4427-B75E-74CDF8CBB87B</key>
+		<dict>
+			<key>xpos</key>
+			<integer>700</integer>
+			<key>ypos</key>
+			<integer>280</integer>
+		</dict>
 		<key>815177FB-CED1-42F3-AC5B-C1AC60735FA1</key>
 		<dict>
 			<key>xpos</key>
 			<integer>700</integer>
+			<key>ypos</key>
+			<integer>150</integer>
+		</dict>
+		<key>837FFDF0-A904-46D3-A849-3FABFD4E4F52</key>
+		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<integer>270</integer>
 		</dict>
@@ -1126,7 +1241,7 @@ My thanks go out to LastPass for their awesome product and the new CLI!</string>
 			<key>xpos</key>
 			<integer>880</integer>
 			<key>ypos</key>
-			<integer>270</integer>
+			<integer>150</integer>
 		</dict>
 		<key>A2718C33-DE84-4E0F-8A09-37DA3C9E8732</key>
 		<dict>
@@ -1154,7 +1269,7 @@ My thanks go out to LastPass for their awesome product and the new CLI!</string>
 			<key>xpos</key>
 			<integer>500</integer>
 			<key>ypos</key>
-			<real>160</real>
+			<integer>20</integer>
 		</dict>
 		<key>D71065D5-E20E-435B-A76B-9C351D59165F</key>
 		<dict>
