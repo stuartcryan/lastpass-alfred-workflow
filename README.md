@@ -33,14 +33,17 @@ This workflow represents many many hours effort of development and testing. So i
 5. Download the .alfredworkflow file
 6. Open the .alfredworkflow file to import into Alfred
 7. Run 'bwsetemail yourloginemail@yourdomain.com' in Alfred to set your Bitwarden username.
-8. Run 'bwsetserver https://bitwarden.example.com' in Alfred to set your Bitwarden URL. (optional, default uses https://bitwarden.com)
+8. Run 'bwsetserver https://bitwarden.example.com' in Alfred to set your Bitwarden URL. Use https://bitwarden.com for the hosted bitwarden.
 
 ## Usage
 
 * bwsetemail yourname@example.com - must be run when you first install/upgrade to version 1.0 or higher
+* bwsetemail - Set the Bitwarden user account email
+* bwsetserver - Set the Bitwarden server to connect to
 * bwlogin - Log in to Bitwarden
 * bwlogout - Log out of Bitwarden
 * bwunlock - Unlock the Bitwarden vault in case in case it is locked
+* bwsync - Syncronize bitwarden with the remote server
 * bw <query> Search Bitwarden vault for item containing <query>, press return to copy the password to clipboard.
 * Shift modifier can be used on bw <query> to copy the username.
 * Alt modifier can be used on bw <query> to copy the totp (if available).
