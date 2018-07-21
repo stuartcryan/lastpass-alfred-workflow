@@ -3,9 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>com.stuartryan.alfred.lastpass</string>
-	<key>category</key>
-	<string>Tools</string>
+	<string>com.lisowski-development.alfred.bitwarden</string>
 	<key>connections</key>
 	<dict>
 		<key>01DFFE0F-13AB-4E19-AC39-8E2177548224</key>
@@ -47,19 +45,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>149C4CF2-82AE-4F6C-8D1D-726438E36F75</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>1B629A30-41FB-400F-89DC-8B35990D0F84</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>201D2F2C-024E-4FA6-8B0C-CF32974E5077</key>
 		<array>
 			<dict>
@@ -77,11 +62,31 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
+				<string>403521D2-AFA4-4C11-A9AC-45549345A1DE</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Copy TOTP code</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
 				<string>D21298B3-763D-48F9-A804-C3B06D3B70E7</string>
 				<key>modifiers</key>
 				<integer>262144</integer>
 				<key>modifiersubtext</key>
-				<string>Login to LastPass Vault</string>
+				<string>Login to Bitwarden Vault</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>8B840C52-8B3C-4795-95A2-B8BFB3AD4C24</string>
+				<key>modifiers</key>
+				<integer>8388608</integer>
+				<key>modifiersubtext</key>
+				<string>Unlock Bitwarden Vault.</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -111,16 +116,29 @@
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string>Logout of Lastpass</string>
+				<string>Logout of Bitwarden Vault</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
 		</array>
-		<key>56D8A615-388A-490E-AA3E-34935634080F</key>
+		<key>403521D2-AFA4-4C11-A9AC-45549345A1DE</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>149C4CF2-82AE-4F6C-8D1D-726438E36F75</string>
+				<string>A1412D16-E101-4A82-8841-485C32764480</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>482846CB-67CD-458E-9E2F-F4F208AB34D7</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>EF20647F-5BE3-4143-A667-40375A6C91F8</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -181,6 +199,58 @@
 				<false/>
 			</dict>
 		</array>
+		<key>8B840C52-8B3C-4795-95A2-B8BFB3AD4C24</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>9CD82344-6D4F-4C13-BB10-342D19DBE209</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A1412D16-E101-4A82-8841-485C32764480</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>5D0CA291-8861-4216-8985-C0CB13A7A0D2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A2718C33-DE84-4E0F-8A09-37DA3C9E8732</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>266860CE-FC28-42E1-998B-229C5AEDF262</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>BD91F384-487A-41CF-87FD-72F6CC5FA91F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>8B840C52-8B3C-4795-95A2-B8BFB3AD4C24</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>C2D0FB11-55FC-4FD2-B32A-9923121F0321</key>
 		<array>
 			<dict>
@@ -208,12 +278,36 @@
 			</dict>
 		</array>
 		<key>D21298B3-763D-48F9-A804-C3B06D3B70E7</key>
-		<array/>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E78B5564-10CE-469F-9C55-B56C3E7D41A7</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>DE8D285B-733F-4B2D-91DA-4613717E2005</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>29656ADA-02CB-48FC-BC0E-20376CF8D8EF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>EF20647F-5BE3-4143-A667-40375A6C91F8</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B4A5236B-C4A6-4799-A0BE-28E6035E6337</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -237,13 +331,13 @@
 		</array>
 	</dict>
 	<key>createdby</key>
-	<string>Stuart Ryan</string>
+	<string>Claas Lisowski</string>
 	<key>description</key>
 	<string></string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>LastPass CLI</string>
+	<string>Bitwarden CLI</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -254,68 +348,98 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>--display notification "Please wait... preparing login process..." with title "LastPass Login"
+				<string>use Env;
 
---Kill any previous login process as sometimes they hang or a user may interrupt them, if there are none (which there often are...) we will get an error response which we ignore.
-try
-	do shell script "killall -9 lpass &gt; /dev/null 2&gt;&amp;1"
-end try
+@details=({query});
 
-try
-	set login_email to do shell script "`perl -e 'use strict; use warnings; my $emailAddress =`security find-generic-password -w -s \"alfred-lastpass-email-address\"`; chomp $emailAddress; print $emailAddress;'`"
-on error
-	display alert "Email address not set" message "It appears that no email address has been set. Please run 'lpsetemail your_email@example.com' and try again." as critical
-	return
-end try
+if ($details[0] eq 'error-noinstall'){
+`open https://github.com/bitwarden/cli`;
+exit 0;
+} elsif ($details[0] eq 'error-nonefound'){
+exit 1;
+} else {
 
---Try to get a login timeout if a custom one has been set, if not we set to default
-try
-	set login_timeout to do shell script "`perl -e 'use strict; use warnings; my $loginTimeout =`security find-generic-password -w -s \"alfred-lastpass-login-timeout\"`; chomp $loginTimeout; print $loginTimeout;'`"
-on error
-	set login_timeout to 28800
-end try
+my $bw_exec;
+foreach my $f (qw@bw /usr/local/bin/bw /opt/local/bin/bw /usr/bin/bw@) {
+    $bw_exec = $f
+        if (-x $f);
+}
 
-tell application "Finder"
-	set current_path to container of (path to me) as alias
-end tell
-set current_unix_path to POSIX path of current_path
+my $sessionKey =`security find-generic-password -w -s \"alfred-bitwarden-session-key\"`; 
 
---set osascript to current_unix_path &amp; "passwordInput.osascript"
+open my $file, '&lt;', $ENV{alfred_workflow_data} . "/running_location.txt"; 
+my $firstLine = &lt;$file&gt;; 
+close $file;
+chomp $myFirstLine;
 
-set osascript to (system attribute "alfred_preferences") &amp; "/workflows/" &amp; (system attribute "alfred_workflow_uid") &amp; "/passwordInput.osascript"
-
-try
-	do shell script "mkdir \"" &amp; (system attribute "alfred_workflow_data") &amp; "\""
-end try
-
-do shell script "echo \"" &amp; osascript &amp; "\" &gt; \"" &amp; (system attribute "alfred_workflow_data") &amp; "/running_location.txt\""
-
-do shell script "export LPASS_ASKPASS=\"" &amp; osascript &amp; "\""
-do shell script "launchctl setenv LPASS_ASKPASS \"" &amp; osascript &amp; "\""
-
-do shell script "launchctl setenv LPASS_AGENT_TIMEOUT " &amp; login_timeout
-
-tell application "Finder"
-	if exists POSIX file "/usr/bin/lpass" then
-		set lpass_binary to "/usr/bin/lpass"
-	else if exists POSIX file "/usr/local/bin/lpass" then
-		set lpass_binary to "/usr/local/bin/lpass"
-	else if exists POSIX file "/opt/local/bin/lpass" then
-		set lpass_binary to "/opt/local/bin/lpass"
-	end if
-end tell
-
---improvement required here, test if we actually HAVE an lpass_binary and if not error out
-
-if ("{query}" = "scriptlocationnotset") then
-display notification "Please wait... the alfred search will be presented once login is complete." with title "LastPass Login"
-end if
-
-do shell script "/bin/bash -c '" &amp; "export TERM=\"xterm-256color\" &amp;&amp; export LPASS_ASKPASS=\"" &amp; osascript &amp; "\" &amp;&amp; export LPASS_AGENT_TIMEOUT=" &amp; login_timeout &amp; " &amp;&amp; " &amp; lpass_binary &amp; " login --trust \"" &amp; login_email &amp; "\" &amp;&amp; clear &amp;&amp; " &amp; lpass_binary &amp; " ls --sync=now &gt; /dev/null 2&gt;&amp;1 &amp;&amp; exit 0'"
-
-if ("{query}" = "scriptlocationnotset") then
-tell application "Alfred 3" to search "lp "
-end if</string>
+my $results = qx{export PATH=$PATH:/usr/local/bin &amp;&amp; export BW_SESSION=\"$sessionKey\" &amp;&amp; $bw_exec get totp $details[1]};
+chomp $results;
+print $results;
+}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>4</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>403521D2-AFA4-4C11-A9AC-45549345A1DE</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>A1412D16-E101-4A82-8841-485C32764480</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string></string>
+				<key>title</key>
+				<string>Copied totp to clipboard.</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>5D0CA291-8861-4216-8985-C0CB13A7A0D2</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>try	set login_email to do shell script "`perl -e 'use strict; use warnings; my $emailAddress =`security find-generic-password -w -s \"alfred-bitwarden-email-address\"`; chomp $emailAddress; print $emailAddress;'`"on error	display alert "Email address not set" message "It appears that no email address has been set. Please run 'bwsetemail your_email@example.com' and try again." as critical	returnend trytell application "Finder"	set current_path to container of (path to me) as aliasend tellset current_unix_path to POSIX path of current_path--set osascript to current_unix_path &amp; "passwordInput.osascript"set osascript to (system attribute "alfred_preferences") &amp; "/workflows/" &amp; (system attribute "alfred_workflow_uid") &amp; "/passwordInput.osascript"try	do shell script "mkdir \"" &amp; (system attribute "alfred_workflow_data") &amp; "\""end trydo shell script "echo \"" &amp; osascript &amp; "\" &gt; \"" &amp; (system attribute "alfred_workflow_data") &amp; "/running_location.txt\""do shell script "export BW_ASKPASS=\"" &amp; osascript &amp; "\""do shell script "launchctl setenv BW_ASKPASS \"" &amp; osascript &amp; "\""tell application "Finder"	if exists POSIX file "/usr/bin/bw" then		set bw_binary to "/usr/bin/bw"	else if exists POSIX file "/usr/local/bin/bw" then		set bw_binary to "/usr/local/bin/bw"	else if exists POSIX file "/opt/local/bin/bw" then		set bw_binary to "/opt/local/bin/bw"	else		display dialog "Bitwarden binary not found"	end ifend tell--improvement required here, test if we actually HAVE an bw_binary and if not error outif ("{query}" = "scriptlocationnotset") then	display notification "Please wait... the alfred search will be presented once login is complete." with title "Bitwarden Login"end iftry	set output to do shell script "/bin/bash -c 'export PATH=$PATH:/usr/local/bin &amp;&amp; " &amp; "export TERM=\"xterm-256color\" &amp;&amp; export BW_ASKPASS=\"" &amp; osascript &amp; "\" &amp;&amp; " &amp; bw_binary &amp; " login \"" &amp; login_email &amp; "\"  $(" &amp; osascript &amp; " Login Password\\ for\\ " &amp; login_email &amp; ") --raw'"	do shell script "/bin/bash -c 'security add-generic-password -a \"alfred-bitwarden-session-key\" -s \"alfred-bitwarden-session-key\" -w \"" &amp; output &amp; "  \" -C \"note\" -U'"		on error the errorMessage number the errorNumber	if errorMessage contains "Invalid master password." then		display alert "Bitwarden Login" message "You entered an invalid master password for " &amp; login_email &amp; " Error Message: " &amp;errorMessage &amp; ". " as informational
+		error	else		display alert "Bitwarden Login" message "Your account could not be logged in for " &amp; login_email &amp; " Error Message: " &amp; errorMessage &amp; ". " as critical
+		error	end ifend tryif ("{query}" = "scriptlocationnotset") then	display notification "Please wait... the alfred search will be presented once the login is complete." with title "Bitwarden Login"end ifif ("{query}" = "scriptlocationnotset") then	tell application "Alfred 3" to search "bw "end if
+if ("{query}" = "") then	return "Logged in"end if</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -337,12 +461,14 @@ end if</string>
 				<integer>0</integer>
 				<key>argument</key>
 				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
 				<key>hotkey</key>
 				<integer>0</integer>
 				<key>hotmod</key>
 				<integer>0</integer>
-				<key>hotstring</key>
-				<string></string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -363,11 +489,11 @@ end if</string>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>keyword</key>
-				<string>lplogin</string>
+				<string>bwlogin</string>
 				<key>subtext</key>
 				<string></string>
 				<key>text</key>
-				<string>Lastpass Login</string>
+				<string>Bitwarden Login</string>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -377,6 +503,271 @@ end if</string>
 			<string>01DFFE0F-13AB-4E19-AC39-8E2177548224</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<true/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Logged in</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>E78B5564-10CE-469F-9C55-B56C3E7D41A7</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>try	set login_email to do shell script "`perl -e 'use strict; use warnings; my $emailAddress =`security find-generic-password -w -s \"alfred-bitwarden-email-address\"`; chomp $emailAddress; print $emailAddress;'`"on error	display alert "Email address not set" message "It appears that no email address has been set. Please run 'bwsetemail your_email@example.com' and try again." as critical	returnend trytell application "Finder"	set current_path to container of (path to me) as aliasend tellset current_unix_path to POSIX path of current_path--set osascript to current_unix_path &amp; "passwordInput.osascript"set osascript to (system attribute "alfred_preferences") &amp; "/workflows/" &amp; (system attribute "alfred_workflow_uid") &amp; "/passwordInput.osascript"try	do shell script "mkdir \"" &amp; (system attribute "alfred_workflow_data") &amp; "\""end trydo shell script "echo \"" &amp; osascript &amp; "\" &gt; \"" &amp; (system attribute "alfred_workflow_data") &amp; "/running_location.txt\""do shell script "export BW_ASKPASS=\"" &amp; osascript &amp; "\""do shell script "launchctl setenv BW_ASKPASS \"" &amp; osascript &amp; "\""tell application "Finder"	if exists POSIX file "/usr/bin/bw" then		set bw_binary to "/usr/bin/bw"	else if exists POSIX file "/usr/local/bin/bw" then		set bw_binary to "/usr/local/bin/bw"	else if exists POSIX file "/opt/local/bin/bw" then		set bw_binary to "/opt/local/bin/bw"	else		display dialog "Bitwarden binary not found"	end ifend tell--improvement required here, test if we actually HAVE an bw_binary and if not error outif ("{query}" = "scriptlocationnotset") then	display notification "Please wait... the alfred search will be presented once unlock is complete." with title "Bitwarden Unlock"end iftry	set output to do shell script "/bin/bash -c 'export PATH=$PATH:/usr/local/bin &amp;&amp; " &amp; "export TERM=\"xterm-256color\" &amp;&amp; export BW_ASKPASS=\"" &amp; osascript &amp; "\" &amp;&amp; " &amp; bw_binary &amp; " --raw unlock     $(" &amp; osascript &amp; " Unlock Password\\ for\\ " &amp; login_email &amp; ")'"	do shell script "/bin/bash -c 'security add-generic-password -a \"alfred-bitwarden-session-key\" -s \"alfred-bitwarden-session-key\" -w \"" &amp; output &amp; "  \" -C \"note\" -U'"	on error the errorMessage number the errorNumber	if errorMessage contains "Invalid master password." then		display alert "Bitwarden Unlock" message "You entered an invalid master password for " &amp; login_email &amp; " Error Message: " &amp; errorMessage &amp; ". " as informational
+		error	else		display alert "Bitwarden Unlock" message "Your account could not be unlocked for " &amp; login_email &amp; " Error Message: " &amp; errorMessage &amp; ". " as critical
+		error	end ifend tryif ("{query}" = "scriptlocationnotset") then	display notification "Please wait... the alfred search will be presented once the unlock is complete." with title "Bitwarden Unlock"end ifif ("{query}" = "scriptlocationnotset") then	tell application "Alfred 3" to search "bw "end ifif ("{query}" = "") then	return "Vault Unlocked"end if</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>8B840C52-8B3C-4795-95A2-B8BFB3AD4C24</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<true/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Unlocked for</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>9CD82344-6D4F-4C13-BB10-342D19DBE209</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>keyword</key>
+				<string>bw</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>1</integer>
+				<key>queuemode</key>
+				<integer>2</integer>
+				<key>runningsubtext</key>
+				<string>Searching for "{query}". Please wait...</string>
+				<key>script</key>
+				<string>import sys
+import json
+from subprocess import Popen, PIPE
+import os
+
+search = "{query}"
+
+my_env = os.environ.copy()
+my_env["PATH"] = "/usr/local/bin:/opt/local/bin:" + my_env["PATH"]
+
+result = {}  # type: dict
+result["items"] = []
+
+
+def get_session_key():
+    cmd = 'security find-generic-password -w -s alfred-bitwarden-session-key'
+    proc = Popen(cmd.split(), stdout=PIPE)
+    output = proc.stdout.read().decode()
+    if not output:
+        print(json.dumps(error_result(type="login")))
+        exit(1)
+    return output
+
+
+def check_login():
+    proc = Popen("launchctl getenv BW_ASKPASS".split(), stdout=PIPE)
+    output = proc.stdout.read().decode()
+    if not output:
+        print(json.dumps(error_result(type="login")))
+        exit(1)
+    return
+
+
+def add_result(uid, title, subtitle, arg, result_list):
+    item = {
+        "uid": uid,
+        "title": title,
+        "subtitle": subtitle,
+        "arg": arg,
+        "icon": {
+            "path": "icon.png"
+        }
+    }
+    result_list["items"].append(item)
+    return result_list
+
+
+def error_result(type):
+    uid_switcher = {
+        "login": {"uid": "error-login", "title": "It appears you are not logged in to Bitwarden.", "subtitle": "Please login using the \'bwlogin\' command or press \'ctrl\' + enter to login now.", "arg": "scriptlocationnotset"},
+        "install": {"uid": "error-noinstall", "title": "You do not have the Bitwarden CLI Installed.", "subtitle": "Press enter to be taken to the install instructions.", "arg": "\'error-noinstall\'"},
+        "none": {"uid": "error-nonefount", "title": "No search results matching your query found.", "subtitle": "Please try again with a different query.", "arg": "\'error-nonefound\'"},
+        "locked": {"uid": "error-locked", "title": "Your vault is locked.", "subtitle": "Please unlock your vault with \'bwunlock\'.", "arg": "scriptlocationnotset"},
+    }
+    uid = uid_switcher.get(type)["uid"]
+    title = uid_switcher.get(type)["title"]
+    subtitle = uid_switcher.get(type)["subtitle"]
+    arg = uid_switcher.get(type)["arg"]
+    output = add_result(uid=uid, title=title, subtitle=subtitle, arg=arg, result_list=result)
+    return output
+
+
+def get_bw_exec():
+    bw_exec = ""
+    for f in ['/usr/local/bin/bw', '/opt/local/bin/bw', '/usr/bin/bw']:
+        if os.path.exists(f):
+            bw_exec = f
+    if not bw_exec:
+        print(json.dumps(error_result(type="install")))
+        exit(2)
+    return bw_exec
+
+
+def get_bw_search_result(bw_exec, session_key, search):
+    cmd = "{bw_exec} --session={session_key} list items --search={search}".format(bw_exec=bw_exec, session_key=session_key, search=search)
+    proc = Popen(cmd.split(), env=my_env, stdout=PIPE, stderr=PIPE)
+    output, err = proc.communicate()
+    if "mac failed." in err.decode().strip():
+        print(json.dumps(error_result(type="locked")))
+        exit(1)
+    try:
+        results = json.loads(output)
+    except ValueError:
+        if "You are not logged in" in output.decode():
+            print(json.dumps(error_result(type="login")))
+            exit(1)
+    try:
+        if not results:
+            print(json.dumps(error_result(type="none")))
+            exit(2)
+    except NameError:
+        print(json.dumps(error_result(type="none")))
+        exit(2)
+    return results
+
+
+def build_bw_result(bw_exec, session_key, search_result):
+    username = ""
+    for bw_item in search_result:
+        item_id = bw_item["id"]
+        name = bw_item["name"]
+        try:
+            username = bw_item["login"]["username"].encode('utf-8').strip()
+        except KeyError:
+            username = "---"
+        try:
+            totp = bw_item["login"]["totp"].encode('utf-8').strip()
+            if totp:
+                totp = "Available."
+        except (KeyError, AttributeError):
+            totp = "---"            
+        subtitle = "Username: {username}. OTP: {totp}".format(username=username, totp=totp)
+        add_result(uid=item_id, title=name, subtitle=subtitle, arg=[name, item_id], result_list=result)
+
+
+session_key = get_session_key()
+check_login = check_login()
+bw_exec = get_bw_exec()
+bw_search_result = get_bw_search_result(bw_exec=bw_exec, session_key=session_key, search=search)
+build_bw_result(bw_exec=bw_exec, session_key=session_key, search_result=bw_search_result)
+
+print(json.dumps(result))
+</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Search Bitwarden Vault</string>
+				<key>title</key>
+				<string>Search Bitwarden Vault</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>29656ADA-02CB-48FC-BC0E-20376CF8D8EF</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>DE8D285B-733F-4B2D-91DA-4613717E2005</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -406,17 +797,17 @@ end if</string>
 				<string>@details=({query});
 
 if ($details[0] eq 'error-noinstall'){
-`open https://github.com/LastPass/lastpass-cli`;
+`open https://github.com/bitwarden/cli`;
 exit 1;
 } else {
 
-my $lpass_exec;
-foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass@) {
-    $lpass_exec = $f
+my $bw_exec;
+foreach my $f (qw@bw /usr/local/bin/bw /opt/local/bin/bw /usr/bin/bw@) {
+    $bw_exec = $f
         if (-x $f);
 }
 
-my $loginTimeout =`security find-generic-password -w -s \"alfred-lastpass-login-timeout\"`; 
+my $sessionKey =`security find-generic-password -w -s \"alfred-bitwarden-session-key\"`; 
 chomp $loginTimeout;
 
 
@@ -425,7 +816,7 @@ my $firstLine = &lt;$file&gt;;
 close $file;
 chomp $myFirstLine;
 
-my $results = qx{export LPASS_ASKPASS=\"$firstLine\" &amp;&amp; export LPASS_AGENT_TIMEOUT="$loginTimeout" &amp;&amp; $lpass_exec show --sync=no --username $details[1]};
+my $results = qx{export PATH=$PATH:/usr/local/bin &amp;&amp; export BW_SESSION=\"$sessionKey\" &amp;&amp; $bw_exec get username $details[1]};
 chomp $results;
 print $results;
 }</string>
@@ -467,232 +858,23 @@ print $results;
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>alfredfiltersresults</key>
+				<key>lastpathcomponent</key>
 				<false/>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>escaping</key>
-				<integer>126</integer>
-				<key>keyword</key>
-				<string>lp</string>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
+				<key>onlyshowifquerypopulated</key>
 				<false/>
-				<key>queuedelaymode</key>
-				<integer>1</integer>
-				<key>queuemode</key>
-				<integer>2</integer>
-				<key>runningsubtext</key>
-				<string>Synchronising and then searching for "{query}". Please wait...</string>
-				<key>script</key>
-				<string>use strict;
-use warnings;
-
-use Env;
-use Capture::Tiny 'capture';
-
-my $search="{query}";
-$search=~ s/\'/\\'/g;
-
-my $loginTimeout =`security find-generic-password -w -s \"alfred-lastpass-login-timeout\"`; 
-chomp $loginTimeout;
-
-open my $file, '&lt;', $ENV{alfred_workflow_data} . "/running_location.txt"; 
-my $firstLine = &lt;$file&gt;; 
-close $file;
-chomp $firstLine;
-
-#if ( length($search) &lt; 3 ) {
-#    exit 0;
-#}
-
-my $loginScriptLocation = `launchctl getenv LPASS_ASKPASS`;
-
-chomp($loginScriptLocation);
-
-#check if getenv LPASS_ASKPASS is not set... if it isn't a login definitely
-#hasn't been completed by the flow and needs to be.
-
-if ($loginScriptLocation eq "")
-{
-print qq{&lt;?xml version="1.0"?&gt;\n&lt;items&gt;\n};
-print qq{&lt;item uid="error-login"&gt;&lt;arg&gt;scriptlocationnotset&lt;/arg&gt;&lt;title&gt;It appears you are not logged in to LastPass.&lt;/title&gt;&lt;subtitle&gt;Please login using the 'lplogin' command or press 'ctrl' + enter to login now.&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;\n};
-
-print "&lt;/items&gt;\n";
-exit 1;
-}
-
-my ($agent, $agentErr, $agentErrCode) = capture {
-  system('ps -ef | grep "lpass \[agent\]" | grep -v grep | grep -v "perl"');
-};
-
-my $lpass_exec;
-foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass@) {
-    $lpass_exec = $f
-        if (-x $f);
-}
-
-#add multiple grep statements to deal with multiple words as AWK on OSx
-#does not allow for case insensitive searches
-
-$search=~ s/ /" | grep -i "/g;
-
-my ($results, $err, $errorCode) = capture {
-    system("export LPASS_ASKPASS=\"/dev/null\" &amp;&amp; export LPASS_AGENT_TIMEOUT=\"" . $loginTimeout . "\" &amp;&amp; " . $lpass_exec . ' ls --sync=no | grep -i "' . $search . '"');
-};
-
-print qq{&lt;?xml version="1.0"?&gt;\n&lt;items&gt;\n};
-
-if (($err =~ '^Error.*ogin.*') || ($agentErr ne "" &amp;&amp; $agentErr != 0)){
-print qq{&lt;item uid="error-login"&gt;&lt;arg&gt;'error-login', '$results'&lt;/arg&gt;&lt;title&gt;It appears you are not logged in to LastPass.&lt;/title&gt;&lt;subtitle&gt;Please login using the 'lplogin' command or press 'ctrl' + enter to login now.&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;\n};
-
-print "&lt;/items&gt;\n";
-exit 1;
-} elsif (($err =~ '^Error.*Unable.*retrieve.*askpass.*reply.*')){
-print qq{&lt;item uid="error-login"&gt;&lt;arg&gt;'error-login', '$results'&lt;/arg&gt;&lt;title&gt;It appears you are not logged in to LastPass.&lt;/title&gt;&lt;subtitle&gt;Please login using the 'lplogin' command or press 'ctrl' + enter to login now.&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;\n};
-
-print "&lt;/items&gt;\n";
-exit 1;
-}
-elsif ($errorCode !=0 &amp;&amp; ($err =~ '^.*No such file or directory.*$')){
-print qq{&lt;item uid="error-noinstall"&gt;&lt;arg&gt;'error-noinstall'&lt;/arg&gt;&lt;title&gt;You do not have the Lastpass CLI Installed.&lt;/title&gt;&lt;subtitle&gt;Press enter to be taken to the install instructions.&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;\n};
-
-print "&lt;/items&gt;\n";
-exit 2;
-}elsif ($errorCode !=0 &amp;&amp; $err eq ""){
-print qq{&lt;item uid="error-nonefound"&gt;&lt;arg&gt;'error-nonefound'&lt;/arg&gt;&lt;title&gt;$errorCode : $results : $err No search results matching your query found.&lt;/title&gt;&lt;subtitle&gt;Please try again with a different query.&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;\n};
-
-print "&lt;/items&gt;\n";
-exit 2;
-}else {
-
-my @resultsArray = split /\n/, $results;
-
-foreach my $result (@resultsArray) {
-my $id;
-my $name;
-my $username;
-if ($result =~ '^(.*) +\[id: ([0-9]*)\]'){
-$name = "$1";
-$id = "$2";
-($username, $err, $errorCode) = capture {
-    system("export LPASS_ASKPASS=\"/dev/null\" &amp;&amp; export LPASS_AGENT_TIMEOUT=\"" . $loginTimeout . "\" &amp;&amp; " . $lpass_exec . ' show --username --sync=no ' . $id);
-};
-}
-
-chomp $username;
-
-if ($username eq "")
-{
-  $username = "No username available.";
-} else {
-  $username = "Username: $username";
-}
-
-print qq{&lt;item uid="$id"&gt;&lt;arg&gt;&lt;![CDATA['$name', '$id']]&gt;&lt;/arg&gt;&lt;title&gt;&lt;![CDATA[$name]]&gt;&lt;/title&gt;&lt;subtitle&gt;&lt;![CDATA[$username]]&gt;&lt;/subtitle&gt;&lt;icon&gt;icon.png&lt;/icon&gt;&lt;/item&gt;\n};
-}
-
-print "&lt;/items&gt;\n";
-}
-exit 0;</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
 				<string></string>
-				<key>subtext</key>
-				<string>Search Lastpass Vault</string>
 				<key>title</key>
-				<string>Search Lastpass Vault</string>
-				<key>type</key>
-				<integer>4</integer>
-				<key>withspace</key>
-				<true/>
+				<string>Copied password to clipboard.</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
+			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
-			<string>29656ADA-02CB-48FC-BC0E-20376CF8D8EF</string>
+			<string>8C058736-CA55-492F-B2EC-8715A0266564</string>
 			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>0</integer>
-				<key>hotkey</key>
-				<integer>9</integer>
-				<key>hotmod</key>
-				<integer>262144</integer>
-				<key>hotstring</key>
-				<string>V</string>
-				<key>leftcursor</key>
-				<false/>
-				<key>modsmode</key>
-				<integer>0</integer>
-				<key>relatedAppsMode</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
-			<key>uid</key>
-			<string>DE8D285B-733F-4B2D-91DA-4613717E2005</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>use Env;
-
-@details=({query});
-
-if ($details[0] eq 'error-noinstall'){
-`open https://github.com/LastPass/lastpass-cli`;
-exit 0;
-} elsif ($details[0] eq 'error-nonefound'){
-exit 1;
-} else {
-
-my $lpass_exec;
-foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass@) {
-    $lpass_exec = $f
-        if (-x $f);
-}
-
-my $loginTimeout =`security find-generic-password -w -s \"alfred-lastpass-login-timeout\"`; 
-chomp $loginTimeout;
-
-open my $file, '&lt;', $ENV{alfred_workflow_data} . "/running_location.txt"; 
-my $firstLine = &lt;$file&gt;; 
-close $file;
-chomp $myFirstLine;
-
-my $results = qx{export LPASS_ASKPASS=\"$firstLine\" &amp;&amp; export LPASS_AGENT_TIMEOUT="$loginTimeout" &amp;&amp; $lpass_exec show --sync=no --password $details[1]};
-chomp $results;
-print $results;
-}</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>4</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>D049EE1A-03D1-4BDF-8920-EE8667E7365C</string>
-			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -700,11 +882,11 @@ print $results;
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>keyword</key>
-				<string>lplogout</string>
+				<string>bwlogout</string>
 				<key>subtext</key>
 				<string></string>
 				<key>text</key>
-				<string>Lastpass Logout</string>
+				<string>Bitwarden Logout</string>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -735,6 +917,56 @@ print $results;
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>use Env;
+
+@details=({query});
+
+if ($details[0] eq 'error-noinstall'){
+`open https://github.com/bitwarden/cli`;
+exit 0;
+} elsif ($details[0] eq 'error-nonefound'){
+exit 1;
+} else {
+
+my $bw_exec;
+foreach my $f (qw@bw /usr/local/bin/bw /opt/local/bin/bw /usr/bin/bw@) {
+    $bw_exec = $f
+        if (-x $f);
+}
+
+my $sessionKey =`security find-generic-password -w -s \"alfred-bitwarden-session-key\"`; 
+
+open my $file, '&lt;', $ENV{alfred_workflow_data} . "/running_location.txt"; 
+my $firstLine = &lt;$file&gt;; 
+close $file;
+chomp $myFirstLine;
+
+my $results = qx{export PATH=$PATH:/usr/local/bin &amp;&amp; export BW_SESSION=\"$sessionKey\" &amp;&amp; $bw_exec get password $details[1]};
+chomp $results;
+print $results;
+}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>4</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>D049EE1A-03D1-4BDF-8920-EE8667E7365C</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -742,14 +974,35 @@ print $results;
 				<key>removeextension</key>
 				<false/>
 				<key>text</key>
-				<string></string>
+				<string>{query}</string>
 				<key>title</key>
-				<string>Copied password to clipboard.</string>
+				<string>Logged out</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
-			<string>8C058736-CA55-492F-B2EC-8715A0266564</string>
+			<string>266860CE-FC28-42E1-998B-229C5AEDF262</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>bwunlock</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Bitwarden Vault Unlock</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>BD91F384-487A-41CF-87FD-72F6CC5FA91F</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -762,12 +1015,12 @@ print $results;
 				<integer>127</integer>
 				<key>script</key>
 				<string>#!/bin/bash
-for f in lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass; do
+for f in bw /usr/local/bin/bw /opt/local/bin/bw /usr/bin/bw; do
     if test -x $f; then
-        lpass_exec=$f
+        bw_exec=$f
     fi
 done
-$lpass_exec logout --force</string>
+export PATH=$PATH:/usr/local/bin &amp;&amp; $bw_exec logout</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -788,11 +1041,11 @@ $lpass_exec logout --force</string>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>keyword</key>
-				<string>lpsync</string>
+				<string>bwsync</string>
 				<key>subtext</key>
-				<string>Sync Lastpass Vault</string>
+				<string>Sync Bitwarden Vault</string>
 				<key>text</key>
-				<string>Sync Lastpass Vault</string>
+				<string>Sync Bitwarden Vault</string>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -809,43 +1062,69 @@ $lpass_exec logout --force</string>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>102</integer>
+				<integer>68</integer>
 				<key>script</key>
-				<string>use strict;
-use warnings;
+				<string>import sys
+import json
+from subprocess import Popen, PIPE
+import os
 
-use Capture::Tiny 'capture';
+my_env = os.environ.copy()
+my_env["PATH"] = "/usr/local/bin:/opt/local/bin:" + my_env["PATH"]
 
-my ($agent, $agentErr, $agentErrCode) = capture {
-  system('ps -ef | grep "lpass \[agent\]" | grep -v grep | grep -v "perl"');
-};
+result = {}  # type: dict
+result["items"] = []
 
-my $lpass_exec;
-foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass@) {
-    $lpass_exec = $f
-        if (-x $f);
-}
 
-my ($results, $err, $errorCode) = capture {
-    system($lpass_exec . ' ls --sync=now');
-};
+def get_session_key():
+    cmd = 'security find-generic-password -w -s alfred-bitwarden-session-key'
+    proc = Popen(cmd.split(), stdout=PIPE)
+    output = proc.stdout.read().decode()
+    if not output:
+        print("ERROR: Not currently logged into bitwarden")
+        exit(1)
+    return output
 
-if (($err =~ '^Error.*ogin.*') || ($agentErr ne "" &amp;&amp; $agentErr != 0)){
-print qq{ERROR: Not currently logged into lastpass};
-exit 1;
-} elsif ($errorCode !=0 &amp;&amp; ($err =~ '^.*No such file or directory.*$')){
-print qq{ERROR: Lastpass CLI not installed};
 
-exit 2;
-}
-print qq{Sync completed successfully.};
-exit 0;</string>
+def check_login():
+    proc = Popen("launchctl getenv BW_ASKPASS".split(), stdout=PIPE)
+    output = proc.stdout.read().decode()
+    if not output:
+        print("ERROR: Not currently logged into bitwarden")
+        exit(1)
+    return output
+
+
+def get_bw_exec():
+    bw_exec = ""
+    for f in ['/usr/local/bin/bw', '/opt/local/bin/bw', '/usr/bin/bw']:
+        if os.path.exists(f):
+            bw_exec = f
+    if not bw_exec:
+        print("ERROR: Bitwarden CLI not installed")
+        exit(2)
+    return bw_exec
+
+def bw_sync(bw_exec, session_key):
+    cmd = "{bw_exec} --session={session_key} sync -f".format(bw_exec=bw_exec, session_key=session_key)
+    proc = Popen(cmd.split(), env=my_env, stdout=PIPE, stderr=PIPE)
+    output, _ = proc.communicate()
+    if "You are not logged in" in output.decode():
+        print("ERROR: Not currently logged into bitwarden")
+        exit(1)
+
+session_key = get_session_key()
+loginScriptLocation = check_login()
+bw_exec = get_bw_exec()
+bw_sync(bw_exec=bw_exec, session_key=session_key)
+
+print("Sync completed successfully.")</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>4</integer>
+				<integer>3</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -885,7 +1164,7 @@ exit 0;</string>
 				<key>script</key>
 				<string>#!/bin/bash
 
-security add-generic-password -a "alfred-lastpass-email-address" -s "alfred-lastpass-email-address" -w "{query}" -C "note" -U
+security add-generic-password -a "alfred-bitwarden-email-address" -s "alfred-bitwarden-email-address" -w "{query}" -C "note" -U
 
 echo "{query}"</string>
 				<key>scriptargtype</key>
@@ -908,11 +1187,11 @@ echo "{query}"</string>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>keyword</key>
-				<string>lpsetemail</string>
+				<string>bwsetemail</string>
 				<key>subtext</key>
 				<string></string>
 				<key>text</key>
-				<string>Set Lastpass Email Address</string>
+				<string>Set Bitwarden Email Address</string>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -947,21 +1226,21 @@ echo "{query}"</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>removeextension</key>
-				<false/>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>bwsetserver</string>
+				<key>subtext</key>
+				<string></string>
 				<key>text</key>
-				<string>{query}</string>
-				<key>title</key>
-				<string>Login Timeout Set To:</string>
+				<string>Set Bitwarden Server Address</string>
+				<key>withspace</key>
+				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
+			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>1B629A30-41FB-400F-89DC-8B35990D0F84</string>
+			<string>482846CB-67CD-458E-9E2F-F4F208AB34D7</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -973,11 +1252,17 @@ echo "{query}"</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>#!/bin/bash
+				<string>#!/usr/bin/env bash
+for f in bw /usr/local/bin/bw /opt/local/bin/bw /usr/bin/bw; do
+    if test -x $f; then
+        bw_exec=$f
+    fi
+done
 
-security add-generic-password -a "alfred-lastpass-login-timeout" -s "alfred-lastpass-login-timeout" -w "{query}" -C "note" -U
+export PATH=$PATH:/usr/local/bin
+$bw_exec config server {query} &gt; /dev/null 2&gt;&amp;1
 
-echo "{query}"</string>
+echo {query}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -988,199 +1273,255 @@ echo "{query}"</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>149C4CF2-82AE-4F6C-8D1D-726438E36F75</string>
+			<string>EF20647F-5BE3-4143-A667-40375A6C91F8</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>lpsettimeout</string>
-				<key>subtext</key>
-				<string></string>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
 				<key>text</key>
-				<string>Set Lastpass Login Timeout</string>
-				<key>withspace</key>
-				<true/>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Login Server Set To:</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
+			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
-			<string>56D8A615-388A-490E-AA3E-34935634080F</string>
+			<string>B4A5236B-C4A6-4799-A0BE-28E6035E6337</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>See installation instructions at https://github.com/stuartcryan/lastpass-alfred-workflow
-For support please log a ticket on https://github.com/stuartcryan/lastpass-alfred-workflow
+	<string>See installation instructions at https://github.com/blacs30/bitwarden-alfred-workflow
+For support please log a ticket on https://github.com/blacs30/bitwarden-alfred-workflow
 
-NOTE: This Alfred Workflow is not affiliated in any way with LastPass. The LastPass trademark and logo are owned by LastPass.com. The LastPass logo and product name have been used with permission of the LastPass team.
+NOTE: This Alfred Workflow is not affiliated in any way with Bitwarden. The Bitwarden trademark and logo are owned by Bitwarden.com. The Bitwarden logo and product name have been used with permission of the Bitwarden team.
 
-My thanks go out to LastPass for their awesome product and the new CLI!</string>
+My thanks go out to Bitwarden for their awesome product and the new CLI!</string>
 	<key>uidata</key>
 	<dict>
 		<key>01DFFE0F-13AB-4E19-AC39-8E2177548224</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>220</integer>
 			<key>ypos</key>
-			<real>160</real>
+			<integer>120</integer>
 		</dict>
 		<key>09AC0796-377F-4D73-87DC-B1164AC85A95</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>510</integer>
 			<key>ypos</key>
-			<integer>620</integer>
+			<integer>670</integer>
 		</dict>
 		<key>102D0B94-B4FC-4450-9B5B-9D76AA0FF12C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>510</integer>
 			<key>ypos</key>
-			<integer>760</integer>
-		</dict>
-		<key>149C4CF2-82AE-4F6C-8D1D-726438E36F75</key>
-		<dict>
-			<key>xpos</key>
-			<integer>500</integer>
-			<key>ypos</key>
-			<integer>870</integer>
-		</dict>
-		<key>1B629A30-41FB-400F-89DC-8B35990D0F84</key>
-		<dict>
-			<key>xpos</key>
-			<integer>700</integer>
-			<key>ypos</key>
-			<integer>870</integer>
+			<integer>780</integer>
 		</dict>
 		<key>201D2F2C-024E-4FA6-8B0C-CF32974E5077</key>
 		<dict>
 			<key>xpos</key>
 			<integer>700</integer>
 			<key>ypos</key>
-			<integer>470</integer>
+			<integer>450</integer>
+		</dict>
+		<key>266860CE-FC28-42E1-998B-229C5AEDF262</key>
+		<dict>
+			<key>xpos</key>
+			<integer>880</integer>
+			<key>ypos</key>
+			<integer>560</integer>
 		</dict>
 		<key>29656ADA-02CB-48FC-BC0E-20376CF8D8EF</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>220</integer>
 			<key>ypos</key>
-			<real>320</real>
+			<integer>300</integer>
 		</dict>
-		<key>56D8A615-388A-490E-AA3E-34935634080F</key>
+		<key>403521D2-AFA4-4C11-A9AC-45549345A1DE</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>510</integer>
 			<key>ypos</key>
-			<integer>870</integer>
+			<integer>10</integer>
+		</dict>
+		<key>482846CB-67CD-458E-9E2F-F4F208AB34D7</key>
+		<dict>
+			<key>xpos</key>
+			<integer>220</integer>
+			<key>ypos</key>
+			<integer>890</integer>
 		</dict>
 		<key>5811419C-5D78-450A-8F28-46CC209BF760</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>510</integer>
 			<key>ypos</key>
-			<real>270</real>
+			<integer>340</integer>
 		</dict>
 		<key>58BA8F4E-3368-453A-9490-DBE7FE60328C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>50</integer>
 			<key>ypos</key>
-			<real>160</real>
+			<integer>120</integer>
 		</dict>
 		<key>59F80385-2185-4AB0-BE88-A49588D5F66B</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>220</integer>
 			<key>ypos</key>
-			<integer>760</integer>
+			<integer>780</integer>
+		</dict>
+		<key>5D0CA291-8861-4216-8985-C0CB13A7A0D2</key>
+		<dict>
+			<key>xpos</key>
+			<integer>880</integer>
+			<key>ypos</key>
+			<integer>10</integer>
 		</dict>
 		<key>815177FB-CED1-42F3-AC5B-C1AC60735FA1</key>
 		<dict>
 			<key>xpos</key>
 			<integer>700</integer>
 			<key>ypos</key>
-			<integer>270</integer>
+			<integer>340</integer>
 		</dict>
 		<key>8820573B-DB5E-4B65-9178-3DD86CF620CC</key>
 		<dict>
 			<key>xpos</key>
 			<integer>700</integer>
 			<key>ypos</key>
-			<integer>760</integer>
+			<integer>780</integer>
+		</dict>
+		<key>8B840C52-8B3C-4795-95A2-B8BFB3AD4C24</key>
+		<dict>
+			<key>xpos</key>
+			<integer>510</integer>
+			<key>ypos</key>
+			<integer>230</integer>
 		</dict>
 		<key>8C058736-CA55-492F-B2EC-8715A0266564</key>
 		<dict>
 			<key>xpos</key>
 			<integer>880</integer>
 			<key>ypos</key>
-			<integer>470</integer>
+			<integer>450</integer>
 		</dict>
 		<key>8F65DC4B-ED8E-4EE0-A6E0-14C1F0CDF3A4</key>
 		<dict>
 			<key>xpos</key>
 			<integer>880</integer>
 			<key>ypos</key>
-			<integer>270</integer>
+			<integer>340</integer>
+		</dict>
+		<key>9CD82344-6D4F-4C13-BB10-342D19DBE209</key>
+		<dict>
+			<key>xpos</key>
+			<integer>880</integer>
+			<key>ypos</key>
+			<integer>230</integer>
+		</dict>
+		<key>A1412D16-E101-4A82-8841-485C32764480</key>
+		<dict>
+			<key>xpos</key>
+			<integer>700</integer>
+			<key>ypos</key>
+			<integer>10</integer>
 		</dict>
 		<key>A2718C33-DE84-4E0F-8A09-37DA3C9E8732</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
-			<key>ypos</key>
 			<integer>510</integer>
+			<key>ypos</key>
+			<integer>560</integer>
+		</dict>
+		<key>B4A5236B-C4A6-4799-A0BE-28E6035E6337</key>
+		<dict>
+			<key>xpos</key>
+			<integer>700</integer>
+			<key>ypos</key>
+			<integer>890</integer>
+		</dict>
+		<key>BD91F384-487A-41CF-87FD-72F6CC5FA91F</key>
+		<dict>
+			<key>xpos</key>
+			<integer>220</integer>
+			<key>ypos</key>
+			<integer>560</integer>
 		</dict>
 		<key>C2D0FB11-55FC-4FD2-B32A-9923121F0321</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>220</integer>
 			<key>ypos</key>
 			<integer>450</integer>
 		</dict>
 		<key>D049EE1A-03D1-4BDF-8920-EE8667E7365C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>510</integer>
 			<key>ypos</key>
-			<integer>390</integer>
+			<integer>450</integer>
 		</dict>
 		<key>D21298B3-763D-48F9-A804-C3B06D3B70E7</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>510</integer>
 			<key>ypos</key>
-			<real>160</real>
+			<integer>120</integer>
 		</dict>
 		<key>D71065D5-E20E-435B-A76B-9C351D59165F</key>
 		<dict>
 			<key>xpos</key>
 			<integer>700</integer>
 			<key>ypos</key>
-			<integer>620</integer>
+			<integer>670</integer>
 		</dict>
 		<key>DE8D285B-733F-4B2D-91DA-4613717E2005</key>
 		<dict>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>50</integer>
 			<key>ypos</key>
-			<real>320</real>
+			<integer>300</integer>
+		</dict>
+		<key>E78B5564-10CE-469F-9C55-B56C3E7D41A7</key>
+		<dict>
+			<key>xpos</key>
+			<integer>880</integer>
+			<key>ypos</key>
+			<integer>120</integer>
+		</dict>
+		<key>EF20647F-5BE3-4143-A667-40375A6C91F8</key>
+		<dict>
+			<key>xpos</key>
+			<integer>510</integer>
+			<key>ypos</key>
+			<integer>890</integer>
 		</dict>
 		<key>FF2D41F7-FB7E-4CCD-B82B-4F66FCC78F37</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>220</integer>
 			<key>ypos</key>
-			<integer>620</integer>
+			<integer>670</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.4.7</string>
+	<string>1.0.0</string>
 	<key>webaddress</key>
-	<string>http://technicalnotebook.com</string>
+	<string>https://lisowski-development.com</string>
 </dict>
 </plist>
