@@ -58,7 +58,8 @@ This workflow represents many many hours effort of development and testing. So i
 
 ## History
 
-* Version 1.0 - Initial Release
+* Version 1.0.0 - Initial Release
+* Version 1.0.1 - Fixed logout / not logged in warning
 
 ## Credits
 
