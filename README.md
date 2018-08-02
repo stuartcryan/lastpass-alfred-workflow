@@ -2,11 +2,11 @@
 
 Simple yet powerful integration with the Bitwarden CLI so you can now get your passwords out of your Bitwarden vault and straight into the clipboard from within Alfred.
 
-##Version 1.0.0 update - Please Read
+##Version 1.1.0 update - Please Read
 
 -----
 
-Ladies and gents, I am happy to present v1.0.0 of the workflow. Before I continue, this workflow has not been developed from scratch. The LastPass CLI workflow was the start and was remodeled to fit the Bitwarden CLI. Nonetheless it was a SIGNIFICANT amount of work for me so if you like it and use it, please say thank you by donating towards my organic food. Any amount will do, whatever you feel the value is for you/your business/your time :)
+Ladies and gents, I am happy to present v1.1.0 of the workflow. Before I continue, this workflow has not been developed from scratch. The LastPass CLI workflow was the start and was remodeled to fit the Bitwarden CLI. Nonetheless it was a SIGNIFICANT amount of work for me so if you like it and use it, please say thank you by donating towards my organic food. Any amount will do, whatever you feel the value is for you/your business/your time :)
 
 I have never used LastPass, I prefer to selfhost my applications. From the day I heard about Bitwarden I loved it - that was at the beginning of this year (2018).
 
@@ -40,6 +40,8 @@ This workflow represents many many hours effort of development and testing. So i
 * bwsetemail yourname@example.com - must be run when you first install/upgrade to version 1.0 or higher
 * bwsetemail - Set the Bitwarden user account email
 * bwsetserver - Set the Bitwarden server to connect to
+* bwset2fa - Enable 2FA for Bitwarden login
+* bwset2famethod - Set the method for the Bitwarden 2FA login (optional)
 * bwlogin - Log in to Bitwarden
 * bwlogout - Log out of Bitwarden
 * bwunlock - Unlock the Bitwarden vault in case in case it is locked
@@ -61,6 +63,7 @@ This workflow represents many many hours effort of development and testing. So i
 * Version 1.0.0 - Initial Release
 * Version 1.0.1 - Fixed logout / not logged in warning
 * Version 1.0.2 - Fixed erroring in case no username exist, catch the error correctly now.
+* Version 1.1.0 - Add 2FA option, open Alfred again after execution an option function
 
 ## Credits
 
