@@ -2,6 +2,17 @@
 
 Simple yet powerful integration with the Bitwarden CLI so you can now get your passwords out of your Bitwarden vault and straight into the clipboard from within Alfred.
 
+##Version 1.2.0 update - Please Read
+
+-----
+
+Ladies and gents, I am happy to present v1.2.0 of the workflow. 
+As this workflow was originally a fork from the LastPass CLI it is now almost completely a rewritten codebase without using AppleScript calling an external applescript file to ask for the password. That is done now via inline AppleScript in Python. 
+
+All perl and main AppleScripts have been rewritten in Python.
+
+If you haven't used Bitwarden before... you are crazy and you should! Say bye to LastPass and hello to selfhosting. It is the single greatest password manager package out there :D so check it out at [https://bitwarden.com](https://bitwarden.com).
+
 ##Version 1.1.0 update - Please Read
 
 -----
@@ -64,6 +75,7 @@ This workflow represents many many hours effort of development and testing. So i
 * Version 1.0.1 - Fixed logout / not logged in warning
 * Version 1.0.2 - Fixed erroring in case no username exist, catch the error correctly now.
 * Version 1.1.0 - Add 2FA option, open Alfred again after execution an option function
+* Version 1.2.0 - Rewritten perl and AppleScript to Python scripts hopefully fixing some issues with the login procedure.
 
 ## Credits
 
