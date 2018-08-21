@@ -1,4 +1,3 @@
-import sys
 import json
 from subprocess import Popen, PIPE
 import os

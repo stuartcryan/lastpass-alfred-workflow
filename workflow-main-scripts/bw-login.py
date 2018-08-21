@@ -1,8 +1,6 @@
 from __future__ import print_function
 from workflow import Workflow
 from workflow.util import set_config
-import sys
-import json
 from subprocess import Popen, PIPE
 import os
 import keychain
@@ -106,6 +104,16 @@ def get_bw_exec():
     log.debug('END found get_bw_exec')
     return bw_exec
 
+
+def set_login():
+    proc = Popen("launchctl setenv BW_ASKPASS true".split(), stdout=PIPE)
+    output = proc.stdout.read().decode()
+    if output:
+        set_notification("Failed to set login env key", output)
+        exit(1)
+    return
+
+
 def main(wf):
     log.debug('MAIN: Started')
     out = keychain.getpassword('alfred-bitwarden-email-address')
@@ -138,7 +146,7 @@ def main(wf):
     if not login_mfa_enabled:
         log.debug('MAIN: Start login without 2fa')
         output, err, status, message  = login(login_mail)
-        log.debug('MAIN: unlock result: {output} (trimmed).'.format(output=output[:15]))
+        log.debug('MAIN: login result: {output} (trimmed)'.format(output=output[:15]))
     elif login_mfa_enabled and not login_mfa_method:
         log.debug('MAIN: Start login with 2fa but without a method set')
         output, err, status, message  = login(login_mail, True)
@@ -161,6 +169,7 @@ def main(wf):
             set_notification('Error setting session-key.', output)
             exit(1)
         else:
+            set_login()
             set_notification('Login Successful.', 'User: {user}'.format(user=login_mail))
 
 if __name__ == '__main__':

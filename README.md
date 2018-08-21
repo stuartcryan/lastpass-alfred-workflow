@@ -2,6 +2,11 @@
 
 Simple yet powerful integration with the Bitwarden CLI so you can now get your passwords out of your Bitwarden vault and straight into the clipboard from within Alfred.
 
+##Version 1.2.1 update - Please Read
+
+-----
+Fixes an issue where the login is successful but the workflow doesn't set the marker to save it but instead returns that the vault is locked.
+
 ##Version 1.2.0 update - Please Read
 
 -----

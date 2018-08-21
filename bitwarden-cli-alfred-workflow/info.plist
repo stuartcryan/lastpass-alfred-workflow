@@ -705,6 +705,16 @@ def get_bw_exec():
     log.debug('END found get_bw_exec')
     return bw_exec
 
+
+def set_login():
+    proc = Popen("launchctl setenv BW_ASKPASS true".split(), stdout=PIPE)
+    output = proc.stdout.read().decode()
+    if output:
+        set_notification("Failed to set login env key", output)
+        exit(1)
+    return
+
+
 def main(wf):
     log.debug('MAIN: Started')
     out = keychain.getpassword('alfred-bitwarden-email-address')
@@ -760,6 +770,7 @@ def main(wf):
             set_notification('Error setting session-key.', output)
             exit(1)
         else:
+            set_login()
             set_notification('Login Successful.', 'User: {user}'.format(user=login_mail))
 
 if __name__ == '__main__':
@@ -902,6 +913,14 @@ def get_bw_exec():
     log.debug('END found get_bw_exec')
     return bw_exec
 
+def set_login():
+    proc = Popen("launchctl setenv BW_ASKPASS true".split(), stdout=PIPE)
+    output = proc.stdout.read().decode()
+    if output:
+        set_notification("Failed to set login env key", output)
+        exit(1)
+    return
+
 def main(wf):
     log.debug('MAIN: Started')
     out = keychain.getpassword('alfred-bitwarden-email-address')
@@ -931,6 +950,7 @@ def main(wf):
             set_notification('Error setting session-key.', output)
             exit(1)
         else:
+            set_login()
             set_notification('Unlock successful.', 'User: {user}'.format(user=login_mail))
 
 if __name__ == '__main__':
@@ -1392,6 +1412,8 @@ done
 export PATH=$PATH:/usr/local/bin &amp;&amp; $bw_exec logout
 
 security delete-generic-password -s alfred-bitwarden-session-key &gt; /dev/null
+
+launchctl unsetenv BW_ASKPASS
 
 osascript -e 'tell application "Alfred 3" to search "bw"'</string>
 				<key>scriptargtype</key>
@@ -2209,7 +2231,7 @@ My thanks go out to Bitwarden for their awesome product and the new CLI!</string
 		<string>STATUS_MESSAGE</string>
 	</array>
 	<key>version</key>
-	<string>1.2.0</string>
+	<string>1.2.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/blacs30/bitwarden-alfred-workflow</string>
 </dict>

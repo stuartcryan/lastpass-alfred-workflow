@@ -1,8 +1,6 @@
 from __future__ import print_function
 from workflow import Workflow
 from workflow.util import set_config
-import sys
-import json
 from subprocess import Popen, PIPE
 import os
 import keychain
@@ -91,6 +89,14 @@ def get_bw_exec():
     log.debug('END found get_bw_exec')
     return bw_exec
 
+def set_login():
+    proc = Popen("launchctl setenv BW_ASKPASS true".split(), stdout=PIPE)
+    output = proc.stdout.read().decode()
+    if output:
+        set_notification("Failed to set login env key", output)
+        exit(1)
+    return
+
 def main(wf):
     log.debug('MAIN: Started')
     out = keychain.getpassword('alfred-bitwarden-email-address')
@@ -105,7 +111,7 @@ def main(wf):
 
     log.debug('MAIN: Start unlock')
     output, err, status, message  = login(login_mail)
-    log.debug('MAIN: unlock result: {output} (trimmed).'.format(output=output[:15]))
+    log.debug('MAIN: unlock result: {output} (trimmed)'.format(output=output[:15]))
 
     if err:
         log.debug('MAIN: Error occured: {err}'.format(err=err))
@@ -120,6 +126,7 @@ def main(wf):
             set_notification('Error setting session-key.', output)
             exit(1)
         else:
+            set_login()
             set_notification('Unlock successful.', 'User: {user}'.format(user=login_mail))
 
 if __name__ == '__main__':
