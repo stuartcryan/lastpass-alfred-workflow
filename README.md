@@ -89,6 +89,7 @@ This workflow represents many many hours effort of development and testing. So i
 * Version 1.1.0 - Add 2FA option, open Alfred again after execution an option function
 * Version 1.2.0 - Rewritten perl and AppleScript to Python scripts hopefully fixing some issues with the login procedure.
 * Version 1.2.1 - Fixes a login issue where the status is not saved
+* Version 1.2.2 - Fixes spaces within the master password issue
 
 ## Credits
 
