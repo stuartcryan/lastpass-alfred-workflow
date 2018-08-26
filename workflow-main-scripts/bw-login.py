@@ -4,6 +4,7 @@ from workflow.util import set_config
 from subprocess import Popen, PIPE
 import os
 import keychain
+import shlex
 
 log = None
 wf = Workflow()
@@ -56,15 +57,16 @@ def login(login_mail, mfa_enabled=None, mfa_method=None):
         return out, err, status, message
 
     if not mfa_enabled:
-        cmd = "/usr/local/bin/bw --raw login {login_mail} {password}".format(login_mail=login_mail, password=password)
+        cmd = "/usr/local/bin/bw --raw login \"{login_mail}\" \"{password}\"".format(login_mail=login_mail.strip(), password=password.strip())
     elif mfa_enabled and not mfa_method:
         mfa_code, err, status, message = build_osascript(login_mail, 'Enter Bitwarden second factor code', True)
-        cmd = "/usr/local/bin/bw --raw login {login_mail} {password} --code {mfa_code}".format(login_mail=login_mail, password=password, mfa_code=mfa_code)
+        cmd = "/usr/local/bin/bw --raw login \"{login_mail}\" \"{password}\" --code {mfa_code}".format(login_mail=login_mail.strip(), password=password.strip(), mfa_code=mfa_code.strip())
     else:
         mfa_code, err, status, message = build_osascript(login_mail, 'Enter Bitwarden second factor code', True)
-        cmd = "/usr/local/bin/bw --raw login {login_mail} {password} --method {mfa_method} --code {mfa_code}".format(login_mail=login_mail, password=password, mfa_method=mfa_method, mfa_code=mfa_code)
+        cmd = "/usr/local/bin/bw --raw login \"{login_mail}\" \"{password}\" --method {mfa_method} --code {mfa_code}".format(login_mail=login_mail.strip(), password=password.strip(), mfa_method=mfa_method.strip(), mfa_code=mfa_code.strip())
 
-    proc = Popen(cmd.split(), env=my_env, stdout=PIPE, stderr=PIPE)
+    split_cmd = shlex.split(cmd)
+    proc = Popen(split_cmd, env=my_env, stdout=PIPE, stderr=PIPE)
     out, err = proc.communicate()
     print('error output: {err}'.format(err=err))
     password, cmd = None, None

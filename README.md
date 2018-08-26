@@ -2,6 +2,13 @@
 
 Simple yet powerful integration with the Bitwarden CLI so you can now get your passwords out of your Bitwarden vault and straight into the clipboard from within Alfred.
 
+##Version 1.2.2 update - Please Read
+
+-----
+Fixes an issue where spaces within the password prevent a user from login / unlock of the vault.
+
+**Note**: Passwords with spaces at the beginning or end are _NOT_ supported
+
 ##Version 1.2.1 update - Please Read
 
 -----

@@ -600,11 +600,10 @@ else:
 				<string>from __future__ import print_function
 from workflow import Workflow
 from workflow.util import set_config
-import sys
-import json
 from subprocess import Popen, PIPE
 import os
 import keychain
+import shlex
 
 log = None
 wf = Workflow()
@@ -657,15 +656,16 @@ def login(login_mail, mfa_enabled=None, mfa_method=None):
         return out, err, status, message
 
     if not mfa_enabled:
-        cmd = "/usr/local/bin/bw --raw login {login_mail} {password}".format(login_mail=login_mail, password=password)
+        cmd = "/usr/local/bin/bw --raw login \"{login_mail}\" \"{password}\"".format(login_mail=login_mail.strip(), password=password.strip())
     elif mfa_enabled and not mfa_method:
         mfa_code, err, status, message = build_osascript(login_mail, 'Enter Bitwarden second factor code', True)
-        cmd = "/usr/local/bin/bw --raw login {login_mail} {password} --code {mfa_code}".format(login_mail=login_mail, password=password, mfa_code=mfa_code)
+        cmd = "/usr/local/bin/bw --raw login \"{login_mail}\" \"{password}\" --code {mfa_code}".format(login_mail=login_mail.strip(), password=password.strip(), mfa_code=mfa_code.strip())
     else:
         mfa_code, err, status, message = build_osascript(login_mail, 'Enter Bitwarden second factor code', True)
-        cmd = "/usr/local/bin/bw --raw login {login_mail} {password} --method {mfa_method} --code {mfa_code}".format(login_mail=login_mail, password=password, mfa_method=mfa_method, mfa_code=mfa_code)
+        cmd = "/usr/local/bin/bw --raw login \"{login_mail}\" \"{password}\" --method {mfa_method} --code {mfa_code}".format(login_mail=login_mail.strip(), password=password.strip(), mfa_method=mfa_method.strip(), mfa_code=mfa_code.strip())
 
-    proc = Popen(cmd.split(), env=my_env, stdout=PIPE, stderr=PIPE)
+    split_cmd = shlex.split(cmd)
+    proc = Popen(split_cmd, env=my_env, stdout=PIPE, stderr=PIPE)
     out, err = proc.communicate()
     print('error output: {err}'.format(err=err))
     password, cmd = None, None
@@ -747,15 +747,15 @@ def main(wf):
     if not login_mfa_enabled:
         log.debug('MAIN: Start login without 2fa')
         output, err, status, message  = login(login_mail)
-        log.debug('MAIN: login result: {output} '.format(output=output[:15]))
+        log.debug('MAIN: login result: {output} (trimmed)'.format(output=output[:15]))
     elif login_mfa_enabled and not login_mfa_method:
         log.debug('MAIN: Start login with 2fa but without a method set')
         output, err, status, message  = login(login_mail, True)
-        log.debug('MAIN: 2fa login result: {output} '.format(output=output[:15]))
+        log.debug('MAIN: 2fa login result: {output} (trimmed)'.format(output=output[:15]))
     else:
         log.debug('MAIN: Start login with 2fa and method set to: {method}'.format(method=login_mfa_method))
         output, err, status, message  = login(login_mail, True, login_mfa_method)
-        log.debug('MAIN: 2fa with method set login result: {output} '.format(output=output[:15]))
+        log.debug('MAIN: 2fa with method set login result: {output} (trimmed)'.format(output=output[:15]))
 
     if err:
         log.debug('MAIN: Error occured: {err}'.format(err=err))
@@ -823,11 +823,10 @@ if __name__ == '__main__':
 				<string>from __future__ import print_function
 from workflow import Workflow
 from workflow.util import set_config
-import sys
-import json
 from subprocess import Popen, PIPE
 import os
 import keychain
+import shlex
 
 log = None
 wf = Workflow()
@@ -872,8 +871,9 @@ def login(login_mail):
     if err:
         return out, err, status, message
 
-    cmd = "/usr/local/bin/bw --raw unlock {password}".format(password=password)
-    proc = Popen(cmd.split(), env=my_env, stdout=PIPE, stderr=PIPE)
+    cmd = "/usr/local/bin/bw --raw unlock \"{password}\"".format(password=password.strip())
+    split_cmd = shlex.split(cmd)
+    proc = Popen(split_cmd, env=my_env, stdout=PIPE, stderr=PIPE)
     out, err = proc.communicate()
     print('error output: {err}'.format(err=err))
     password, cmd = None, None
@@ -889,10 +889,10 @@ def login(login_mail):
         return out, None, 'Invalid master password', out
     if 'You are already logged' in out:
         log.debug('unlock: bw you are already logged in {out}'.format(out=out))
-        return out, None, 'you are already logged in', out
+        return out, None, 'You are already logged in', out
     if 'You are not logged in' in out:
         log.debug('unlock: bw you are not logged in {out}'.format(out=out))
-        return out, None, 'you are not logged in', out
+        return out, None, 'You are not logged in', out
     log.debug('unlock: bw Return unlock result')
     return out, None, None, None
 
@@ -935,7 +935,7 @@ def main(wf):
 
     log.debug('MAIN: Start unlock')
     output, err, status, message  = login(login_mail)
-    log.debug('MAIN: unlock result: {output} '.format(output=output))
+    log.debug('MAIN: unlock result: {output} (trimmed)'.format(output=output[:15]))
 
     if err:
         log.debug('MAIN: Error occured: {err}'.format(err=err))
@@ -2231,7 +2231,7 @@ My thanks go out to Bitwarden for their awesome product and the new CLI!</string
 		<string>STATUS_MESSAGE</string>
 	</array>
 	<key>version</key>
-	<string>1.2.1</string>
+	<string>1.2.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/blacs30/bitwarden-alfred-workflow</string>
 </dict>

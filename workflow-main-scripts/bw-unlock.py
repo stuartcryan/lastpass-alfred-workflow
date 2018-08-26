@@ -4,6 +4,7 @@ from workflow.util import set_config
 from subprocess import Popen, PIPE
 import os
 import keychain
+import shlex
 
 log = None
 wf = Workflow()
@@ -48,8 +49,9 @@ def login(login_mail):
     if err:
         return out, err, status, message
 
-    cmd = "/usr/local/bin/bw --raw unlock {password}".format(password=password)
-    proc = Popen(cmd.split(), env=my_env, stdout=PIPE, stderr=PIPE)
+    cmd = "/usr/local/bin/bw --raw unlock \"{password}\"".format(password=password.strip())
+    split_cmd = shlex.split(cmd)
+    proc = Popen(split_cmd, env=my_env, stdout=PIPE, stderr=PIPE)
     out, err = proc.communicate()
     print('error output: {err}'.format(err=err))
     password, cmd = None, None
