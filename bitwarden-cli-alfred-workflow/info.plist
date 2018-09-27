@@ -428,8 +428,9 @@ import json
 from subprocess import Popen, PIPE
 import os
 
-details = sys.argv[1]
-details = details[1:-1].replace('"', '').split()
+details = sys.argv[1].replace('"','')
+details = details.splitlines()
+details.pop(0)
 
 my_env = os.environ.copy()
 my_env["PATH"] = "/usr/local/bin:/opt/local/bin:" + my_env["PATH"]
@@ -465,7 +466,8 @@ else:
     cmd = "{bw_exec} get totp {item}".format(bw_exec=bw_exec, item=details[1])
     proc = Popen(cmd.split(), env=my_env, stdout=PIPE)
     output =  proc.stdout.read().decode()
-    print(output.strip())</string>
+    sys.stdout.write(output.strip())
+    sys.stdout.flush()</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1223,8 +1225,9 @@ import json
 from subprocess import Popen, PIPE
 import os
 
-details = sys.argv[1]
-details = details[1:-1].replace('"', '').split()
+details = sys.argv[1].replace('"','')
+details = details.splitlines()
+details.pop(0)
 
 my_env = os.environ.copy()
 my_env["PATH"] = "/usr/local/bin:/opt/local/bin:" + my_env["PATH"]
@@ -1258,7 +1261,8 @@ else:
     cmd = "{bw_exec} get username {item}".format(bw_exec=bw_exec, item=details[1])
     proc = Popen(cmd.split(), env=my_env, stdout=PIPE)
     output =  proc.stdout.read().decode()
-    print(output.strip())</string>
+    sys.stdout.write(output.strip())
+    sys.stdout.flush()</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1307,8 +1311,9 @@ import json
 from subprocess import Popen, PIPE
 import os
 
-details = sys.argv[1]
-details = details[1:-1].replace('"', '').split()
+details = sys.argv[1].replace('"','')
+details = details.splitlines()
+details.pop(0)
 
 my_env = os.environ.copy()
 my_env["PATH"] = "/usr/local/bin:/opt/local/bin:" + my_env["PATH"]
@@ -1342,7 +1347,8 @@ else:
     cmd = "{bw_exec} get password {item}".format(bw_exec=bw_exec, item=details[1])
     proc = Popen(cmd.split(), env=my_env, stdout=PIPE)
     output =  proc.stdout.read().decode()
-    print(output.strip())</string>
+    sys.stdout.write(output.strip())
+    sys.stdout.flush()</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -2231,7 +2237,7 @@ My thanks go out to Bitwarden for their awesome product and the new CLI!</string
 		<string>STATUS_MESSAGE</string>
 	</array>
 	<key>version</key>
-	<string>1.2.2</string>
+	<string>1.2.3</string>
 	<key>webaddress</key>
 	<string>https://github.com/blacs30/bitwarden-alfred-workflow</string>
 </dict>

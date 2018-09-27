@@ -2,12 +2,20 @@
 
 Simple yet powerful integration with the Bitwarden CLI so you can now get your passwords out of your Bitwarden vault and straight into the clipboard from within Alfred.
 
+**Note**: Passwords with spaces at the beginning or end are _NOT_ supported
+
+##Version 1.2.3 update - Please Read
+
+-----
+* Fixes an issue where spaces within the item name causes the workflow to being unable to get the password/username/totp
+* Removes newline at the end of the output
+
+Thanks you, @rasmusbe, for contributing.
+
 ##Version 1.2.2 update - Please Read
 
 -----
 Fixes an issue where spaces within the password prevent a user from login / unlock of the vault.
-
-**Note**: Passwords with spaces at the beginning or end are _NOT_ supported
 
 ##Version 1.2.1 update - Please Read
 
@@ -86,10 +94,11 @@ This workflow represents many many hours effort of development and testing. So i
 * Version 1.0.0 - Initial Release
 * Version 1.0.1 - Fixed logout / not logged in warning
 * Version 1.0.2 - Fixed erroring in case no username exist, catch the error correctly now.
-* Version 1.1.0 - Add 2FA option, open Alfred again after execution an option function
-* Version 1.2.0 - Rewritten perl and AppleScript to Python scripts hopefully fixing some issues with the login procedure.
-* Version 1.2.1 - Fixes a login issue where the status is not saved
-* Version 1.2.2 - Fixes spaces within the master password issue
+* Version 1.1.0
+* Version 1.2.0
+* Version 1.2.1
+* Version 1.2.2
+* Version 1.2.3
 
 ## Credits
 
