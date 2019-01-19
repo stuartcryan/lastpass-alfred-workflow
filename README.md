@@ -4,7 +4,7 @@ Simple yet powerful integration with the Bitwarden CLI so you can now get your p
 
 **Note**: Passwords with spaces at the beginning or end are _NOT_ supported
 
-##Version 1.2.3 update - Please Read
+## Version 1.2.3 update - Please Read
 
 -----
 * Fixes an issue where spaces within the item name causes the workflow to being unable to get the password/username/totp
@@ -12,17 +12,17 @@ Simple yet powerful integration with the Bitwarden CLI so you can now get your p
 
 Thanks you, @rasmusbe, for contributing.
 
-##Version 1.2.2 update - Please Read
+## Version 1.2.2 update - Please Read
 
 -----
 Fixes an issue where spaces within the password prevent a user from login / unlock of the vault.
 
-##Version 1.2.1 update - Please Read
+## Version 1.2.1 update - Please Read
 
 -----
 Fixes an issue where the login is successful but the workflow doesn't set the marker to save it but instead returns that the vault is locked.
 
-##Version 1.2.0 update - Please Read
+## Version 1.2.0 update - Please Read
 
 -----
 
@@ -33,7 +33,7 @@ All perl and main AppleScripts have been rewritten in Python.
 
 If you haven't used Bitwarden before... you are crazy and you should! Say bye to LastPass and hello to selfhosting. It is the single greatest password manager package out there :D so check it out at [https://bitwarden.com](https://bitwarden.com).
 
-##Version 1.1.0 update - Please Read
+## Version 1.1.0 update - Please Read
 
 -----
 
