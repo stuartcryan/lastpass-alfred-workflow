@@ -14,7 +14,7 @@ result["items"] = []
 def get_session_key():
     cmd = 'security find-generic-password -w -s alfred-bitwarden-session-key'
     proc = Popen(cmd.split(), stdout=PIPE)
-    output = proc.stdout.read().decode()
+    output = proc.stdout.read().decode('utf8')
     if not output:
         print(json.dumps(error_result(type="login")))
         exit(1)
@@ -23,7 +23,7 @@ def get_session_key():
 
 def check_login():
     proc = Popen("launchctl getenv BW_ASKPASS".split(), stdout=PIPE)
-    output = proc.stdout.read().decode()
+    output = proc.stdout.read().decode('utf8')
     if not output:
         print(json.dumps(error_result(type="locked")))
         exit(1)
@@ -74,16 +74,16 @@ def get_bw_search_result(bw_exec, session_key, search):
     cmd = "{bw_exec} --session={session_key} list items --search={search}".format(bw_exec=bw_exec, session_key=session_key, search=search)
     proc = Popen(cmd.split(), env=my_env, stdout=PIPE, stderr=PIPE)
     output, err = proc.communicate()
-    if "mac failed." in err.decode().strip():
+    if "mac failed." in err.decode('utf8').strip():
         print(json.dumps(error_result(type="locked")))
         exit(1)
-    if "Vault is locked." in output.decode().strip():
+    if "Vault is locked." in output.decode('utf8').strip():
         print(json.dumps(error_result(type="locked")))
         exit(1)
     try:
         results = json.loads(output)
     except ValueError:
-        if "You are not logged in" in output.decode():
+        if "You are not logged in" in output.decode('utf8'):
             print(json.dumps(error_result(type="login")))
             exit(1)
     try:
