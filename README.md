@@ -4,6 +4,11 @@ Simple yet powerful integration with the Bitwarden CLI so you can now get your p
 
 **Note**: Passwords with spaces at the beginning or end are _NOT_ supported
 
+## Version 1.2.4 update - Please Read
+
+-----
+* Uses utf-8 decoding now which fixes an issue where the json object could not be decoded and alfred bw would fail
+
 ## Version 1.2.3 update - Please Read
 
 -----
@@ -26,8 +31,8 @@ Fixes an issue where the login is successful but the workflow doesn't set the ma
 
 -----
 
-Ladies and gents, I am happy to present v1.2.0 of the workflow. 
-As this workflow was originally a fork from the LastPass CLI it is now almost completely a rewritten codebase without using AppleScript calling an external applescript file to ask for the password. That is done now via inline AppleScript in Python. 
+Ladies and gents, I am happy to present v1.2.0 of the workflow.
+As this workflow was originally a fork from the LastPass CLI it is now almost completely a rewritten codebase without using AppleScript calling an external applescript file to ask for the password. That is done now via inline AppleScript in Python.
 
 All perl and main AppleScripts have been rewritten in Python.
 
@@ -46,7 +51,7 @@ If you haven't used Bitwarden before... you are crazy and you should! Say bye to
 -----
 
 ## Donations
-This workflow represents many many hours effort of development and testing. So if you love the workflow, and get use out of it every day, if you would like to donate as a thank you to buy me some healthy organic food (or organic coffee), or to put towards a shiny new gadget you can [donate to me via Paypal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K7BXYQ3SQ76J6). 
+This workflow represents many many hours effort of development and testing. So if you love the workflow, and get use out of it every day, if you would like to donate as a thank you to buy me some healthy organic food (or organic coffee), or to put towards a shiny new gadget you can [donate to me via Paypal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K7BXYQ3SQ76J6).
 
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K7BXYQ3SQ76J6" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" alt="PayPal — The safer, easier way to pay online."></a>
 
@@ -54,12 +59,12 @@ This workflow represents many many hours effort of development and testing. So i
 ## Installation
 
 1. Ensure you have Alfred installed with the Alfred Powerpack License
-3. Install Homebrew (if you do not have it already installed)
+2. Install Homebrew (if you do not have it already installed)
 	1. You should be able to just run the command in a terminal window (as your own user account NOT with sudo)
 	2. ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	3. Alternatively visit http://brew.sh/ for further instructions.
-4. Install Bitwarden CLI command line interface
-	1. In a terminal window run
+3. Install Bitwarden CLI command line interface
+	4. In a terminal window run
 		brew install bitwarden-cli
 5. Download the .alfredworkflow file
 6. Open the .alfredworkflow file to import into Alfred
