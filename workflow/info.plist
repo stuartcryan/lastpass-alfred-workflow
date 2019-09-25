@@ -314,7 +314,7 @@ end if
 do shell script "/bin/bash -c '" &amp; "export TERM=\"xterm-256color\" &amp;&amp; export LPASS_ASKPASS=\"" &amp; osascript &amp; "\" &amp;&amp; export LPASS_AGENT_TIMEOUT=" &amp; login_timeout &amp; " &amp;&amp; " &amp; lpass_binary &amp; " login --trust \"" &amp; login_email &amp; "\" &amp;&amp; clear &amp;&amp; " &amp; lpass_binary &amp; " ls --sync=now &gt; /dev/null 2&gt;&amp;1 &amp;&amp; exit 0'"
 
 if ("{query}" = "scriptlocationnotset") then
-tell application "Alfred 3" to search "lp "
+tell application id "com.runningwithcrayons.Alfred" to search "lp "
 end if</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
