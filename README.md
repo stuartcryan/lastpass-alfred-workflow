@@ -31,7 +31,7 @@ This workflow (and the 1.4.3 update especially) represents many many hours effor
 	3. Alternatively visit http://brew.sh/ for further instructions.
 4. Install LastPass command line interface
 	1. In a terminal window run
-		brew install lastpass-cli --with-pinentry --with-doc
+		brew install lastpass-cli
 5. Download the .alfredworkflow file
 6. Open the .alfredworkflow file to import into Alfred
 7. Run 'lpsetemail yourloginemail@yourdomain.com' in Alfred to set your LastPass username.
