@@ -4,6 +4,27 @@ Simple yet powerful integration with the Bitwarden CLI so you can now get your p
 
 **Note**: Passwords with spaces at the beginning or end are _NOT_ supported
 
+## Version 1.3.0 update - Please Read
+
+-----
+* Update workflow python package to version 1.37 with support for Alfred 4
+* Add filtering support for Bitwarden folders #12
+
+**Syntax:**
+
+`bw -f folder_name search_string`
+
+-- or --
+
+`bw search_string -f folder_name`
+
+-- or original syntax --
+
+`bw search_string`
+
+Thank you, @rustycamper, for your contribution!
+
+
 ## Version 1.2.4 update - Please Read
 
 -----
@@ -15,7 +36,7 @@ Simple yet powerful integration with the Bitwarden CLI so you can now get your p
 * Fixes an issue where spaces within the item name causes the workflow to being unable to get the password/username/totp
 * Removes newline at the end of the output
 
-Thanks you, @rasmusbe, for contributing.
+Thank you, @rasmusbe, for contributing.
 
 ## Version 1.2.2 update - Please Read
 
