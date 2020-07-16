@@ -4,9 +4,12 @@ Simple yet powerful integration with the Bitwarden CLI so you can now get your p
 
 **Note**: Passwords with spaces at the beginning or end are _NOT_ supported
 
-## Version 1.3.1 update - Please Read
+## Version 1.4.0 update - Please Read
+
+*Alfred v4.1 and newer is required*
 
 -----
+* Fix for Alfred version 4.1 where the selected secrets is passed to the next workflow item in a different way
 * Added ctrl+shift modifier to open the url of an item in the default browser
 
 ## Version 1.3.0 update - Please Read
