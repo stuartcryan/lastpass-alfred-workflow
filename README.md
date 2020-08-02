@@ -2,39 +2,18 @@
 
 Simple yet powerful integration with the Lastpass CLI so you can now get your passwords out of your Lastpass vault and straight into the clipboard from within Alfred.
 
-##Version 1.4.7 update - Please Read
-###-----------------------------------------------------------
-
-Ladies and gents, I am happy to present v 1.4.7 of the workflow. Before I continue, this has represented a SIGNIFICANT amount of work for me so if you like it and use it, please say thank you by donating towards my Diet Coke and cake fund. Any amount will do, whatever you feel the value is for you/your business/your time :)
-
-**Please note you *MUST* update your LastPass CLI version to 0.7.1 or higher as this update relies on new functionality that I worked with the LastPass team on integrating into the official CLI. Additionally version 1.4.6 and higher of the workflow WILL ONLY SUPPORT ALFRED 3 (and are not backwards compatible)**
-
-If you haven't used LastPass before... you are crazy and you should! It is the single greatest password manager package out there :D so check it out at [http://stu.link/LaStPaSs](http://stu.link/LaStPaSs) (Disclaimer, if you sign up through that link I get a free month otherwise you can go direct to [http://www.lastpass.com](http://www.lastpass.com).
-
-###-----------------------------------------------------------
-
-## Donations
-This workflow (and the 1.4.3 update especially) represents many many hours effort of development, testing and rework. So if you love the workflow, and get use out of it every day, if you would like to donate as a thank you to buy me more caffeine giving Diet Coke, some Cake, or to put towards a shiny new gadget you can [donate to me via Paypal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JM6E65M2GLXHE). 
-
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JM6E65M2GLXHE" target="_blank"><img src="http://akamai.technicalnotebook.com/alfred-workflow-images/donate.png" border="0" alt="PayPal — The safer, easier way to pay online."></a>
+## Current version: 1.4.9
+Requires Alfred 3 or 4 and LastPass CLI v1.3 or higher
 
 ## Installation
 
 1. Ensure you have Alfred installed with the Alfred Powerpack License
-2. Install Capture::Tiny
-	1. Open up a Terminal Window
-	2. run the command 'sudo cpan install Capture::Tiny'
-	3. Accept the default options and ensure Capture::Tiny installs successfully
-3. Install Homebrew (if you do not have it already installed)
-	1. You should be able to just run the command in a terminal window (as your own user account NOT with sudo)
-	2. ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	3. Alternatively visit http://brew.sh/ for further instructions.
-4. Install LastPass command line interface
-	1. In a terminal window run
-		brew install lastpass-cli --with-pinentry --with-doc
-5. Download the .alfredworkflow file
-6. Open the .alfredworkflow file to import into Alfred
-7. Run 'lpsetemail yourloginemail@yourdomain.com' in Alfred to set your LastPass username.
+2. Install LastPass command line interface
+	1. using MacPorts: 'sudo port install lastpass-cli lastpass-cli-doc'
+	2. using HomeBrew: 'brew install lastpass-cli --with-pinentry --with-doc'
+    3. manually, see https://github.com/LastPass/lastpass-cli for details
+3. Download and open https://github.com/lhaeger/lastpass-alfred-workflow/blob/master/lastpass-cli-alfred-workflow.alfredworkflow
+4. Run 'lpsetemail yourloginemail@yourdomain.com' in Alfred to set your LastPass username.
 
 ## Usage
 
@@ -55,6 +34,8 @@ This workflow (and the 1.4.3 update especially) represents many many hours effor
 
 ## History
 
+* Version 1.4.9
+	1. Fixed a filesystem access issue, probably introduced with security inprovements in macOS 10.15.6 (?), causing LastPass login to fail.
 * Version 1.4.8
 	1. If no folder/category is set for an entry in LastPass the CLI returns the literal text "(none)", which is then displayed in Alfred. Removed it (as well as translations in other languages).
 * Version 1.4.7
