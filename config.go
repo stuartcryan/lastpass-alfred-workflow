@@ -4,6 +4,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/blacs30/bitwarden-alfred-workflow/alfred"
 	"github.com/kelseyhightower/envconfig"
@@ -36,6 +37,7 @@ var (
 	mod3Emoji string
 	mod4      []aw.ModKey
 	mod4Emoji string
+	bwData    BwData
 )
 
 type modifierActionContent struct {
@@ -80,56 +82,119 @@ type config struct {
 	BwKeyword                string
 	BwfKeyword               string
 	BwExec                   string `split_words:"true"`
-	CacheAge                 int    `default:"1440" split_words:"true"`
-	Email                    string
-	EmptyDetailResults       bool `default:"false" split_words:"true"`
-	IconCacheAge             int  `default:"43200" split_words:"true"`
-	IconCacheEnabled         bool `default:"true" split_words:"true"`
-	IconMaxCacheAge          time.Duration
-	MaxResults               int `default:"1000" split_words:"true"`
-	MaxCacheAge              time.Duration
-	Mod1                     string `envconfig:"MODIFIER_1" default:"alt"`
-	Mod1Action               string `envconfig:"MODIFIER_1_ACTION" default:"username,code"`
-	Mod2                     string `envconfig:"MODIFIER_2" default:"shift"`
-	Mod2Action               string `envconfig:"MODIFIER_2_ACTION" default:"url"`
-	Mod3                     string `envconfig:"MODIFIER_3" default:"cmd"`
-	Mod3Action               string `envconfig:"MODIFIER_3_ACTION" default:"totp"`
-	Mod4                     string `envconfig:"MODIFIER_4" default:"cmd,alt,ctrl"`
-	Mod4Action               string `envconfig:"MODIFIER_4_ACTION" default:"more"`
-	NoModAction              string `envconfig:"NO_MODIFIER_ACTION" default:"password,card"`
-	OutputFolder             string `default:"" split_words:"true"`
-	Path                     string
-	ReorderingDisabled       bool   `default:"true" split_words:"true"`
-	Server                   string `envconfig:"SERVER_URL" default:"https://bitwarden.com"`
-	Sfa                      bool   `envconfig:"2FA_ENABLED" default:"true"`
-	SfaMode                  int    `envconfig:"2FA_MODE" default:"0"`
-	SyncCacheAge             int    `default:"1440" split_words:"true"`
-	SyncMaxCacheAge          time.Duration
-	TitleWithUser            bool `envconfig:"TITLE_WITH_USER" default:"false"`
+	// BwDataPath default is set in loadBitwardenJSON()
+	BwDataPath         string `envconfig:"BW_DATA_PATH"`
+	CacheAge           int    `default:"1440" split_words:"true"`
+	Email              string
+	EmptyDetailResults bool `default:"false" split_words:"true"`
+	IconCacheAge       int  `default:"43200" split_words:"true"`
+	IconCacheEnabled   bool `default:"true" split_words:"true"`
+	IconMaxCacheAge    time.Duration
+	MaxResults         int `default:"1000" split_words:"true"`
+	MaxCacheAge        time.Duration
+	Mod1               string `envconfig:"MODIFIER_1" default:"alt"`
+	Mod1Action         string `envconfig:"MODIFIER_1_ACTION" default:"username,code"`
+	Mod2               string `envconfig:"MODIFIER_2" default:"shift"`
+	Mod2Action         string `envconfig:"MODIFIER_2_ACTION" default:"url"`
+	Mod3               string `envconfig:"MODIFIER_3" default:"cmd"`
+	Mod3Action         string `envconfig:"MODIFIER_3_ACTION" default:"totp"`
+	Mod4               string `envconfig:"MODIFIER_4" default:"cmd,alt,ctrl"`
+	Mod4Action         string `envconfig:"MODIFIER_4_ACTION" default:"more"`
+	NoModAction        string `envconfig:"NO_MODIFIER_ACTION" default:"password,card"`
+	OutputFolder       string `default:"" split_words:"true"`
+	Path               string
+	ReorderingDisabled bool   `default:"true" split_words:"true"`
+	Server             string `envconfig:"SERVER_URL" default:"https://bitwarden.com"`
+	Sfa                bool   `envconfig:"2FA_ENABLED" default:"true"`
+	SfaMode            int    `envconfig:"2FA_MODE" default:"0"`
+	SyncCacheAge       int    `default:"1440" split_words:"true"`
+	SyncMaxCacheAge    time.Duration
+	TitleWithUser      bool `envconfig:"TITLE_WITH_USER" default:"false"`
 }
 
-//// Load configuration file.
+type BwData struct {
+	path             string
+	InstalledVersion string                 `json:"installedVersion"`
+	UserEmail        string                 `json:"userEmail"`
+	UserId           string                 `json:"userId"`
+	AccessToken      string                 `json:"accessToken"`
+	RefreshToken     string                 `json:"refreshToken"`
+	ProtectedKey     string                 `json:"__PROTECTED__key"`
+	KeyHash          string                 `json:"keyHash"`
+	EncKey           string                 `json:"encKey"`
+	EncPrivateKey    string                 `json:"encPrivateKey"`
+	SecurityStamp    string                 `json:"securityStamp"`
+	EncOrgKeys       map[string]interface{} `json:"encOrgKeys"`
+	Kdf              int                    `json:"kdf"`
+	KdfIterations    int                    `json:"kdfIterations"`
+	Unused           map[string]interface{} `json:"-"`
+}
+
+func loadBitwardenJSON() error {
+	bwDataPath := conf.BwDataPath
+	if bwDataPath == "" {
+		homedir, err := os.UserHomeDir()
+		if err != nil {
+			return err
+		}
+		bwDataPath = fmt.Sprintf("%s/Library/Application Support/Bitwarden CLI/data.json", homedir)
+		log.Println("BW DataPath", bwDataPath)
+	}
+	if err := loadDataFile(bwDataPath); err != nil {
+		return err
+	}
+	return nil
+}
+
+func loadDataFile(path string) error {
+	bwData.path = path
+	f, err := os.Open(path)
+	if os.IsNotExist(err) {
+		return nil
+	} else if err != nil {
+		return err
+	}
+	defer f.Close()
+	if err := json.NewDecoder(f).Decode(&bwData); err != nil {
+		return err
+	}
+	return nil
+}
+
 func loadConfig() {
+	// Load workflow vars
 	err := envconfig.Process("", &conf)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
 
-	conf.Email = alfred.GetEmail(wf, conf.Email)
+	// load the bitwarden data.json
+	err = loadBitwardenJSON()
+	if err != nil {
+		log.Print(err.Error())
+	}
+
+	conf.Email = alfred.GetEmail(wf, conf.Email, bwData.UserEmail)
 	conf.OutputFolder = alfred.GetOutputFolder(wf, conf.OutputFolder)
 
+	// Set a few cache timeout durations
 	cacheAgeDuration := time.Duration(conf.CacheAge)
 	conf.MaxCacheAge = cacheAgeDuration * time.Minute
+
 	iconCacheAgeDuration := time.Duration(conf.IconCacheAge)
 	conf.IconMaxCacheAge = iconCacheAgeDuration * time.Minute
+
 	autoFetchIconCacheAgeDuration := time.Duration(conf.AutoFetchIconCacheAge)
 	conf.AutoFetchIconMaxCacheAge = autoFetchIconCacheAgeDuration * time.Minute
+
 	syncCacheAgeDuration := time.Duration(conf.SyncCacheAge)
 	conf.SyncMaxCacheAge = syncCacheAgeDuration * time.Minute
+
 	conf.BwauthKeyword = os.Getenv("bwauth_keyword")
 	conf.BwconfKeyword = os.Getenv("bwconf_keyword")
 	conf.BwKeyword = os.Getenv("bw_keyword")
 	conf.BwfKeyword = os.Getenv("bwf_keyword")
+
 	initModifiers()
 }
 
@@ -201,7 +266,7 @@ func getTypeEmoji(itemType string) (string, error) {
 	for keys, emoji := range modKeysMap {
 		splitKeys := strings.Split(keys, ",")
 		for _, key := range splitKeys {
-		    key = strings.TrimSpace(key)
+			key = strings.TrimSpace(key)
 			if key == itemType {
 				return emoji, nil
 			}
@@ -244,8 +309,8 @@ func setModAction(itemConfig *itemsModifierActionRelation, item Item, itemType s
 	}
 	splitActions := strings.Split(actionString, ",")
 	for _, action := range splitActions {
-        action = strings.TrimSpace(action)
-        if itemType == "item1" {
+		action = strings.TrimSpace(action)
+		if itemType == "item1" {
 			title := item.Name
 			if conf.TitleWithUser {
 				title = fmt.Sprintf("%s - %s", item.Name, item.Login.Username)
