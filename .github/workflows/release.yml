@@ -32,7 +32,6 @@ jobs:
 
       - name: Build Alfred workflow
         run: |
-          make dep-alfred
           make build
 
       - name: Copy run dependencies
