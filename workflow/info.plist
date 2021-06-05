@@ -45,6 +45,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>2B3376F5-F01D-4684-B705-A4779542318F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AA7C4B28-E91C-422C-8272-714C572EA0D1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>2C599764-4F41-40F8-B6D9-2CD0A5FAAD77</key>
 		<array/>
 		<key>3D8E65EE-BD6E-4D7D-B22E-109157394D40</key>
@@ -122,6 +135,59 @@
 				<false/>
 			</dict>
 		</array>
+		<key>52000E80-E577-4C80-A905-75701E24D746</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>7D173957-152E-4A0E-938C-BAE42484EEF0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>70F9DDEF-3875-47B0-B56F-7AE23F6E9289</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>63C7EF82-4C28-406B-BB62-0184833056D8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>7D173957-152E-4A0E-938C-BAE42484EEF0</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>70F9DDEF-3875-47B0-B56F-7AE23F6E9289</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>DF00A2A8-EFDD-4506-A036-832365FE266F</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>AE9B3682-A2BD-466F-88A9-E31CC5F2299F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>3D7F3B5B-0533-4809-99D9-6549E62E4CD9</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>9820C2CA-1F87-4023-917E-BF7E6E98E47D</key>
 		<array>
 			<dict>
@@ -189,6 +255,45 @@
 				<string></string>
 				<key>sourceoutputuid</key>
 				<string>9AAEA968-23C5-4356-BE4F-BA2BC6426CB4</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A182FE34-37FE-4986-BF02-DE53693940AE</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2B3376F5-F01D-4684-B705-A4779542318F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>AA7C4B28-E91C-422C-8272-714C572EA0D1</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>52000E80-E577-4C80-A905-75701E24D746</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>AE9B3682-A2BD-466F-88A9-E31CC5F2299F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>63C7EF82-4C28-406B-BB62-0184833056D8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -972,6 +1077,25 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>subtext</key>
+				<string>{var:subtitle}</string>
+				<key>text</key>
+				<string>{var:title}</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>B083B37D-7F08-4B68-B087-100C361FAAD9</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -1125,6 +1249,203 @@
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>/usr/bin/grep -m1 '^result|' &lt;&lt;&lt;"$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>AA7C4B28-E91C-422C-8272-714C572EA0D1</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>fixedorder</key>
+				<true/>
+				<key>items</key>
+				<string>[{"imagefile":"9febae04e9b11418d8c716fa6a295abfcdf2c95b.png","title":"Install","arg":"--install","subtitle":"Install automatic sync service (hour: {var:AUTO_HOUR} min: {var:AUTO_MIN})"},{"imagefile":"21dcb3fb3a76f001daa8d67a857cfb9573060b9a.png","title":"Remove","arg":"--remove","subtitle":"Remove automatic sync service"}]</string>
+				<key>keyword</key>
+				<string>{var:bwauto_keyword}</string>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Install or remove service, create symlink</string>
+				<key>title</key>
+				<string>Bitwarden Workflow Autosync Configuration</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.listfilter</string>
+			<key>uid</key>
+			<string>A182FE34-37FE-4986-BF02-DE53693940AE</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./bw_cache_update.sh --install</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>bw_cache_update.sh</string>
+				<key>type</key>
+				<integer>8</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>2B3376F5-F01D-4684-B705-A4779542318F</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{var:v3}</string>
+				<key>title</key>
+				<string>{var:result}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>63C7EF82-4C28-406B-BB62-0184833056D8</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:v2}</string>
+						<key>matchcasesensitive</key>
+						<true/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>0</string>
+						<key>outputlabel</key>
+						<string>success</string>
+						<key>uid</key>
+						<string>DF00A2A8-EFDD-4506-A036-832365FE266F</string>
+					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:v2}</string>
+						<key>matchcasesensitive</key>
+						<true/>
+						<key>matchmode</key>
+						<integer>2</integer>
+						<key>matchstring</key>
+						<string>0</string>
+						<key>outputlabel</key>
+						<string>error</string>
+						<key>uid</key>
+						<string>3D7F3B5B-0533-4809-99D9-6549E62E4CD9</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>7D173957-152E-4A0E-938C-BAE42484EEF0</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>passthroughargument</key>
+				<true/>
+				<key>variables</key>
+				<dict>
+					<key>result</key>
+					<string>SUCCESS</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>70F9DDEF-3875-47B0-B56F-7AE23F6E9289</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>delimiter</key>
+				<string>|</string>
+				<key>trimarguments</key>
+				<true/>
+				<key>variableprefix</key>
+				<string>v</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.split</string>
+			<key>uid</key>
+			<string>52000E80-E577-4C80-A905-75701E24D746</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>passthroughargument</key>
+				<true/>
+				<key>variables</key>
+				<dict>
+					<key>result</key>
+					<string>ERROR</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>AE9B3682-A2BD-466F-88A9-E31CC5F2299F</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Get secrets and other things from Bitwarden.
@@ -1168,6 +1489,15 @@ Caching of the secret/item names (not the secret values itself) are cached so th
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
+		<key>2B3376F5-F01D-4684-B705-A4779542318F</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>xpos</key>
+			<integer>335</integer>
+			<key>ypos</key>
+			<integer>740</integer>
+		</dict>
 		<key>2C599764-4F41-40F8-B6D9-2CD0A5FAAD77</key>
 		<dict>
 			<key>colorindex</key>
@@ -1200,12 +1530,75 @@ Caching of the secret/item names (not the secret values itself) are cached so th
 			<key>ypos</key>
 			<integer>350</integer>
 		</dict>
+		<key>52000E80-E577-4C80-A905-75701E24D746</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>xpos</key>
+			<integer>615</integer>
+			<key>ypos</key>
+			<integer>770</integer>
+		</dict>
+		<key>63C7EF82-4C28-406B-BB62-0184833056D8</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>xpos</key>
+			<integer>840</integer>
+			<key>ypos</key>
+			<integer>740</integer>
+		</dict>
+		<key>70F9DDEF-3875-47B0-B56F-7AE23F6E9289</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>xpos</key>
+			<integer>770</integer>
+			<key>ypos</key>
+			<integer>745</integer>
+		</dict>
+		<key>7D173957-152E-4A0E-938C-BAE42484EEF0</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>xpos</key>
+			<integer>680</integer>
+			<key>ypos</key>
+			<integer>745</integer>
+		</dict>
 		<key>9820C2CA-1F87-4023-917E-BF7E6E98E47D</key>
 		<dict>
 			<key>xpos</key>
 			<integer>690</integer>
 			<key>ypos</key>
 			<integer>280</integer>
+		</dict>
+		<key>A182FE34-37FE-4986-BF02-DE53693940AE</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>xpos</key>
+			<integer>175</integer>
+			<key>ypos</key>
+			<integer>740</integer>
+		</dict>
+		<key>AA7C4B28-E91C-422C-8272-714C572EA0D1</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>xpos</key>
+			<integer>460</integer>
+			<key>ypos</key>
+			<integer>740</integer>
+		</dict>
+		<key>AE9B3682-A2BD-466F-88A9-E31CC5F2299F</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>xpos</key>
+			<integer>770</integer>
+			<key>ypos</key>
+			<integer>795</integer>
 		</dict>
 		<key>B083B37D-7F08-4B68-B087-100C361FAAD9</key>
 		<dict>
@@ -1298,6 +1691,10 @@ Caching of the secret/item names (not the secret values itself) are cached so th
 		<string>0</string>
 		<key>AUTO_FETCH_ICON_CACHE_AGE</key>
 		<string>1440</string>
+		<key>AUTO_HOUR</key>
+		<string>10</string>
+		<key>AUTO_MIN</key>
+		<string>0</string>
 		<key>BW_DATA_PATH</key>
 		<string></string>
 		<key>BW_EXEC</key>
@@ -1339,7 +1736,7 @@ Caching of the secret/item names (not the secret values itself) are cached so th
 		<key>REORDERING_DISABLED</key>
 		<string>true</string>
 		<key>SERVER_URL</key>
-		<string>https://bitwarden.com</string>
+		<string></string>
 		<key>SYNC_CACHE_AGE</key>
 		<string>10080</string>
 		<key>TITLE_WITH_USER</key>
@@ -1350,6 +1747,8 @@ Caching of the secret/item names (not the secret values itself) are cached so th
 		<string>.bw</string>
 		<key>bwauth_keyword</key>
 		<string>.bwauth</string>
+		<key>bwauto_keyword</key>
+		<string>.bwauto</string>
 		<key>bwconf_keyword</key>
 		<string>.bwconfig</string>
 		<key>bwf_keyword</key>

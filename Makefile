@@ -40,6 +40,7 @@ install-hooks:
 copy-build-assets:
 	@cp -r icons ./workflow
 	@cp -r assets ./workflow
+	@cp bw_cache_update.sh ./workflow
 	@go get github.com/pschlump/markdown-cli
 	@markdown-cli -i README.md -o workflow/README.html
 
