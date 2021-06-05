@@ -84,15 +84,13 @@ type config struct {
 	BwExec                   string `split_words:"true"`
 	// BwDataPath default is set in loadBitwardenJSON()
 	BwDataPath         string `envconfig:"BW_DATA_PATH"`
-	CacheAge           int    `default:"1440" split_words:"true"`
 	Debug              bool   `envconfig:"DEBUG" default:"false"`
 	Email              string
 	EmptyDetailResults bool `default:"false" split_words:"true"`
 	IconCacheAge       int  `default:"43200" split_words:"true"`
 	IconCacheEnabled   bool `default:"true" split_words:"true"`
 	IconMaxCacheAge    time.Duration
-	MaxResults         int `default:"1000" split_words:"true"`
-	MaxCacheAge        time.Duration
+	MaxResults         int    `default:"1000" split_words:"true"`
 	Mod1               string `envconfig:"MODIFIER_1" default:"alt"`
 	Mod1Action         string `envconfig:"MODIFIER_1_ACTION" default:"username,code"`
 	Mod2               string `envconfig:"MODIFIER_2" default:"shift"`
@@ -110,7 +108,8 @@ type config struct {
 	SfaMode            int    `envconfig:"2FA_MODE" default:"0"`
 	SyncCacheAge       int    `default:"1440" split_words:"true"`
 	SyncMaxCacheAge    time.Duration
-	TitleWithUser      bool `envconfig:"TITLE_WITH_USER" default:"false"`
+	TitleWithUser      bool `envconfig:"TITLE_WITH_USER" default:"true"`
+	TitleWithUrls      bool `envconfig:"TITLE_WITH_URLS" default:"true"`
 }
 
 type BwData struct {
@@ -179,13 +178,6 @@ func loadConfig() {
 	conf.OutputFolder = alfred.GetOutputFolder(wf, conf.OutputFolder)
 
 	// Set a few cache timeout durations
-	setItemCacheAge := conf.CacheAge
-	if conf.CacheAge < 30 && conf.CacheAge != 0 {
-		setItemCacheAge = 30
-	}
-	cacheAgeDuration := time.Duration(setItemCacheAge)
-	conf.MaxCacheAge = cacheAgeDuration * time.Minute
-
 	iconCacheAgeDuration := time.Duration(conf.IconCacheAge)
 	conf.IconMaxCacheAge = iconCacheAgeDuration * time.Minute
 
@@ -325,6 +317,15 @@ func setModAction(itemConfig *itemsModifierActionRelation, item Item, itemType s
 			if conf.TitleWithUser {
 				title = fmt.Sprintf("%s - %s", item.Name, item.Login.Username)
 			}
+
+			var urlList string
+			for _, url := range item.Login.Uris {
+				urlList = fmt.Sprintf("%s - %s", urlList, url.Uri)
+			}
+			if conf.TitleWithUrls {
+				title = fmt.Sprintf("%s - %s", title, urlList)
+			}
+
 			if action == "password" {
 				subtitle := "Copy password"
 				if modMode == "nomod" {
@@ -429,6 +430,15 @@ func setModAction(itemConfig *itemsModifierActionRelation, item Item, itemType s
 			if conf.TitleWithUser {
 				title = fmt.Sprintf("%s - %s", item.Name, item.Card.Number)
 			}
+
+			var urlList string
+			for _, url := range item.Login.Uris {
+				urlList = fmt.Sprintf("%s - %s", urlList, url.Uri)
+			}
+			if conf.TitleWithUrls {
+				title = fmt.Sprintf("%s - %s", title, urlList)
+			}
+
 			if action == "card" {
 				subtitle := "Copy Card Number"
 				if modMode == "nomod" {

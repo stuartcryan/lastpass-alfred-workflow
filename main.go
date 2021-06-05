@@ -122,13 +122,6 @@ func checkIfJobRuns() {
 		wf.SendFeedback()
 		return
 	}
-	if wf.IsRunning("cache") {
-		wf.Rerun(0.3)
-		wf.NewItem("Refreshing Bitwarden cache…").
-			Icon(ReloadIcon())
-		wf.SendFeedback()
-		return
-	}
 	if wf.IsRunning("icons") {
 		wf.Rerun(0.3)
 		wf.NewItem("Refreshing Icon cache…").
@@ -183,7 +176,7 @@ func run() {
 
 	checkIfJobRuns()
 
-	if !wf.IsRunning("cache") && !wf.IsRunning("sync") && !wf.IsRunning("icons") {
+	if !wf.IsRunning("sync") && !wf.IsRunning("icons") {
 		pidfilePath := fmt.Sprintf("/tmp/%s", WORKFLOW_NAME)
 		processName := WORKFLOW_NAME
 		pidHandler(pidfilePath)
@@ -268,11 +261,6 @@ func run() {
 	if opts.Icons {
 		log.Println("Start getting icons")
 		runGetIcons("", "")
-		return
-	}
-
-	if opts.Cache {
-		runCache()
 		return
 	}
 

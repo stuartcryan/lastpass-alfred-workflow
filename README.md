@@ -65,7 +65,6 @@ You can change the search-/filtermode yourself easily. This gif shows the 3 step
 | bwf_keyword               | defines the keyword which opens the folder search of the Bitwarden Alfred Workflow                                                                                                                                                  | .bwf                                                                                |
 | bwauth_keyword            | defines the keyword which opens the Bitwarden authentications of the Alfred Workflow                                                                                                                                                | .bwauth                                                                             |
 | bwconf_keyword            | defines the keyword which opens the Bitwarden configuration/settings of the Alfred Workflow                                                                                                                                         | .bwconfig                                                                           |
-| CACHE_AGE                 | This defines how old the cached items can get, if expired the Workflow will trigger a new cache refresh with Bitwarden (this does not involve a sync with the Bitwarden server, values lower than 30 will be ignored and set to 30) | 0 (0 means disabled; unit is minutes)                                               |
 | DEBUG                     | If enabled print additional debug information, specially about for the decryption process                                                                                                                                           | false                                                                               |
 | EMAIL                     | the email which to use for the login via the Bitwarden CLI, will be read from the data.json of the Bitwarden CLI if present                                                                                                         | ""                                                                                  |
 | EMPTY_DETAIL_RESULTS      | Show all information in the detail view, also if the content is empty                                                                                                                                                               | false                                                                               |
@@ -85,8 +84,9 @@ You can change the search-/filtermode yourself easily. This gif shows the 3 step
 | PATH                      | The PATH env variable which is used to search for executables (like the Bitwarden CLI configured with BW_EXEC, security to get and set keychain objects)                                                                            | /usr/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/bin:/usr/sbin |
 | REORDERING_DISABLED       | If set to false the items which are often selected appear further up in the results.                                                                                                                                                | true                                                                                |
 | SERVER_URL                | Set the server url if you host your own Bitwarden instance - you can also set separate domains for api,webvault etc e.g. `--api http://localhost:4000 --identity http://localhost:33656`                                            | https://bitwarden.com                                                               |
-| SYNC_CACHE_AGE            | This defines how old the sync cache can get, if expired the Workflow will trigger a new sync with Bitwarden (values lower than 30 will be ignored and set to 30)                                                                    | 0 (0 means disabled; unit is minutes)                                               |
+| SYNC_CACHE_AGE            | This defines how old the sync cache can get, if expired the Workflow will trigger a new sync with Bitwarden (values lower than 30 will be ignored and set to 30)                                                                    | 10080 (0 means disabled; unit is minutes)                                           |
 | TITLE_WITH_USER           | If enabled the name of the login user item or the last 4 numbers of the card number will be appended (added) at the end of the name of the item                                                                                     | true                                                                                |
+| TITLE_WITH_URLS           | If enabled all the URLs for an login item will be appended (added) at the end of the name of the item                                                                                                                               | true                                                                                |
 
 ## Modifier Actions Explained
 
@@ -102,19 +102,19 @@ You can change the search-/filtermode yourself easily. This gif shows the 3 step
 | identity | - (always copy the name )       |
 | others   | more (to show all item entries, can't be NO_MODIFIER_ACTION) |
 
-You can place per type one `action name` into the ACTION config, a combination is possible where it is not overlapping with `more` or another of the same type.
+You can place per type *one* `action name` into the ACTION config, a combination is possible where it is *not* overlapping with `more` or another of the same type.
 
-Good examples:
+**Good examples:**
 
-NO_MODIFIER_ACTION=url,code
-MODIFIER_1_ACTION=totp
-MODIFIER_2_ACTION=more
-MODIFIER_3_ACTION=password,card
+NO_MODIFIER_ACTION=url,code<br>
+MODIFIER_1_ACTION=totp<br>
+MODIFIER_2_ACTION=more<br>
+MODIFIER_3_ACTION=password,card (2 items listed but of different *type*)
 
-Bad examples:
+**Bad examples:**
 
-NO_MODIFIER_ACTION=url,password
-MODIFIER_3_ACTION=code,card
+NO_MODIFIER_ACTION=url,password<br>
+MODIFIER_3_ACTION=code,card (2 items listed but of the same *type*, therefore this is not permitted and will cause problems)
 
 # Develop locally
 
@@ -195,7 +195,7 @@ A big thanks to all code contributors but also to everyone who creates issues an
 
   To use the workflows faster decryption you can [follow this instruction by Bitwarden](https://bitwarden.com/help/article/update-encryption-key/)) <br>
   to update the encryption keys to the new mechanism.
-  
+
   The linked doc doesn't specify how to force creation of a new key. It's easy though:
 
   - Login to your vault.

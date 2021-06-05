@@ -14,7 +14,6 @@ import (
 	"os"
 	"os/exec"
 	"strconv"
-	"sync"
 )
 
 var (
@@ -44,7 +43,6 @@ type options struct {
 	Force      bool
 	Totp       bool
 	Last       bool
-	Cache      bool
 	Background bool
 
 	// Arguments
@@ -71,7 +69,6 @@ func init() {
 	cli.BoolVar(&opts.Logout, "logout", false, "logout Bitwarden")
 	cli.BoolVar(&opts.Sync, "sync", false, "sync secrets")
 	cli.BoolVar(&opts.Background, "background", false, "Run job in background")
-	cli.BoolVar(&opts.Cache, "cache", false, "refresh workflow cache")
 	cli.BoolVar(&opts.Last, "last", false, "last sync")
 	cli.BoolVar(&opts.Force, "force", false, "force full sync")
 	cli.BoolVar(&opts.Totp, "totp", false, "get totp for item id")
@@ -85,7 +82,6 @@ Alfred workflow to get secrets from Bitwarden.
 Usage:
     bitwarden-alfred-workflow [<query>]
     bitwarden-alfred-workflow -auth [<query>]
-    bitwarden-alfred-workflow -cache [-background]
     bitwarden-alfred-workflow -conf [<query>]
     bitwarden-alfred-workflow -folder [<query>]
     bitwarden-alfred-workflow -getitem -id <id> [-totp] [-attachment <id>] [<query>] (query is used as jsonpath)
@@ -261,8 +257,6 @@ func runConfig() {
 		Var("notification", "Downloading Favicons for URLs").
 		Arg("-background")
 
-	addRefreshCacheItem()
-
 	wf.NewItem("Get date of last Bitwarden secret sync").
 		Subtitle("Show the date when the last sync happened with the Bitwarden server.").
 		Valid(true).
@@ -315,7 +309,10 @@ func runAuth() {
 		UID("login").
 		Icon(iconOn).
 		Var("action", "-login").
-		Arg("login", email, fmt.Sprintf("%d", sfaMode), map2faMode(sfaMode))
+		Var("type", "login").
+		Var("email", email).
+		Var("sfamode", fmt.Sprintf("%d", sfaMode)).
+		Var("mapsfamode", map2faMode(sfaMode))
 
 	wf.NewItem("Logout").
 		Subtitle("Logout from Bitwarden").
@@ -330,7 +327,8 @@ func runAuth() {
 		Valid(true).
 		Icon(iconOn).
 		Var("action", "-unlock").
-		Arg("unlock", email)
+		Var("type", "unlock").
+		Var("email", email)
 
 	wf.NewItem("Lock").
 		Subtitle("Lock Bitwarden").
@@ -502,13 +500,13 @@ func runSearch(folderSearch bool, itemId string) {
 	if bwData.UserId == "" {
 		message := "Need to login first."
 		if wf.Cache.Exists(CACHE_NAME) && wf.Cache.Exists(FOLDER_CACHE_NAME) {
-			message = "Need to login first to get secrets, reading cached no secret items only."
+			message = "Need to login first to get secrets, reading cached items without the secret."
 		}
 		addLoginWarningItem(wf, email, sfaMode, message)
 	}
 
 	if bwData.UserId != "" && bwData.ProtectedKey == "" {
-		message := "Need to unlock first to get secrets, reading cached no secret items only."
+		message := "Need to unlock first to get secrets, reading cached items without the secrets."
 		addUnlockWarningItem(wf, email, message)
 	}
 
@@ -544,7 +542,11 @@ func runSearch(folderSearch bool, itemId string) {
 	// Check the sync cache, if it expired.
 	// don't sync if age is set to 0
 	// this cache is just a control to automatically trigger the sync, the data itself is stored in the data  cache (CACHE_NAME and FOLDER_CACHE_NAME)
-	if conf.SyncCacheAge != 0 && wf.Cache.Expired(SYNC_CACHE_NAME, conf.SyncMaxCacheAge) {
+
+	// If the cache has expired, set Rerun (which tells Alfred to re-run the
+	// workflow), and start the background update process if it isn't already
+	// running.
+	if conf.SyncCacheAge != 0 && (wf.Cache.Expired(SYNC_CACHE_NAME, conf.SyncMaxCacheAge) || (wf.Cache.Expired(CACHE_NAME, conf.SyncMaxCacheAge) || wf.Cache.Expired(FOLDER_CACHE_NAME, conf.SyncMaxCacheAge))) {
 		if !wf.IsRunning("sync") {
 			cmd := exec.Command(os.Args[0], "-sync", "-force")
 			log.Println("Sync cmd: ", cmd)
@@ -555,33 +557,6 @@ func runSearch(folderSearch bool, itemId string) {
 			return
 		} else {
 			log.Printf("Sync job already running.")
-		}
-		wf.NewItem("Refreshing Bitwarden cache…").
-			Icon(ReloadIcon())
-		wf.SendFeedback()
-		return
-	}
-
-	// If the cache has expired, set Rerun (which tells Alfred to re-run the
-	// workflow), and start the background update process if it isn't already
-	// running.
-	if conf.CacheAge != 0 && (wf.Cache.Expired(CACHE_NAME, conf.MaxCacheAge) || wf.Cache.Expired(FOLDER_CACHE_NAME, conf.MaxCacheAge)) {
-		wf.Rerun(0.3)
-		if !wf.IsRunning("cache") {
-			var wg sync.WaitGroup
-			wg.Add(1)
-			run := checkBitwardenAuthInWorkflow(wf, &wg, email, sfaMode)
-			wg.Wait()
-
-			if run {
-				// now we can run the background job
-				cmd := exec.Command(os.Args[0], "-cache")
-				if err := wf.RunInBackground("cache", cmd); err != nil {
-					wf.FatalError(err)
-				}
-			}
-		} else {
-			log.Printf("Cache job already running.")
 		}
 		wf.NewItem("Refreshing Bitwarden cache…").
 			Icon(ReloadIcon())
@@ -650,8 +625,7 @@ func runSearch(folderSearch bool, itemId string) {
 	}
 
 	if len(items) == 0 && len(folders) == 0 {
-		addRefreshCacheItem()
-		wf.NewItem("No Secrets Found").Subtitle("Try a different query or refresh the cache or sync manually.").Icon(iconWarning).Valid(false)
+		wf.NewItem("No Secrets Found").Subtitle("Try a different query or sync manually.").Icon(iconWarning).Valid(false)
 	}
 
 	if !folderSearch && itemId == "" {
@@ -701,29 +675,6 @@ func addUnlockWarningItem(wf *aw.Workflow, email string, message string) {
 		Arg("unlock", email)
 }
 
-func checkBitwardenAuthInWorkflow(wf *aw.Workflow, wg *sync.WaitGroup, email string, sfaMode int) bool {
-	// check if logged in or locked first
-	loginErr, unlockErr := BitwardenAuthChecks()
-	if loginErr != nil {
-		wf.Rerun(0)
-		message := "Need to login first."
-		addLoginWarningItem(wf, email, sfaMode, message)
-		wg.Done()
-		wf.SendFeedback()
-		return false
-	}
-	if unlockErr != nil {
-		wf.Rerun(0)
-		message := "Need to unlock first."
-		addUnlockWarningItem(wf, email, message)
-		wg.Done()
-		wf.SendFeedback()
-		return false
-	}
-	wg.Done()
-	return true
-}
-
 // Filter Bitwarden secrets in Alfred
 func runSearchFolder(items []Item, folders []Folder) {
 	if opts.Query != "" {
@@ -768,8 +719,7 @@ func runSearchFolder(items []Item, folders []Folder) {
 	}
 
 	if len(items) == 0 && len(folders) == 0 {
-		addRefreshCacheItem()
-		wf.WarnEmpty("No Secrets Found", "Try a different query or refresh the cache manually.")
+		wf.WarnEmpty("No Secrets Found", "Try a different query or sync manually.")
 	}
 	wf.WarnEmpty("No Folders Found", "Try a different query.")
 	wf.SendFeedback()

@@ -525,14 +525,3 @@ func addNewModifierItem(item *aw.Item, modifier modifierActionRelation) {
 		Arg(modifier.Content.Arg).
 		Icon(modifier.Content.Icon)
 }
-
-func addRefreshCacheItem() {
-	wf.NewItem("Refresh Bitwardens Secret Cache").
-		Subtitle("Fill the cache with cleaned Bitwarden secrets (the real secrets are not kept in the cached)").
-		Valid(true).
-		UID("cache").
-		Icon(ReloadIcon()).
-		Var("action", "-cache").
-		Var("notification", "Refreshing Bitwarden Workflow cache").
-		Arg("-background")
-}

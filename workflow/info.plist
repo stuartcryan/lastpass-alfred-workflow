@@ -1110,7 +1110,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>/usr/bin/osascript bitwarden-auth-flow.js $1 $2 $3 $4</string>
+				<string>/usr/bin/osascript bitwarden-auth-flow.js $type $email $sfamode $mapsfamode</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1302,8 +1302,6 @@ Caching of the secret/item names (not the secret values itself) are cached so th
 		<string></string>
 		<key>BW_EXEC</key>
 		<string>bw</string>
-		<key>CACHE_AGE</key>
-		<string>0</string>
 		<key>DEBUG</key>
 		<string>false</string>
 		<key>EMAIL</key>
@@ -1343,8 +1341,10 @@ Caching of the secret/item names (not the secret values itself) are cached so th
 		<key>SERVER_URL</key>
 		<string>https://bitwarden.com</string>
 		<key>SYNC_CACHE_AGE</key>
-		<string>0</string>
+		<string>10080</string>
 		<key>TITLE_WITH_USER</key>
+		<string>true</string>
+		<key>TITLE_WITH_URLS</key>
 		<string>true</string>
 		<key>bw_keyword</key>
 		<string>.bw</string>
@@ -1361,7 +1361,7 @@ Caching of the secret/item names (not the secret values itself) are cached so th
 		<string>SERVER_URL</string>
 	</array>
 	<key>version</key>
-	<string>2.2.2</string>
+	<string>2.3.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/blacs30/bitwarden-alfred-workflow</string>
 </dict>

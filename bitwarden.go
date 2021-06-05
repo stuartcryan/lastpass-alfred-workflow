@@ -45,7 +45,7 @@ func runSync(force bool, last bool) {
 	}
 
 	if opts.Background {
-		log.Println("Runnung sync in background")
+		log.Println("Running sync in background")
 		if !wf.IsRunning("sync") {
 			log.Printf("Starting sync job.")
 			cmd := exec.Command(os.Args[0], "-sync", "-force")
@@ -99,7 +99,7 @@ func runSync(force bool, last bool) {
 			getItems()
 
 			// Writing the sync-cache
-			err = wf.Cache.Store(SYNC_CACHE_NAME, []byte(string("sync-cache")))
+			err = wf.Cache.Store(SYNC_CACHE_NAME, []byte("sync-cache"))
 			if err != nil {
 				log.Println(err)
 			}
@@ -576,21 +576,6 @@ func runCache() {
 		return
 	}
 
-	log.Println("Background?", opts.Background)
-	if opts.Background {
-		if !wf.IsRunning("cache") {
-			cmd := exec.Command(os.Args[0], "-cache")
-			log.Println("Cache cmd: ", cmd)
-			if err := wf.RunInBackground("cache", cmd); err != nil {
-				wf.FatalError(err)
-			}
-		} else {
-			log.Printf("Cache job already running.")
-		}
-		searchAlfred(conf.BwKeyword)
-		return
-
-	}
 	log.Println("Running cache")
 	getItems()
 }
