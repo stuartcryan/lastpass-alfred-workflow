@@ -14,6 +14,7 @@ import (
 	"os"
 	"os/exec"
 	"strconv"
+	"time"
 )
 
 var (
@@ -567,6 +568,14 @@ func runSearch(folderSearch bool, itemId string) {
 	// If iconcache enabled and the cache is expired (or doesn't exist)
 	if conf.IconCacheEnabled && (wf.Data.Expired(ICON_CACHE_NAME, conf.IconMaxCacheAge) || !wf.Data.Exists(ICON_CACHE_NAME)) {
 		getIcon(wf)
+	}
+
+	// set lastUsageCache after all the config and auth options and cache checks ran
+	// it's only set when a search  is successfully ready to be executed
+	timestamp := time.Now().Unix()
+	err := wf.Cache.Store(LAST_USAGE_CACHE, []byte(strconv.FormatInt(timestamp, 10)))
+	if err != nil {
+		log.Println(err)
 	}
 
 	if folderSearch && itemId == "" {

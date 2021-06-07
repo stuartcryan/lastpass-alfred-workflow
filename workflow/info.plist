@@ -32,6 +32,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>29368892-614B-4A2B-92F3-FC433F748404</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3FBE8D58-EE54-45E1-B8BF-DF69480FC771</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>2B07EDA7-EF15-46A4-8644-073ACAE7FD02</key>
 		<array>
 			<dict>
@@ -122,6 +135,46 @@
 				<false/>
 			</dict>
 		</array>
+		<key>3FBE8D58-EE54-45E1-B8BF-DF69480FC771</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>46CBBEBF-67D9-4400-89D4-F84C281287BA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>46CBBEBF-67D9-4400-89D4-F84C281287BA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>79A41248-A52A-4DBC-A56D-57DB85867909</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>DF00A2A8-EFDD-4506-A036-832365FE266F</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>7FF0E186-915A-4D98-A18B-7AEAE78C6B21</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>3D7F3B5B-0533-4809-99D9-6549E62E4CD9</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>4BC115D2-2F84-4652-892B-3250887C4597</key>
 		<array>
 			<dict>
@@ -161,6 +214,32 @@
 				<false/>
 			</dict>
 		</array>
+		<key>7553A30F-6A08-4DBF-807F-D32425A7A977</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>29368892-614B-4A2B-92F3-FC433F748404</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>79A41248-A52A-4DBC-A56D-57DB85867909</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6DF04CC1-78FE-421F-A096-1CAA55997739</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>7D173957-152E-4A0E-938C-BAE42484EEF0</key>
 		<array>
 			<dict>
@@ -184,6 +263,32 @@
 				<string></string>
 				<key>sourceoutputuid</key>
 				<string>3D7F3B5B-0533-4809-99D9-6549E62E4CD9</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>7FF0E186-915A-4D98-A18B-7AEAE78C6B21</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6DF04CC1-78FE-421F-A096-1CAA55997739</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>939EDEA7-B670-4496-BBCA-79A47F820A06</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>7553A30F-6A08-4DBF-807F-D32425A7A977</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -586,25 +691,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>autopaste</key>
-				<false/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
-				<key>ignoredynamicplaceholders</key>
-				<false/>
-				<key>transient</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>2C599764-4F41-40F8-B6D9-2CD0A5FAAD77</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -646,6 +732,25 @@
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>2B07EDA7-EF15-46A4-8644-073ACAE7FD02</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>2C599764-4F41-40F8-B6D9-2CD0A5FAAD77</string>
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
@@ -794,37 +899,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>0</integer>
-				<key>focusedappvariable</key>
-				<false/>
-				<key>focusedappvariablename</key>
-				<string></string>
-				<key>hotkey</key>
-				<integer>0</integer>
-				<key>hotmod</key>
-				<integer>0</integer>
-				<key>hotstring</key>
-				<string></string>
-				<key>leftcursor</key>
-				<false/>
-				<key>modsmode</key>
-				<integer>0</integer>
-				<key>relatedAppsMode</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
-			<key>uid</key>
-			<string>E7B34A5D-981E-45C7-ABF5-45EF761FD350</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -870,6 +944,37 @@
 			<string>270A6CCE-F927-4E8F-9520-8F787573B1E3</string>
 			<key>version</key>
 			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>E7B34A5D-981E-45C7-ABF5-45EF761FD350</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1119,65 +1224,25 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>/usr/bin/osascript bitwarden-auth-flow.js $type $email $sfamode $mapsfamode</string>
+				<key>scriptargtype</key>
 				<integer>1</integer>
-				<key>subtext</key>
-				<string>{var:subtitle}</string>
-				<key>text</key>
-				<string>{var:title}</string>
-				<key>withspace</key>
-				<true/>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>B083B37D-7F08-4B68-B087-100C361FAAD9</string>
+			<string>3E2F1180-58FF-4BE9-94B8-97CADE398C33</string>
 			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>conditions</key>
-				<array>
-					<dict>
-						<key>inputstring</key>
-						<string>{var:action}</string>
-						<key>matchcasesensitive</key>
-						<false/>
-						<key>matchmode</key>
-						<integer>0</integer>
-						<key>matchstring</key>
-						<string>output</string>
-						<key>outputlabel</key>
-						<string>output insecure</string>
-						<key>uid</key>
-						<string>053F2C93-355C-4049-B3F8-210AED1B222B</string>
-					</dict>
-					<dict>
-						<key>inputstring</key>
-						<string>{var:action}</string>
-						<key>matchcasesensitive</key>
-						<false/>
-						<key>matchmode</key>
-						<integer>4</integer>
-						<key>matchstring</key>
-						<string>(-getitem|-totp)</string>
-						<key>outputlabel</key>
-						<string>secure output</string>
-						<key>uid</key>
-						<string>5477D4DC-FD95-4D84-9415-6A725C1483E1</string>
-					</dict>
-				</array>
-				<key>elselabel</key>
-				<string>other actions ie. open help, urls</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.conditional</string>
-			<key>uid</key>
-			<string>3D8E65EE-BD6E-4D7D-B22E-109157394D40</string>
-			<key>version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1229,23 +1294,88 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:action}</string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>output</string>
+						<key>outputlabel</key>
+						<string>output insecure</string>
+						<key>uid</key>
+						<string>053F2C93-355C-4049-B3F8-210AED1B222B</string>
+					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:action}</string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>4</integer>
+						<key>matchstring</key>
+						<string>(-getitem|-totp)</string>
+						<key>outputlabel</key>
+						<string>secure output</string>
+						<key>uid</key>
+						<string>5477D4DC-FD95-4D84-9415-6A725C1483E1</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>other actions ie. open help, urls</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>3D8E65EE-BD6E-4D7D-B22E-109157394D40</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{var:v3}</string>
+				<key>title</key>
+				<string>{var:result}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>63C7EF82-4C28-406B-BB62-0184833056D8</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>/usr/bin/osascript bitwarden-auth-flow.js $type $email $sfamode $mapsfamode</string>
+				<string>./bw_cache_update.sh --install</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
-				<string></string>
+				<string>bw_cache_update.sh</string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>8</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>3E2F1180-58FF-4BE9-94B8-97CADE398C33</string>
+			<string>2B3376F5-F01D-4684-B705-A4779542318F</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -1282,7 +1412,7 @@
 				<key>fixedorder</key>
 				<true/>
 				<key>items</key>
-				<string>[{"imagefile":"9febae04e9b11418d8c716fa6a295abfcdf2c95b.png","title":"Install","arg":"--install","subtitle":"Install automatic sync service (hour: {var:AUTO_HOUR} min: {var:AUTO_MIN})"},{"imagefile":"21dcb3fb3a76f001daa8d67a857cfb9573060b9a.png","title":"Remove","arg":"--remove","subtitle":"Remove automatic sync service"}]</string>
+				<string>[{"imagefile":"9febae04e9b11418d8c716fa6a295abfcdf2c95b.png","title":"Install","arg":"--install","subtitle":"Install automatic sync service (hour: {var:AUTO_HOUR} min: {var:AUTO_MIN})"},{"imagefile":"21dcb3fb3a76f001daa8d67a857cfb9573060b9a.png","title":"Remove","arg":"--remove","subtitle":"Remove automatic sync service"},{"imagefile":"adde5abb26a131f20cc3417c4206bd81e5341c81.png","title":"Create symlink","arg":"--link","subtitle":"Create symlink to make it easier to trigger a manual sync ({var:AUTOSYNC_SCRIPT_DIR})"}]</string>
 				<key>keyword</key>
 				<string>{var:bwauto_keyword}</string>
 				<key>runningsubtext</key>
@@ -1304,44 +1434,20 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./bw_cache_update.sh --install</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string>bw_cache_update.sh</string>
-				<key>type</key>
-				<integer>8</integer>
+				<key>argument</key>
+				<string></string>
+				<key>passthroughargument</key>
+				<true/>
+				<key>variables</key>
+				<dict>
+					<key>result</key>
+					<string>SUCCESS</string>
+				</dict>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
-			<string>2B3376F5-F01D-4684-B705-A4779542318F</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>removeextension</key>
-				<false/>
-				<key>text</key>
-				<string>{var:v3}</string>
-				<key>title</key>
-				<string>{var:result}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>63C7EF82-4C28-406B-BB62-0184833056D8</string>
+			<string>70F9DDEF-3875-47B0-B56F-7AE23F6E9289</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -1392,26 +1498,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argument</key>
-				<string></string>
-				<key>passthroughargument</key>
-				<true/>
-				<key>variables</key>
-				<dict>
-					<key>result</key>
-					<string>SUCCESS</string>
-				</dict>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>70F9DDEF-3875-47B0-B56F-7AE23F6E9289</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>delimiter</key>
 				<string>|</string>
 				<key>trimarguments</key>
@@ -1443,6 +1529,203 @@
 			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
 			<string>AE9B3682-A2BD-466F-88A9-E31CC5F2299F</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>fixedorder</key>
+				<true/>
+				<key>items</key>
+				<string>[{"imagefile":"9febae04e9b11418d8c716fa6a295abfcdf2c95b.png","title":"Install","arg":"--install","subtitle":"Install automatic lock service (lock after: {var:LOCK_TIMEOUT} minutes and on startup)"},{"imagefile":"21dcb3fb3a76f001daa8d67a857cfb9573060b9a.png","title":"Remove","arg":"--remove","subtitle":"Remove automatic sync service"}]</string>
+				<key>keyword</key>
+				<string>{var:bwautolock_keyword}</string>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Install or remove service to auto lock Bitwarden</string>
+				<key>title</key>
+				<string>Bitwarden Workflow Autolock Configuration</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.listfilter</string>
+			<key>uid</key>
+			<string>939EDEA7-B670-4496-BBCA-79A47F820A06</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{var:v3}</string>
+				<key>title</key>
+				<string>{var:result}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>6DF04CC1-78FE-421F-A096-1CAA55997739</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>/usr/bin/grep -m1 '^result|' &lt;&lt;&lt;"$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>29368892-614B-4A2B-92F3-FC433F748404</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./bw_cache_update.sh --install</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>bw_auto_lock.sh</string>
+				<key>type</key>
+				<integer>8</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>7553A30F-6A08-4DBF-807F-D32425A7A977</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>passthroughargument</key>
+				<true/>
+				<key>variables</key>
+				<dict>
+					<key>result</key>
+					<string>SUCCESS</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>79A41248-A52A-4DBC-A56D-57DB85867909</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:v2}</string>
+						<key>matchcasesensitive</key>
+						<true/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>0</string>
+						<key>outputlabel</key>
+						<string>success</string>
+						<key>uid</key>
+						<string>DF00A2A8-EFDD-4506-A036-832365FE266F</string>
+					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:v2}</string>
+						<key>matchcasesensitive</key>
+						<true/>
+						<key>matchmode</key>
+						<integer>2</integer>
+						<key>matchstring</key>
+						<string>0</string>
+						<key>outputlabel</key>
+						<string>error</string>
+						<key>uid</key>
+						<string>3D7F3B5B-0533-4809-99D9-6549E62E4CD9</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>46CBBEBF-67D9-4400-89D4-F84C281287BA</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>delimiter</key>
+				<string>|</string>
+				<key>trimarguments</key>
+				<true/>
+				<key>variableprefix</key>
+				<string>v</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.split</string>
+			<key>uid</key>
+			<string>3FBE8D58-EE54-45E1-B8BF-DF69480FC771</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>passthroughargument</key>
+				<true/>
+				<key>variables</key>
+				<dict>
+					<key>result</key>
+					<string>ERROR</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>7FF0E186-915A-4D98-A18B-7AEAE78C6B21</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -1481,6 +1764,15 @@ Caching of the secret/item names (not the secret values itself) are cached so th
 			<integer>175</integer>
 			<key>ypos</key>
 			<integer>125</integer>
+		</dict>
+		<key>29368892-614B-4A2B-92F3-FC433F748404</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>2</integer>
+			<key>xpos</key>
+			<integer>470</integer>
+			<key>ypos</key>
+			<integer>870</integer>
 		</dict>
 		<key>2B07EDA7-EF15-46A4-8644-073ACAE7FD02</key>
 		<dict>
@@ -1523,6 +1815,24 @@ Caching of the secret/item names (not the secret values itself) are cached so th
 			<key>ypos</key>
 			<integer>515</integer>
 		</dict>
+		<key>3FBE8D58-EE54-45E1-B8BF-DF69480FC771</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>2</integer>
+			<key>xpos</key>
+			<integer>615</integer>
+			<key>ypos</key>
+			<integer>900</integer>
+		</dict>
+		<key>46CBBEBF-67D9-4400-89D4-F84C281287BA</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>2</integer>
+			<key>xpos</key>
+			<integer>680</integer>
+			<key>ypos</key>
+			<integer>875</integer>
+		</dict>
 		<key>4BC115D2-2F84-4652-892B-3250887C4597</key>
 		<dict>
 			<key>xpos</key>
@@ -1548,6 +1858,15 @@ Caching of the secret/item names (not the secret values itself) are cached so th
 			<key>ypos</key>
 			<integer>740</integer>
 		</dict>
+		<key>6DF04CC1-78FE-421F-A096-1CAA55997739</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>2</integer>
+			<key>xpos</key>
+			<integer>840</integer>
+			<key>ypos</key>
+			<integer>870</integer>
+		</dict>
 		<key>70F9DDEF-3875-47B0-B56F-7AE23F6E9289</key>
 		<dict>
 			<key>colorindex</key>
@@ -1557,6 +1876,24 @@ Caching of the secret/item names (not the secret values itself) are cached so th
 			<key>ypos</key>
 			<integer>745</integer>
 		</dict>
+		<key>7553A30F-6A08-4DBF-807F-D32425A7A977</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>2</integer>
+			<key>xpos</key>
+			<integer>335</integer>
+			<key>ypos</key>
+			<integer>870</integer>
+		</dict>
+		<key>79A41248-A52A-4DBC-A56D-57DB85867909</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>2</integer>
+			<key>xpos</key>
+			<integer>770</integer>
+			<key>ypos</key>
+			<integer>875</integer>
+		</dict>
 		<key>7D173957-152E-4A0E-938C-BAE42484EEF0</key>
 		<dict>
 			<key>colorindex</key>
@@ -1565,6 +1902,24 @@ Caching of the secret/item names (not the secret values itself) are cached so th
 			<integer>680</integer>
 			<key>ypos</key>
 			<integer>745</integer>
+		</dict>
+		<key>7FF0E186-915A-4D98-A18B-7AEAE78C6B21</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>2</integer>
+			<key>xpos</key>
+			<integer>770</integer>
+			<key>ypos</key>
+			<integer>925</integer>
+		</dict>
+		<key>939EDEA7-B670-4496-BBCA-79A47F820A06</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>2</integer>
+			<key>xpos</key>
+			<integer>175</integer>
+			<key>ypos</key>
+			<integer>870</integer>
 		</dict>
 		<key>9820C2CA-1F87-4023-917E-BF7E6E98E47D</key>
 		<dict>
@@ -1587,7 +1942,7 @@ Caching of the secret/item names (not the secret values itself) are cached so th
 			<key>colorindex</key>
 			<integer>3</integer>
 			<key>xpos</key>
-			<integer>460</integer>
+			<integer>470</integer>
 			<key>ypos</key>
 			<integer>740</integer>
 		</dict>
@@ -1689,6 +2044,10 @@ Caching of the secret/item names (not the secret values itself) are cached so th
 		<string>true</string>
 		<key>2FA_MODE</key>
 		<string>0</string>
+		<key>AUTOSYNC_SCRIPT_DIR</key>
+		<string>/usr/local/bin</string>
+		<key>AUTOSYNC_TIMES</key>
+		<string>8:15,23:45</string>
 		<key>AUTO_FETCH_ICON_CACHE_AGE</key>
 		<string>1440</string>
 		<key>AUTO_HOUR</key>
@@ -1699,6 +2058,10 @@ Caching of the secret/item names (not the secret values itself) are cached so th
 		<string></string>
 		<key>BW_EXEC</key>
 		<string>bw</string>
+		<key>CACHE_AGE</key>
+		<string>7200</string>
+		<key>CACHE_TIMEOUT</key>
+		<string>1440</string>
 		<key>DEBUG</key>
 		<string>false</string>
 		<key>EMAIL</key>
@@ -1709,6 +2072,8 @@ Caching of the secret/item names (not the secret values itself) are cached so th
 		<string>43200</string>
 		<key>ICON_CACHE_ENABLED</key>
 		<string>true</string>
+		<key>LOCK_TIMEOUT</key>
+		<string>1440</string>
 		<key>MAX_RESULTS</key>
 		<string>1000</string>
 		<key>MODIFIER_1</key>
@@ -1739,9 +2104,11 @@ Caching of the secret/item names (not the secret values itself) are cached so th
 		<string></string>
 		<key>SYNC_CACHE_AGE</key>
 		<string>10080</string>
-		<key>TITLE_WITH_USER</key>
-		<string>true</string>
+		<key>SYNC_CACHE_TIMEOUT</key>
+		<string>1440</string>
 		<key>TITLE_WITH_URLS</key>
+		<string>true</string>
+		<key>TITLE_WITH_USER</key>
 		<string>true</string>
 		<key>bw_keyword</key>
 		<string>.bw</string>
@@ -1749,6 +2116,8 @@ Caching of the secret/item names (not the secret values itself) are cached so th
 		<string>.bwauth</string>
 		<key>bwauto_keyword</key>
 		<string>.bwauto</string>
+		<key>bwautolock_keyword</key>
+		<string>.bwautolock</string>
 		<key>bwconf_keyword</key>
 		<string>.bwconfig</string>
 		<key>bwf_keyword</key>

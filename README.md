@@ -11,6 +11,8 @@
 * download attachments via this workflow
 * show favicons of the websites
 * auto update
+* auto Bitwarden sync in the background
+* auto lock on startup and after customizable idle time
 * uses the [awgo](https://pkg.go.dev/github.com/deanishe/awgo?tab=doc) framework/library
 * many customizations possible
 
@@ -50,6 +52,36 @@ Up to version < 2.1.0 the *Fuzzy filtering a la Sublime Text* was default. Start
 You can change the search-/filtermode yourself easily. This gif shows the 3 steps which need to be done for it:
 ![Change filter mode](./assets/change-filter-mode.gif)
 
+## Enable auto background sync
+
+In version 2.3.0 the background sync mechanism was added.<br>
+It is using the macOS user LaunchAgent.
+
+To install the sync configure the workflow variables:
+
+- `AUTOSYNC_TIMES`, this can be used to configure comma separated multiple sync times per day, e.g. `8:15,23:45`
+- alternatively you can use `AUTO_HOUR` together with `AUTO_MIN` for only one sync time
+
+Bitwarden needs to be unlocked for sync to work.
+
+Install via Alfred keyword: `.bwauto`
+
+## Enable auto lock
+
+In version 2.3.0 the background lock and lock on startup mechanism was added.<br>
+It is using the macOS user LaunchAgent.
+
+To install the sync configure the workflow variables:
+
+- `LOCK_TIMEOUT` set to a time in minutes after which the workflow should be locked if it hasn't been used in the meantime
+
+The LaunchAgent checks every 5 minutes if the lock timeout has been reached.
+
+The LaunchAgent checks also on load (e.g. startup of the system and login of the user),<br>
+if the startup happened within the last 5 minutes, if so then it locks the Bitwarden workflow.
+
+Install via Alfred keyword: `.bwautolock`
+
 ## Advanced Features / Configuration
 
 - Configurable [workflow environment variables](https://www.alfredapp.com/help/workflows/advanced/variables/#environment)
@@ -60,6 +92,7 @@ You can change the search-/filtermode yourself easily. This gif shows the 3 step
 | 2FA_NODE                  | sets the mode for the 2FA (can be set via .bwconfig ), 0 app, 1, email (not tested), 2 duo (not tested), 3 yubikey (not tested), 4 U2F (not tested)                                                                                 | 0                                                                                   |
 | AUTO_HOUR                 | sets the hour for the backround sync to run (is installed separately with .bwauto)                                                                                                                                                  | 10                                                                                  |
 | AUTO_MIN                  | sets the minute for the backround sync to run (is installed separately with .bwauto)                                                                                                                                                | 0                                                                                   |
+| AUTOSYNC_TIMES            | sets multiple times when bitwarden should sync with the server, this is used first and instead of AUTO_MIN and AUTO_HOUR                                                                                                            | 8:15,23:45                                                                          |
 | AUTO_FETCH_ICON_CACHE_AGE | This defines how often the Workflow should check for an icon if is missing, it doesn't need to do it on every run hence this cache                                                                                                  | 1440 (1 day)                                                                        |
 | BW_EXEC                   | defines the binary/executable for the Bitwarden CLI command                                                                                                                                                                         | bw                                                                                  |
 | BW_DATA_PATH              | sets the path to the Bitwarden Cli data.json                                                                                                                                                                                        | "~/Library/Application Support/Bitwarden CLI/data.json""                            |
@@ -67,12 +100,14 @@ You can change the search-/filtermode yourself easily. This gif shows the 3 step
 | bwf_keyword               | defines the keyword which opens the folder search of the Bitwarden Alfred Workflow                                                                                                                                                  | .bwf                                                                                |
 | bwauth_keyword            | defines the keyword which opens the Bitwarden authentications of the Alfred Workflow                                                                                                                                                | .bwauth                                                                             |
 | bwauto_keyword            | defines the keyword which opens the Bitwarden background sync agent                                                                                                                                                                 | .bwauto                                                                             |
+| bwautolock_keyword        | defines the keyword which opens the Bitwarden background lock agent                                                                                                                                                                 | .bwautolock                                                                         |
 | bwconf_keyword            | defines the keyword which opens the Bitwarden configuration/settings of the Alfred Workflow                                                                                                                                         | .bwconfig                                                                           |
 | DEBUG                     | If enabled print additional debug information, specially about for the decryption process                                                                                                                                           | false                                                                               |
 | EMAIL                     | the email which to use for the login via the Bitwarden CLI, will be read from the data.json of the Bitwarden CLI if present                                                                                                         | ""                                                                                  |
 | EMPTY_DETAIL_RESULTS      | Show all information in the detail view, also if the content is empty                                                                                                                                                               | false                                                                               |
 | ICON_CACHE_ENABLED        | Download icons for login items if a URL is set                                                                                                                                                                                      | true                                                                                |
 | ICON_CACHE_AGE            | This defines how old the icon cache can get in minutes, if expired the Workflow will download icons again. If icons are missing the workflow will also try to download them unrelated to this timeout                               | 43200 (1 month)                                                                     |
+| LOCK_TIMEOUT              | Besides the lock on startup this additional timeout is set to define when Bitwarden should be locked in case of no usage.                                                                                                           | 1440 (1 day)                                                                        |
 | MAX_RESULTS               | The number of items to display maximal in the search view                                                                                                                                                                           | 1000                                                                                |
 | MODIFIER_1                | The first modifier key combination, possible options, which can be combined by comma separation, are "cmd,alt/opt,ctrl,shift,fn"                                                                                                    | alt                                                                                 |
 | MODIFIER_2                | The first modifier key combination, possible options, which can be combined by comma separation, are "cmd,alt/opt,ctrl,shift,fn"                                                                                                    | shift                                                                               |
