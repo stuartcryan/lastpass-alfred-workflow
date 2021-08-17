@@ -13,6 +13,7 @@ require (
 	github.com/mitchellh/go-ps v1.0.0
 	github.com/oliveagle/jsonpath v0.0.0-20180606110733-2e52cf6e6852
 	github.com/pquerna/otp v1.3.0
+	github.com/pschlump/markdown-cli v0.0.0-20190302144029-1852bd2b9884 // indirect
 	github.com/soellman/pidfile v0.0.0-20160225184504-d482c905736b
 	github.com/tidwall/gjson v1.8.1
 	github.com/tidwall/pretty v1.2.0 // indirect
