@@ -437,6 +437,13 @@ func addItemDetails(item Item, autoFetchCache bool) {
 }
 
 func addItemsToWorkflow(item Item, autoFetchCache bool) {
+	var template = map[string]modifierActionRelation{
+		"nomod": {}, "mod1": {}, "mod2": {}, "mod3": {}, "mod4": {},
+	}
+	var itemModSet = map[string]map[string]modifierActionRelation{
+		"item1": template, "item2": template, "item3": template, "item4": template,
+	}
+
 	if item.Type == 1 {
 		icon := iconLink
 		if len(item.Login.Uris) > 0 && conf.IconCacheEnabled {
@@ -468,54 +475,56 @@ func addItemsToWorkflow(item Item, autoFetchCache bool) {
 		if len(item.Login.Uris) < 1 {
 			url = ""
 		}
-		itemModSet := getModifierActionRelations(item, "item1", icon, totp, url)
-		log.Printf("Item1:\n%+v", itemModSet.Item1)
-		addNewItem(itemModSet.Item1, item.Name)
+
+		getModifierActionRelations(itemModSet, item, "item1", icon, totp, url)
+		log.Printf("Item1:\n%+v", itemModSet["item1"])
+		addNewItem(itemModSet["item1"], item.Name)
+		//addNewItem(itemModSet.Item1, item.Name)
 	} else if item.Type == 2 {
-		itemModSet := getModifierActionRelations(item, "item2", nil, "", "")
-		log.Printf("Item2:\n%+v", itemModSet.Item2)
-		addNewItem(itemModSet.Item2, item.Name)
+		getModifierActionRelations(itemModSet, item, "item2", nil, "", "")
+		log.Printf("Item2:\n%+v", itemModSet["item2"])
+		addNewItem(itemModSet["item2"], item.Name)
 	} else if item.Type == 3 {
-		itemModSet := getModifierActionRelations(item, "item3", nil, "", "")
-		log.Printf("Item3:\n%+v", itemModSet.Item3)
-		addNewItem(itemModSet.Item3, item.Name)
+		getModifierActionRelations(itemModSet, item, "item3", nil, "", "")
+		log.Printf("Item3:\n%+v", itemModSet["item3"])
+		addNewItem(itemModSet["item3"], item.Name)
 	} else if item.Type == 4 {
-		itemModSet := getModifierActionRelations(item, "item4", nil, "", "")
-		log.Printf("Item4:\n%+v", itemModSet.Item3)
-		addNewItem(itemModSet.Item4, item.Name)
+		getModifierActionRelations(itemModSet, item, "item4", nil, "", "")
+		log.Printf("Item4:\n%+v", itemModSet["item4"])
+		addNewItem(itemModSet["item4"], item.Name)
 	} else {
 		log.Printf("New item, needs to be implemented.")
 	}
 }
 
-func addNewItem(item itemActions, name string) *aw.Item {
-	it := wf.NewItem(item.NoMod.Content.Title).
-		Subtitle(item.NoMod.Content.Subtitle).Valid(true).
-		Arg(item.NoMod.Content.Arg).
+func addNewItem(item map[string]modifierActionRelation, name string) *aw.Item {
+	it := wf.NewItem(item["nomod"].Content.Title).
+		Subtitle(item["nomod"].Content.Subtitle).Valid(true).
+		Arg(item["nomod"].Content.Arg).
 		UID(name).
-		Var("notification", item.NoMod.Content.Notification).
-		Var("action", item.NoMod.Content.Action).
-		Var("action2", item.NoMod.Content.Action2).
-		Var("action3", item.NoMod.Content.Action3).
-		Arg(item.NoMod.Content.Arg).
-		Icon(item.NoMod.Content.Icon)
-	if item.Mod1.ModKey != nil {
-		addNewModifierItem(it, item.Mod1)
+		Var("notification", item["nomod"].Content.Notification).
+		Var("action", item["nomod"].Content.Action).
+		Var("action2", item["nomod"].Content.Action2).
+		Var("action3", item["nomod"].Content.Action3).
+		Arg(item["nomod"].Content.Arg).
+		Icon(item["nomod"].Content.Icon)
+	if item["mod1"].Keys != nil {
+		addNewModifierItem(it, item["mod1"])
 	}
-	if item.Mod2.ModKey != nil {
-		addNewModifierItem(it, item.Mod2)
+	if item["mod2"].Keys != nil {
+		addNewModifierItem(it, item["mod2"])
 	}
-	if item.Mod3.ModKey != nil {
-		addNewModifierItem(it, item.Mod3)
+	if item["mod3"].Keys != nil {
+		addNewModifierItem(it, item["mod3"])
 	}
-	if item.Mod4.ModKey != nil {
-		addNewModifierItem(it, item.Mod4)
+	if item["mod4"].Keys != nil {
+		addNewModifierItem(it, item["mod4"])
 	}
 	return it
 }
 
 func addNewModifierItem(item *aw.Item, modifier modifierActionRelation) {
-	item.NewModifier(modifier.ModKey[0:]...).
+	item.NewModifier(modifier.Keys[0:]...).
 		Subtitle(modifier.Content.Subtitle).
 		Arg(modifier.Content.Arg).
 		Var("notification", modifier.Content.Notification).
