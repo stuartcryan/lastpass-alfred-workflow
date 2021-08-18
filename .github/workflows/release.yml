@@ -69,6 +69,7 @@ jobs:
       - run: |
           test -f download/bitwarden-alfred-workflow && cp download/bitwarden-alfred-workflow workflow/bitwarden-alfred-workflow
           chmod +x workflow/bitwarden-alfred-workflow
+          rm -rf download
 
       - name: Copy run dependencies
         run: |
