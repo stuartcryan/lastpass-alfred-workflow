@@ -29,3 +29,4 @@ workflow/README.html
 workflow/List Filter Images
 workflow/bw_cache_update.sh
 workflow/bw_auto_lock.sh
+workflow/fix_flags.sh

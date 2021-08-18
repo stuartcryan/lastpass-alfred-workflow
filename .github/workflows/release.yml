@@ -7,8 +7,8 @@ on:
       - '*'
 
 jobs:
-  release:
-    runs-on: ubuntu-20.04
+  build-release:
+    runs-on: macos-latest
     steps:
       - name: Granting private modules access
         run: |
@@ -33,6 +33,42 @@ jobs:
       - name: Build Alfred workflow
         run: |
           make build
+
+      - name: Create universal binary
+        run: |
+          make universal-binary
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: universal-binary
+          path: workflow/bitwarden-alfred-workflow
+
+  release:
+    needs: build-release
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Granting private modules access
+        run: |
+          git config --global url."https://${{ secrets.GO_MODULES_TOKEN }}:x-oauth-basic@github.com/blacs30".insteadOf "https://github.com/blacs30"
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.16
+
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Dowload artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: universal-binary
+          path: download
+
+      - run: |
+          test -f download/bitwarden-alfred-workflow && cp download/bitwarden-alfred-workflow workflow/bitwarden-alfred-workflow
+          chmod +x workflow/bitwarden-alfred-workflow
 
       - name: Copy run dependencies
         run: |

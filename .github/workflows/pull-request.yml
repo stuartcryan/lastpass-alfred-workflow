@@ -71,9 +71,12 @@ jobs:
 
 
   build:
-    name: Build
-    runs-on: ubuntu-20.04
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     needs: [lint, test]
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-20.04]
     steps:
       - name: Granting private modules access
         run: |
@@ -89,3 +92,8 @@ jobs:
 
       - name: Build
         run: make build
+
+      - name: Create universal binary
+        if: ${{ matrix.os == 'macos-latest' }}
+        run: |
+          make universal-binary

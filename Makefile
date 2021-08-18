@@ -26,6 +26,9 @@ build: dep ## Build the binary file
 	@CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o workflow/$(PROJECT_NAME)-amd64
 	@CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -o workflow/$(PROJECT_NAME)-arm64
 
+universal-binary:
+	@lipo -create -output workflow/bitwarden-alfred-workflow workflow/bitwarden-alfred-workflow-amd64 workflow/bitwarden-alfred-workflow-arm64
+
 clean: ## Remove previous build
 	@rm -f workflow/$(PROJECT_NAME)
 
@@ -42,6 +45,8 @@ copy-build-assets:
 	@cp -r assets ./workflow
 	@cp bw_cache_update.sh ./workflow
 	@cp bw_auto_lock.sh ./workflow
+	@cp fix_flags.sh ./workflow
+	@chmod +x ./workflow/*.sh
 	@go get github.com/pschlump/markdown-cli
 	@markdown-cli -i README.md -o workflow/README.html
 

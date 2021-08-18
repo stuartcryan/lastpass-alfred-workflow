@@ -498,7 +498,7 @@ func runLogin() {
 	if err != nil {
 		wf.FatalError(err)
 	}
-	// set the password from the returned slice
+	// set the token from the returned result
 	token := ""
 	if len(tokenReturn) > 0 {
 		token = tokenReturn[0]
