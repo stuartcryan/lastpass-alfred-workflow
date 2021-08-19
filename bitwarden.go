@@ -359,6 +359,169 @@ func runGetFolders(token string) []Folder {
 	return folders
 }
 
+// Unlock Bitwarden
+func runUnlock() {
+	wf.Configure(aw.TextErrors(true))
+	email := conf.Email
+	if email == "" {
+		searchAlfred(fmt.Sprintf("%s email", conf.BwconfKeyword))
+		wf.Fatal("No email configured.")
+	}
+
+	// first check if Bitwarden is logged in and locked
+	loginErr, unlockErr := BitwardenAuthChecks()
+	if loginErr != nil {
+		searchAlfred(fmt.Sprintf("%s login", conf.BwauthKeyword))
+		wf.Fatal(NOT_LOGGED_IN_MSG)
+		return
+
+	}
+	if unlockErr == nil {
+		searchAlfred(conf.BwKeyword)
+		wf.Fatal("Already unlocked")
+		return
+
+	}
+
+	inputScriptPassword := fmt.Sprintf("/usr/bin/osascript bitwarden-js-pw-promot.js Unlock %s password true", email)
+	message := "Failed to get Password to Unlock."
+	// user needs to input pasword
+	passwordReturn, err := runCmd(inputScriptPassword, message)
+	if err != nil {
+		wf.FatalError(err)
+	}
+	// set the password from the returned slice
+	password := ""
+	if len(passwordReturn) > 0 {
+		password = passwordReturn[0]
+	} else {
+		wf.Fatal("No Password returned.")
+	}
+	// remove newline characters
+	password = strings.TrimRight(password, "\r\n")
+	log.Println("[ERROR] ==> first few chars of the password is ", password[0:2])
+
+	// Unlock Bitwarden now
+	message = "Unlocking Bitwarden failed."
+	args := fmt.Sprintf("%s unlock --raw %s", conf.BwExec, password)
+	tokenReturn, err := runCmd(args, message)
+	if err != nil {
+		wf.FatalError(err)
+	}
+	// set the password from the returned slice
+	token := ""
+	if len(tokenReturn) > 0 {
+		token = tokenReturn[0]
+	} else {
+		wf.Fatal("No token returned after unlocking.")
+	}
+	err = alfred.SetToken(wf, token)
+	if err != nil {
+		log.Println(err)
+	}
+	if wf.Debug() {
+		log.Println("[ERROR] ==> first few chars of the token is ", token[0:2])
+	}
+	searchAlfred(conf.BwKeyword)
+	fmt.Println("Unlocked")
+}
+
+// Login to Bitwarden
+func runLogin() {
+	wf.Configure(aw.TextErrors(true))
+	email := conf.Email
+	sfa := conf.Sfa
+	sfaMode := conf.SfaMode
+	if email == "" {
+		searchAlfred(fmt.Sprintf("%s email", conf.BwconfKeyword))
+		if wf.Debug() {
+			log.Println("[ERROR] ==> Email missing. Bitwarden not configured yet")
+		}
+		wf.Fatal("No email configured.")
+	}
+
+	loginErr, unlockErr := BitwardenAuthChecks()
+	if loginErr == nil {
+		if unlockErr != nil {
+			searchAlfred(fmt.Sprintf("%s unlock", conf.BwauthKeyword))
+			if wf.Debug() {
+				log.Println("[ERROR] ==> Already logged in but locked.")
+			}
+			wf.Fatal("Already logged in but locked")
+			return
+
+		} else {
+			searchAlfred(conf.BwKeyword)
+			if wf.Debug() {
+				log.Println("[ERROR] ==> Already logged in and unlocked.")
+			}
+			wf.Fatal("Already logged in and unlocked.")
+		}
+	}
+
+	inputScriptPassword := fmt.Sprintf("/usr/bin/osascript bitwarden-js-pw-promot.js Login %s password true", email)
+	message := "Failed to get Password to Login."
+	passwordReturn, err := runCmd(inputScriptPassword, message)
+	if err != nil {
+		wf.FatalError(err)
+	}
+	// set the password from the returned slice
+	password := ""
+	if len(passwordReturn) > 0 {
+		password = passwordReturn[0]
+	}
+
+	log.Println(fmt.Sprintf("first few chars of the password is %s", password[0:2]))
+	password = strings.TrimRight(password, "\r\n")
+
+	args := fmt.Sprintf("%s login %s %s", conf.BwExec, email, password)
+	if sfa {
+		display2faMode := map2faMode(sfaMode)
+		inputScript2faCode := fmt.Sprintf("/usr/bin/osascript bitwarden-js-pw-promot.js Login %s %s false", email, display2faMode)
+		message := "Failed to get 2FA code to Login."
+		sfacodeReturn, err := runCmd(inputScript2faCode, message)
+		sfaCode := ""
+		if len(sfacodeReturn) > 0 {
+			sfaCode = sfacodeReturn[0]
+		} else {
+			wf.Fatal("No 2FA code returned.")
+		}
+
+		if err != nil {
+			wf.Fatalf("Error reading password, %s", err)
+		}
+		args = fmt.Sprintf("%s login %s %s --raw --method %d --code %s", conf.BwExec, email, password, sfaMode, sfaCode)
+	}
+
+	message = "Login to Bitwarden failed."
+	tokenReturn, err := runCmd(args, message)
+	if err != nil {
+		wf.FatalError(err)
+	}
+	// set the token from the returned result
+	token := ""
+	if len(tokenReturn) > 0 {
+		token = tokenReturn[0]
+	} else {
+		wf.Fatal("No token returned after unlocking.")
+	}
+	err = alfred.SetToken(wf, token)
+	if err != nil {
+		log.Println(err)
+	}
+	if wf.Debug() {
+		log.Println("[ERROR] ==> first few chars of the token is ", token[0:2])
+	}
+	searchAlfred(conf.BwKeyword)
+	fmt.Println("Logged In.")
+
+	// reset sync-cache
+	err = wf.Cache.StoreJSON(CACHE_NAME, nil)
+	if err != nil {
+		fmt.Println("Error cleaning cache..")
+	}
+}
+
 // Logout from Bitwarden
 func runLogout() {
 	wf.Configure(aw.TextErrors(true))
