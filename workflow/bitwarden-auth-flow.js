@@ -23,8 +23,9 @@ function run(arg) {
             hiddenAnswer: "true"
         })
 
-        var password = response.textReturned
-        return unlock(password)
+        $.setenv('PASS',response.textReturned, 1);
+        return unlock()
+
     } else {
         var totpInt = arg[2]
         var totpStr = arg[3]
@@ -42,7 +43,7 @@ function run(arg) {
             givingUpAfter: 120,
             hiddenAnswer: "true"
         })
-        var password = response.textReturned
+        $.setenv('PASS',response.textReturned, 1);
 
         if (totpStr.localeCompare(" ") != 0) {
             if (totpInt.localeCompare("1") != 0) {
@@ -58,27 +59,27 @@ function run(arg) {
                 })
 
                 var totpCode = response.textReturned
-                return login(email, password, totpCode, totpInt)
+                return login(email, totpCode, totpInt)
             } else {
-                return login(email, password, "", totpInt)
+                return login(email, "", totpInt)
             }
         } else {
-            return login(email, password, "", "")
+            return login(email, "", "")
         }
     }
 }
 
-function login(email, password, totp, totpMode) {
-    var escapedPassword = password.replace(/"/g, '\\"')
-
+function login(email, totp, totpMode) {
     var app = Application.currentApplication()
     app.includeStandardAdditions = true
 
+    // email login mode
     if (totpMode.localeCompare("1") == 0) {
-        var cmd = `PATH=${PATH}; ${BW_EXEC} login ${email} --method ${totpMode} "${escapedPassword}"`
+        var cmd = `PATH=${PATH}; ${BW_EXEC} login ${email} --method ${totpMode} --passwordenv PASS`
         try{
             var result = app.doShellScript(cmd);
         }catch(e) {
+            $.unsetenv('PASS');
             var res = e.toString()
             res = res.includes("Two-step login code")
             if (!res) {
@@ -98,45 +99,54 @@ function login(email, password, totp, totpMode) {
         })
         var totpCode = response.textReturned
 
-        var cmd = `PATH=${PATH}; ${BW_EXEC} login ${email} --method ${totpMode} --code ${totpCode} "${escapedPassword}" --raw`
+        var cmd = `PATH=${PATH}; ${BW_EXEC} login ${email} --method ${totpMode} --code ${totpCode} --passwordenv PASS --raw`
         try {
             var result = app.doShellScript(cmd);
+            $.unsetenv('PASS');
         }catch(e) {
+            $.unsetenv('PASS');
             console.log(e.toString())
             return e.toString()
         }
     } else {
         if (totp.localeCompare("") != 0) {
-            var cmd = `PATH=${PATH}; ${BW_EXEC} login ${email} --method ${totpMode} --code ${totp} "${escapedPassword}" --raw`
+            var cmd = `PATH=${PATH}; ${BW_EXEC} login ${email} --method ${totpMode} --code ${totp} --passwordenv PASS --raw`
         } else {
-            var cmd = `PATH=${PATH}; ${BW_EXEC} login ${email} "${escapedPassword}" --raw`
+            var cmd = `PATH=${PATH}; ${BW_EXEC} login ${email} --passwordenv PASS --raw`
         }
         try {
             var result = app.doShellScript(cmd);
+            $.unsetenv('PASS');
         }catch(e) {
+            $.unsetenv('PASS');
             console.log(e.toString())
             return e.toString()
         }
     }
+    // should have been unset before but just to be sure repeat it here
+    $.unsetenv('PASS');
     var res = setToken(result)
     if (res.localeCompare("") == 0) {
         return "Logged in."
     }
 }
 
-function unlock(password) {
+function unlock() {
+    var password = $.getenv('PASS');
     var escapedPassword = password.replace(/"/g, '\"')
-
     var app = Application.currentApplication()
     app.includeStandardAdditions = true
+    // var cmd = `PATH=${PATH}; ${BW_EXEC} unlock --passwordenv PASS --raw`
     var cmd = `PATH=${PATH}; ${BW_EXEC} unlock "${escapedPassword}" --raw`
     try {
         var result = app.doShellScript(cmd);
+        $.unsetenv('PASS');
         var res = setToken(result)
         if (res.localeCompare("") == 0) {
             return "Unlocked"
         }
     }catch(e) {
+        $.unsetenv('PASS');
         console.log(e)
         return e.toString()
     }

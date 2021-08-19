@@ -227,16 +227,16 @@ func run() {
 		runLock()
 		return
 	}
-
-	if opts.Unlock {
-		runUnlock()
-		return
-	}
-
-	if opts.Login {
-		runLogin()
-		return
-	}
+    //
+	//if opts.Unlock {
+	//	runUnlock()
+	//	return
+	//}
+    //
+	//if opts.Login {
+	//	runLogin()
+	//	return
+	//}
 
 	if opts.Logout {
 		runLogout()
