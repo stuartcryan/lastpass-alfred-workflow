@@ -302,6 +302,8 @@ tell application "Finder"
 		set lpass_binary to "/usr/local/bin/lpass"
 	else if exists POSIX file "/opt/local/bin/lpass" then
 		set lpass_binary to "/opt/local/bin/lpass"
+	else if exists POSIX file "/opt/homebrew/bin/lpass" then
+		set lpass_binary to "/opt/homebrew/bin/lpass"
 	end if
 end tell
 
@@ -411,7 +413,7 @@ exit 1;
 } else {
 
 my $lpass_exec;
-foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass@) {
+foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass /opt/homebrew/bin/lpass@) {
     $lpass_exec = $f
         if (-x $f);
 }
@@ -528,7 +530,7 @@ my ($agent, $agentErr, $agentErrCode) = capture {
 };
 
 my $lpass_exec;
-foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass@) {
+foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass /opt/homebrew/bin/lpass@) {
     $lpass_exec = $f
         if (-x $f);
 }
@@ -663,7 +665,7 @@ exit 1;
 } else {
 
 my $lpass_exec;
-foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass@) {
+foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass /opt/homebrew/bin/lpass@) {
     $lpass_exec = $f
         if (-x $f);
 }
@@ -762,7 +764,7 @@ print $results;
 				<integer>127</integer>
 				<key>script</key>
 				<string>#!/bin/bash
-for f in lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass; do
+for f in lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass /opt/homebrew/bin/lpass; do
     if test -x $f; then
         lpass_exec=$f
     fi
@@ -821,7 +823,7 @@ my ($agent, $agentErr, $agentErrCode) = capture {
 };
 
 my $lpass_exec;
-foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass@) {
+foreach my $f (qw@lpass /usr/local/bin/lpass /opt/local/bin/lpass /usr/bin/lpass /opt/homebrew/bin/lpass@) {
     $lpass_exec = $f
         if (-x $f);
 }
